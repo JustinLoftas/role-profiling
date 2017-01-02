@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_78492_profiling.ProfileManagementAJAX</api_name>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>ProfileManagementAJAX</name>
+        <script><![CDATA[var ProfileManagementAJAX = Class.create();
+ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	//Function for returning an
+	getComparisonData: function(){
+		try {
+			var json = new global.JSON();
+			var profileId = this.getParameter('sysparm_profile_id');
+			var userId = this.getParameter('sysparm_user_id');
+			var profileSkill = {};
+			var userProfileSkills = [];
+			var matched = false;
+			if (!userId || !profileId){
+				return json.encode(userProfileSkills);
+			}
+			var skillId = null;
+			var grProfileSkill = new GlideRecord('x_78492_profiling_role_profile_skill');
+			grProfileSkill.addQuery('role_profile', profileId);
+			grProfileSkill.orderBy('skill.u_category');
+			grProfileSkill.orderBy('skill.name');
+			//profileSkill.groupBy('category');
+			grProfileSkill.query();
+			while (grProfileSkill.next()){
+				skillId = grProfileSkill.getValue('skill');
+				profileSkill = {
+					skill_id : skillId, 
+					category : grProfileSkill.skill.u_category.getDisplayValue(), 
+					skill: grProfileSkill.getDisplayValue('skill'), 
+					level : grProfileSkill.getDisplayValue('level'), 
+					level_value : grProfileSkill.getValue('level'), 
+					matched : 'no'
+				};
+				userProfileSkills.push(profileSkill);
+				
+			}
+			var grUserSkill = new GlideRecord('sys_user_has_skill');
+			grUserSkill.addQuery('user', userId);
+			grUserSkill.query();
+			while (grUserSkill.next()){
+				matched = false;
+				skillId = grUserSkill.getValue('skill');
+				for (var i = 0; i < userProfileSkills.length; i++){
+					if (userProfileSkills[i].skill_id == skillId){
+						matched = true;
+						var upf = userProfileSkills[i];
+						var skillLevel = grUserSkill.getValue('u_skill_level');
+						if (upf.level_value == skillLevel){
+							upf.matched = 'equal';
+						}
+						else if (upf.level_value < skillLevel){
+							upf.matched = 'higher';
+						}
+						else {
+							upf.matched = 'lower';
+						}
+					}
+				}
+				if (!matched){
+		          profileSkill = {
+					skill_id : skillId, 
+					category : grUserSkill.skill.u_category.getDisplayValue(), 
+					skill: grUserSkill.getDisplayValue('skill'), 
+					level : grUserSkill.getDisplayValue('u_skill_level'), 
+					level_value : grProfileSkill.getValue('u_skill_level'), 
+					matched : 'user'
+				  };
+				userProfileSkills.push(profileSkill);
+				}
+			}
+			
+			return json.encode(userProfileSkills);
+		}
+		
+		catch(err){
+			gs.error('Error detected!! Error is: ' + err.message);
+			return null;
+		}
+		
+	},
+	
+	type: 'ProfileManagementAJAX'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>jloftas</sys_created_by>
+        <sys_created_on>2016-12-22 19:44:15</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>ab164526dbf72200e24ff7fdbf96195e</sys_id>
+        <sys_mod_count>36</sys_mod_count>
+        <sys_name>ProfileManagementAJAX</sys_name>
+        <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+        <sys_update_name>sys_script_include_ab164526dbf72200e24ff7fdbf96195e</sys_update_name>
+        <sys_updated_by>jloftas</sys_updated_by>
+        <sys_updated_on>2016-12-29 09:47:11</sys_updated_on>
+    </sys_script_include>
+</record_update>

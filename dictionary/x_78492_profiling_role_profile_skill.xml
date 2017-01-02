@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Role profile skill" max_length="40" name="x_78492_profiling_role_profile_skill" type="collection">
+        <element choice="3" choice_field="u_category" default="0" label="Level" max_length="40" name="level" type="choice">
+            <choice>
+                <element label="None" sequence="0" value="0"/>
+                <element label="Learning" sequence="1" value="1"/>
+                <element label="Working knowledge" sequence="2" value="2"/>
+                <element label="Competent" sequence="3" value="3"/>
+                <element label="Expert" sequence="4" value="4"/>
+            </choice>
+        </element>
+        <element label="Name" max_length="120" name="name" type="string"/>
+        <element label="Role profile" max_length="32" name="role_profile" reference="x_78492_profiling_role_profile" type="reference"/>
+        <element label="Skill" max_length="32" name="skill" reference="cmn_skill" type="reference"/>
+        <index name="index">
+            <element name="skill"/>
+        </index>
+        <index name="index2">
+            <element name="role_profile"/>
+        </index>
+    </element>
+</database>

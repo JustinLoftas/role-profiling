@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element attributes="update_synch=true,iterativeDelete=true" extends="sys_metadata" label="Skill" max_length="40" name="cmn_skill" text_index="true" type="collection">
+        <element label="Category" max_length="32" name="x_78492_profiling_category" reference="u_skill_category" type="reference"/>
+        <index name="index">
+            <element name="x_78492_profiling_category"/>
+        </index>
+    </element>
+</database>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script/>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_78492_profiling_role_profile_comparison.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+
+<g2:evaluate var="jvar_stamp">
+  var gr = new GlideRecord('sys_ui_script');  
+  gr.get('name', 'x_78492_profiling.Ng.profile.controller');
+  gr.getValue('sys_updated_on');
+</g2:evaluate> 
+<link rel="stylesheet" type="text/css" href="a8b00b54db043200e24ff7fdbf961922.cssdbx"/>
+<link rel="stylesheet" type="text/css" href="e37e4c1edb732200e24ff7fdbf961987.cssdbx"/> 
+<g:requires name="x_78492_profiling.angular.1.4.9.jsdbx" params="cache=$[jvar_stamp]"/>
+<g:requires name="x_78492_profiling.Ng.profile.controller.jsdbx" params="cache=$[jvar_stamp]"/>
+
+
+	
+<div ng-app="profileApp">
+	<div ng-controller="ProfileController as profCtrl">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-offset-2 col-md-4">
+					<div class="panel panel-default panel-info">
+						<div class="panel-heading column-row-text">${gs.getMessage('Choose a profile:')}</div>
+						<div class="panel-body">
+							<g:ui_reference id="profile" value="d92065e5db772200e24ff7fdbf96199c" displayvalue="ServiceNow Developer" ng-model="profCtrl.profileId" name="profile" table="x_78492_profiling_role_profile"/>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="panel panel-default panel-info">
+						<div class="panel-heading column-row-text ">${gs.getMessage('Choose a user:')}</div>
+						<div class="panel-body">
+							<g:ui_reference id="user" ng-model="profCtrl.userId" name="user" table="sys_user" query="active=true" value="21dd67cadb032200e24ff7fdbf9619dd" displayvalue="Justin Loftas"/>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<button class="btn btn-primary" type="button" ng-click="profCtrl.getData('profile', 'user');">Compare</button>
+				</div>
+			</div>
+            <div class="row">
+				<div class="col-xs-12">
+					<input type="checkbox" ng-model="profCtrl.skillFilter" ng-true-value="'no'" ng-false-value="'higher'"/>Only show higher skills
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12" ng-show="profCtrl.skills.length == 0">
+					No skills
+				</div>
+			</div>
+			<div class="row">
+				<div class="table-responsive" ng-show="profCtrl.skills.length > 0">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>
+									<div class="column-row-header">${gs.getMessage('Category')}</div>
+								</th>
+								<th>
+									<div class="column-row-header">${gs.getMessage('Skill')}</div>
+								</th>
+							    <th>
+									<div class="column-row-header">${gs.getMessage('Profile level')}</div>
+								</th>
+								<th>
+									<div class="column-row-header">${gs.getMessage('User skill level')}</div>
+								</th>
+							</tr>
+						</thead>
+						<tr ng-repeat="skills in profCtrl.skills | filter: {matched:profCtrl.skillFilter}">			
+						    <td>
+								<div class="column-row-text" ng-bind="skills.category"></div>
+						    </td>
+							<td>
+								   <div class="column-row-text" ng-bind="skills.skill"></div>
+							</td>
+							<td>
+								   <div class="column-row-text" ng-bind="skills.level"></div>
+							</td>
+							<td>
+								   <div class="column-row-text" ng-class="profCtrl.getGlyphClass(skills.matched)" ng-bind="skills.matched"></div>
+							</td>
+						</tr>
+					</table>
+				</div>
+            </div>
+		</div>
+	</div>
+</div>
+</j:jelly>]]></html>
+        <name>role_profile_comparison</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>jloftas</sys_created_by>
+        <sys_created_on>2016-12-19 16:44:23</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>1ff589eddb372200e24ff7fdbf961943</sys_id>
+        <sys_mod_count>221</sys_mod_count>
+        <sys_name>role_profile_comparison</sys_name>
+        <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+        <sys_update_name>sys_ui_page_1ff589eddb372200e24ff7fdbf961943</sys_update_name>
+        <sys_updated_by>jloftas</sys_updated_by>
+        <sys_updated_on>2016-12-30 18:11:59</sys_updated_on>
+    </sys_ui_page>
+</record_update>
