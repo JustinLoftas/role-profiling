@@ -8,22 +8,61 @@
         <script><![CDATA[angular.module('profileApp', [])
 .controller('ProfileController' , ['$document', function($document){
 	var self = this;
+	var totalSkills = 0;
 	self.profileId = '';
 	self.userId = '';
-	self.skills = [];//self.getData('','');
-	self.skillFilter = 'higher';
+	self.skills = [];
+	self.percentMatch = 0;
+	self.totalSkills = 0;
+	self.totalMatched = 0;
+	self.totalLower = 0;
+	self.totalHigher = 0;
+	self.percentMatched = 0;
+	self.percentLower = 0;
+	self.percentHigher = 0;
+	self.percentMissing = 0;
+	self.levelFilter = '';
+	self.showMatchingDetails = false;
+
+	self.toggleShowMatchingDetails = function(value){
+		self.showMatchingDetails = value;
+	};
+	
+	self.setSkillFilter = function(skill){
+		self.levelFilter = skill;
+	};
+	
 	self.getGlyphClass = function(levelMatch){
 		return {
-			"glyphicon glyphicon-ok color-green": levelMatch == 'equal',
-			"glyphicon glyphicon-upload color-lightblue" : levelMatch == 'higher',
-			"glyphicon glyphicon-download color-orange" : levelMatch == 'lower',
-			"glyphicon glyphicon-remove color-red" : levelMatch == 'no'
+			"column-row-text green-text": levelMatch == 'matched',
+			"column-row-text blue-text" : levelMatch == 'higher',
+			"column-row-text orange-text" : levelMatch == 'lower',
+			"glyphicon glyphicon-remove red-text" : levelMatch == 'missing'
 		};
 	};
+	
+	self.resetData = function(){
+		self.profileId = '';
+		self.userId = '';
+		self.skills = [];
+		self.percentMatch = 0;
+		self.totalSkills = 0;
+		self.totalMatched = 0;
+		self.totalLower = 0;
+		self.totalHigher = 0;
+		self.percentMatched = 0;
+		self.percentLower = 0;
+		self.percentHigher = 0;
+		self.percentMissing = 0;
+		self.levelFilter = '';
+		self.showMatchingDetails = false;
+		
+	};
+	
 	self.getData = function(profileElementId, userElementId ){
 		var profileId = $document[0].getElementById(profileElementId).value;
 		var userId = $document[0].getElementById(userElementId).value;
-        if (!profileId || !userId){
+		if (!profileId || !userId){
 			if (!userId && profileId){
 				alert('Please select a user to compare');
 			}
@@ -31,21 +70,33 @@
 				alert('Please select a profile to compare');
 			}
 			if (!profileId && !userId){
-			    alert('Please select a profile and a user to compare');
+				alert('Please select a profile and a user to compare');
 			}
 			self.skills = [];
 			return;
 		}
 		var ga = new GlideAjax('x_78492_profiling.ProfileManagementAJAX');
-        ga.addParam('sysparm_name','getComparisonData');
-        ga.addParam('sysparm_profile_id',profileId);
+		ga.addParam('sysparm_name','getComparisonData');
+		ga.addParam('sysparm_profile_id',profileId);
 		ga.addParam('sysparm_user_id',userId);
-        ga.getXML(function(response) {
-            var answer = response.responseXML.documentElement.getAttribute("answer");
-            //alert(answer);
-			self.skills = answer.evalJSON(answer);
-		});
- 
+		ga.getXMLWait();
+		var skillsInfo = ga.getAnswer().evalJSON();
+		if (skillsInfo){
+			self.skills = skillsInfo.skills;
+			self.totalSkills = skillsInfo.totalSkills;
+			self.totalMatched = skillsInfo.totalMatched;
+			self.totalHigher = skillsInfo.totalHigher;
+			self.totalLower = skillsInfo.totalLower;
+			self.totalMissing = skillsInfo.totalMissing;
+			totalSkills = self.totalSkills;
+			if (totalSkills > 0){
+				self.percentMatched = (self.totalMatched/totalSkills * 100).toFixed(0);
+				self.percentHigher = (self.totalHigher/totalSkills * 100).toFixed(0);
+				self.percentLower = (self.totalLower/totalSkills * 100).toFixed(0);
+				self.percentMissing = (self.totalMissing/totalSkills * 100).toFixed(0);
+			}
+		}
+		
 	};
 	self.getComparison = function(){
 		console.log('Logging: '+ self.roleId);
@@ -58,7 +109,7 @@
         <sys_created_on>2016-12-19 22:29:56</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>b123de65dbb72200e24ff7fdbf961913</sys_id>
-        <sys_mod_count>63</sys_mod_count>
+        <sys_mod_count>135</sys_mod_count>
         <sys_name>x_78492_profiling.Ng.profile.controller</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
@@ -66,7 +117,7 @@
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_ui_script_b123de65dbb72200e24ff7fdbf961913</sys_update_name>
         <sys_updated_by>jloftas</sys_updated_by>
-        <sys_updated_on>2016-12-29 11:01:17</sys_updated_on>
+        <sys_updated_on>2017-01-09 19:54:37</sys_updated_on>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>
 </record_update>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description/>
+        <global>false</global>
+        <name>x_78492_profiling.Ng.profile.directive</name>
+        <script><![CDATA[angular.module('profileApp')
+.directive('profileGauge', [function() {
+	return {
+		restrict : 'E',
+		replace : true,
+		scope :{
+			gaugePercent : '@',
+			gaugeInfo : '=',
+			whenSelect: '&',
+			gaugeFor : '@'
+		},
+		template: "<canvas width='110' height='100' ng-click='filterSkill()' ng-bind='gaugePercent'></canvas>",
+		link : function($scope, $element, $attrs){
+			$scope.$watch('gaugePercent', function(){
+				drawGauge();
+			});
+			
+			$scope.filterSkill = function(){
+				$scope.whenSelect({
+				   skill: $scope.gaugeFor
+			   });
+			};
+			
+			
+			function drawGauge(){
+				var canvas = $element[0];
+				var color = $scope.gaugeInfo.color;
+				var shadowColor = $scope.gaugeInfo.shadow_color;
+				var percent = (2 * Math.PI) / 100;
+				var percentScore = $scope.gaugePercent;
+				var fullPercent = percent * percentScore;
+				var centreX = $scope.gaugeInfo.centreX ? $scope.gaugeInfo.centreX : 50;
+				var centreY = $scope.gaugeInfo.centreY ? $scope.gaugeInfo.centreY : 50;
+				var textX = centreX - 1;
+				var radius = $scope.gaugeInfo.radius ? $scope.gaugeInfo.radius : 40;
+				var textWidth = 0;
+				var percentTextWidth = 0;
+				var ctx= canvas.getContext("2d");
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				ctx.beginPath();
+				ctx.lineWidth = $scope.gaugeInfo.lineWidth ? $scope.gaugeInfo.lineWidth : 9;
+				ctx.arc(centreX, centreY, radius, 0, 2 * Math.PI);
+				ctx.strokeStyle = shadowColor;
+				ctx.stroke();
+				if (percentScore > 0){
+					ctx.beginPath();
+					ctx.arc(centreX, centreY, radius, 0, fullPercent);
+					ctx.lineCap = 'round';
+					ctx.shadowBlur=6;
+					ctx.shadowOffsetX = 6;
+					ctx.shadowOffsety = 6;
+					ctx.shadowColor = shadowColor;
+					ctx.lineWidth=8;
+					ctx.strokeStyle= color;
+					ctx.stroke();
+				}
+				ctx.shadowBlur=0;
+				ctx.shadowOffsetX = 0;
+				ctx.shadowOffsety = 0;
+				ctx.shadowColor="none";
+				ctx.font="32px Impact, Charcoal, sans-serif";
+				percentTextWidth = (ctx.measureText(percentScore).width / 2);
+				textWidth = textX - percentTextWidth;
+				ctx.fillStyle = color;
+				ctx.fillText(percentScore, textWidth - 1, 62);
+				ctx.font="13px Arial";
+				ctx.fillText("%", textX + percentTextWidth - 1, 47);
+			}
+			
+		}
+	};
+}])
+.directive('gaugeHover', [function() {
+	return {
+		restrict : 'E',
+		replace : true,
+		scope :{
+			gaugePercent : '@',
+			gaugeInfo : '='
+		},
+		template: "<canvas width='110' height='100' ng-bind='gaugePercent'></canvas>",
+		link : function($scope, $element, $attrs){
+			$scope.$watch('gaugePercent', function(){
+				drawGauge();
+			});
+		}
+	};
+}]);]]></script>
+        <script_name>Ng.profile.directive</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>jloftas</sys_created_by>
+        <sys_created_on>2017-01-07 12:02:38</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>6fdbfd23dbc43200e24ff7fdbf961970</sys_id>
+        <sys_mod_count>89</sys_mod_count>
+        <sys_name>x_78492_profiling.Ng.profile.directive</sys_name>
+        <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+        <sys_update_name>sys_ui_script_6fdbfd23dbc43200e24ff7fdbf961970</sys_update_name>
+        <sys_updated_by>jloftas</sys_updated_by>
+        <sys_updated_on>2017-01-09 19:35:47</sys_updated_on>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>
