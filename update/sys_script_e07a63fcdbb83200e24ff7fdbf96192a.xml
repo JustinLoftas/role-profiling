@@ -4,7 +4,7 @@
         <abort_action>false</abort_action>
         <access>package_private</access>
         <action_delete>false</action_delete>
-        <action_insert>true</action_insert>
+        <action_insert>false</action_insert>
         <action_query>false</action_query>
         <action_update>true</action_update>
         <active>true</active>
@@ -12,14 +12,16 @@
         <advanced>true</advanced>
         <change_fields>false</change_fields>
         <client_callable>false</client_callable>
-        <collection>x_78492_profiling_role_profile_skill</collection>
+        <collection>x_78492_profiling_role_profile</collection>
         <condition/>
         <description/>
         <execute_function>false</execute_function>
-        <filter_condition/>
+        <filter_condition table="x_78492_profiling_role_profile">nameVALCHANGES^EQ<item endquery="false" field="name" goto="false" newquery="false" operator="VALCHANGES" or="false" value=""/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
         <is_rest>false</is_rest>
         <message/>
-        <name>Set name</name>
+        <name>Sync role profile skills on name change</name>
         <order>100</order>
         <priority>100</priority>
         <rest_method/>
@@ -31,28 +33,27 @@
         <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
 
 	// Add your code here
-    var displayName = current.getDisplayValue('role_profile') + ' > ' + current.getDisplayValue('skill') + ' : ' + current.getDisplayValue('level');
-	current.setValue('name', displayName);
+    new x_78492_profiling.ProfileManagementUtils(current).updateProfileSkills();
 })(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
         <sys_created_by>jloftas</sys_created_by>
-        <sys_created_on>2016-12-23 22:07:37</sys_created_on>
+        <sys_created_on>2017-02-05 13:52:20</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>3fb57abedb7f2200e24ff7fdbf9619ad</sys_id>
-        <sys_mod_count>6</sys_mod_count>
-        <sys_name>Set name</sys_name>
+        <sys_id>e07a63fcdbb83200e24ff7fdbf96192a</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Sync role profile skills on name change</sys_name>
         <sys_overrides/>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
-        <sys_update_name>sys_script_3fb57abedb7f2200e24ff7fdbf9619ad</sys_update_name>
+        <sys_update_name>sys_script_e07a63fcdbb83200e24ff7fdbf96192a</sys_update_name>
         <sys_updated_by>jloftas</sys_updated_by>
-        <sys_updated_on>2017-02-05 13:56:43</sys_updated_on>
+        <sys_updated_on>2017-02-05 14:01:46</sys_updated_on>
         <template/>
-        <when>before</when>
+        <when>after</when>
     </sys_script>
-    <sys_translated_text action="delete_multiple" query="documentkey=3fb57abedb7f2200e24ff7fdbf9619ad"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=e07a63fcdbb83200e24ff7fdbf96192a"/>
 </record_update>

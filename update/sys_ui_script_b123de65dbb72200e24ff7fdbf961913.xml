@@ -22,11 +22,8 @@
 	self.percentHigher = 0;
 	self.percentMissing = 0;
 	self.levelFilter = '';
-	self.showMatchingDetails = false;
-
-	self.toggleShowMatchingDetails = function(value){
-		self.showMatchingDetails = value;
-	};
+	self.profileSet = false;
+	self.userSet = false;
 	
 	self.setSkillFilter = function(skill){
 		self.levelFilter = skill;
@@ -64,23 +61,33 @@
 		var userId = $document[0].getElementById(userElementId).value;
 		if (!profileId || !userId){
 			if (!userId && profileId){
-				alert('Please select a user to compare');
+				self.profileSet = true;
+				self.userSet = false;
+				//alert('Please select a user to compare');
 			}
 			if (!profileId && userId){
-				alert('Please select a profile to compare');
+				self.userSet = true;
+				self.profileSet = false;
+				//alert('Please select a profile to compare');
 			}
 			if (!profileId && !userId){
-				alert('Please select a profile and a user to compare');
+				self.profileSet = false;
+				self.userSet = false;
+				//alert('Please select a profile and a user to compare');
 			}
+			self.setSkillFilter('');
 			self.skills = [];
 			return;
 		}
-		var ga = new GlideAjax('x_78492_profiling.ProfileManagementAJAX');
-		ga.addParam('sysparm_name','getComparisonData');
-		ga.addParam('sysparm_profile_id',profileId);
-		ga.addParam('sysparm_user_id',userId);
-		ga.getXMLWait();
-		var skillsInfo = ga.getAnswer().evalJSON();
+		self.userSet = true;
+		self.profileSet = true;
+		var gaGetComparison = new GlideAjax('x_78492_profiling.ProfileManagementAJAX');
+		gaGetComparison.addParam('sysparm_name','getComparisonData');
+		gaGetComparison.addParam('sysparm_profile_id',profileId);
+		gaGetComparison.addParam('sysparm_user_id',userId);
+		//We have to use getXMLWait and gteAnswer as Angular doesn't like the callback on getXML, impact is minimal in this case
+		gaGetComparison.getXMLWait();
+		var skillsInfo = gaGetComparison.getAnswer().evalJSON();
 		if (skillsInfo){
 			self.skills = skillsInfo.skills;
 			self.totalSkills = skillsInfo.totalSkills;
@@ -90,10 +97,10 @@
 			self.totalMissing = skillsInfo.totalMissing;
 			totalSkills = self.totalSkills;
 			if (totalSkills > 0){
-				self.percentMatched = (self.totalMatched/totalSkills * 100).toFixed(0);
-				self.percentHigher = (self.totalHigher/totalSkills * 100).toFixed(0);
-				self.percentLower = (self.totalLower/totalSkills * 100).toFixed(0);
-				self.percentMissing = (self.totalMissing/totalSkills * 100).toFixed(0);
+				self.percentMatched = (self.totalMatched/totalSkills * 100).toFixed(1);
+				self.percentHigher = (self.totalHigher/totalSkills * 100).toFixed(1);
+				self.percentLower = (self.totalLower/totalSkills * 100).toFixed(1);
+				self.percentMissing = (self.totalMissing/totalSkills * 100).toFixed(1);
 			}
 		}
 		
@@ -109,7 +116,7 @@
         <sys_created_on>2016-12-19 22:29:56</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>b123de65dbb72200e24ff7fdbf961913</sys_id>
-        <sys_mod_count>135</sys_mod_count>
+        <sys_mod_count>143</sys_mod_count>
         <sys_name>x_78492_profiling.Ng.profile.controller</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
@@ -117,7 +124,7 @@
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_ui_script_b123de65dbb72200e24ff7fdbf961913</sys_update_name>
         <sys_updated_by>jloftas</sys_updated_by>
-        <sys_updated_on>2017-01-09 19:54:37</sys_updated_on>
+        <sys_updated_on>2017-01-16 21:42:50</sys_updated_on>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>
 </record_update>

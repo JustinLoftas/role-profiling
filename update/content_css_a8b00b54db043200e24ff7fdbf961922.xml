@@ -28,9 +28,24 @@
    text-align: center;&#13;
 }&#13;
 &#13;
-.column-row-header {&#13;
+.reset-row {&#13;
    font-size: 12pt;&#13;
    text-transform: uppercase;&#13;
+   text-align: center;&#13;
+   position: relative;&#13;
+   top: -20px;&#13;
+}&#13;
+&#13;
+div.column-row-header {&#13;
+   font-size: 12pt;&#13;
+   text-transform: uppercase;&#13;
+}&#13;
+&#13;
+th.column-header {&#13;
+   width: 25%;&#13;
+  background-color: #5bc0de; &#13;
+  color: white !important;&#13;
+  position: fixed;&#13;
 }&#13;
 &#13;
 .red-text {&#13;
@@ -52,16 +67,17 @@
 &#13;
 .header-description::first-letter {&#13;
   font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
-   font-size: 22pt;&#13;
+   font-size: 20pt;&#13;
   text-transform: uppercase;&#13;
 }&#13;
 &#13;
 .header-description {&#13;
   font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
-   font-size: 18pt;&#13;
+   font-size: 16pt;&#13;
   text-transform: uppercase;&#13;
  text-align: center;&#13;
  width: 100%;&#13;
+min-width:200px;&#13;
 }&#13;
 &#13;
 .header-result {&#13;
@@ -90,18 +106,58 @@ div.btn-holder {&#13;
 }&#13;
 &#13;
 canvas {&#13;
-  cursor:pointer;&#13;
+    cursor:pointer;&#13;
 }&#13;
 &#13;
 td.column-skill-level {&#13;
     text-align: center;&#13;
+}&#13;
+&#13;
+div.gauge-tooltiptext {&#13;
+    visibility: hidden;&#13;
+    width: 100%;&#13;
+    background-color: white;&#13;
+    color: black;&#13;
+    text-align: center;&#13;
+    padding: 5px;&#13;
+    border: 1px solid black;&#13;
+    border-radius: 5px;&#13;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
+   font-size: 9pt;&#13;
+    /* Position the tooltip text - see examples below! */&#13;
+    position: relative;&#13;
+    top: -30px;&#13;
+    z-index: -1;&#13;
+}&#13;
+&#13;
+div.gauge-tooltip:hover .gauge-tooltiptext {&#13;
+    visibility: visible;&#13;
+    z-index: 1;&#13;
+}&#13;
+&#13;
+div.gauge-tooltip {&#13;
+     position: relative;&#13;
+}&#13;
+&#13;
+.reset-option {&#13;
+   cursor: pointer;&#13;
+   border-bottom: 1px dotted black;&#13;
+}&#13;
+&#13;
+div.detail-header {&#13;
+   min-width: 300px;&#13;
+}&#13;
+&#13;
+div.table-responsive {&#13;
+   overflow-y: scroll;&#13;
+   height: 400px;&#13;
 }</style>
         <sys_class_name>content_css</sys_class_name>
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2016-12-28 14:43:23</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>a8b00b54db043200e24ff7fdbf961922</sys_id>
-        <sys_mod_count>54</sys_mod_count>
+        <sys_mod_count>126</sys_mod_count>
         <sys_name>Role Profiling CSS</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
@@ -109,7 +165,7 @@ td.column-skill-level {&#13;
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>content_css_a8b00b54db043200e24ff7fdbf961922</sys_update_name>
         <sys_updated_by>jloftas</sys_updated_by>
-        <sys_updated_on>2017-01-09 16:59:30</sys_updated_on>
+        <sys_updated_on>2017-02-05 22:56:18</sys_updated_on>
         <type>local</type>
         <url/>
     </content_css>

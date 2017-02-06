@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_78492_profiling.ProfileManagementUtils</api_name>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>ProfileManagementUtils</name>
+        <script><![CDATA[var ProfileManagementUtils = Class.create();
+ProfileManagementUtils.prototype = {
+	initialize: function(grRoleProfile) {
+		this.roleProfile = grRoleProfile;
+	},
+	
+	//Function for copy a role profile which includes the skills associated
+	copyRoleProfile: function(){
+		try {
+			if (!this.roleProfile){
+				throw 'Class instantiated without profile';
+			}
+			var newRoleProfile = this._createRoleProfile();
+			return newRoleProfile;
+		}
+		catch(err)
+		{
+			//Handle errors here
+			gs.error('Error detected in Script Include ProfileManagementUtils, function copyProfile. Error message is ' + err.message);
+			return;
+		}
+		
+	},
+	
+	_createRoleProfile: function(){
+		var grProfile = new GlideRecord('x_78492_profiling_role_profile');
+		grProfile.initialize();
+		grProfile.setValue('name', 'Copy of ' + this.roleProfile.getValue('name'));
+		grProfile.setValue('description', this.roleProfile.getValue('description'));
+		var profileId = grProfile.insert();
+		this._copyProfileSkills(profileId);
+		return grProfile;
+		
+	},
+	
+	_copyProfileSkills: function(profileId){
+		var grProfileSkill = new GlideRecord('x_78492_profiling_role_profile_skill');
+		grProfileSkill.addQuery('role_profile', this.roleProfile.getValue('sys_id'));
+		grProfileSkill.query();
+		while (grProfileSkill.next()){
+			this._createProfileSkill(grProfileSkill, profileId);
+		}
+	},
+	
+	_createProfileSkill : function(profileSkill, profileId){
+		var grProfileSkill = new GlideRecord('x_78492_profiling_role_profile_skill');
+		grProfileSkill.initialize();
+		grProfileSkill.setValue('skill', profileSkill.getValue('skill'));
+		grProfileSkill.setValue('level', profileSkill.getValue('level'));
+		grProfileSkill.setValue('role_profile', profileId);
+		grProfileSkill.insert();
+	},
+	
+	updateProfileSkills : function(){
+		try {
+			if (!this.roleProfile){
+				throw 'Class instantiated without profile';
+			}
+			var grProfileSkill = new GlideRecord('x_78492_profiling_role_profile_skill');
+			grProfileSkill.addQuery('role_profile', this.roleProfile.getValue('sys_id'));
+			grProfileSkill.query();
+			while (grProfileSkill.next()){
+				grProfileSkill.setValue('sys_updated_on', new GlideDateTime());
+				grProfileSkill.update();
+			}
+		}
+		catch(err)
+		{
+			//Handle errors here
+			gs.logError('Error detected in Script Include ProfileManagementUtils, function updateProfileSkills, error message is ' + err.message);
+			return;
+		}
+	},
+	
+	type: 'ProfileManagementUtils'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>jloftas</sys_created_by>
+        <sys_created_on>2017-02-04 12:24:30</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>49f402a0dbb43200e24ff7fdbf961920</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>ProfileManagementUtils</sys_name>
+        <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+        <sys_update_name>sys_script_include_49f402a0dbb43200e24ff7fdbf961920</sys_update_name>
+        <sys_updated_by>jloftas</sys_updated_by>
+        <sys_updated_on>2017-02-05 13:54:36</sys_updated_on>
+    </sys_script_include>
+</record_update>
