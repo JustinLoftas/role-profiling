@@ -5,15 +5,14 @@
         <description/>
         <global>false</global>
         <name>x_78492_profiling.angular.1.4.9</name>
-        <script><![CDATA[document.writeln('<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>');
-]]></script>
+        <script><![CDATA[document.writeln('<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>');]]></script>
         <script_name>angular.1.4.9</script_name>
         <sys_class_name>sys_ui_script</sys_class_name>
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2016-12-22 19:53:11</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>a2bd49a6dbf72200e24ff7fdbf96190c</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>x_78492_profiling.angular.1.4.9</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
@@ -21,7 +20,7 @@
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_ui_script_a2bd49a6dbf72200e24ff7fdbf96190c</sys_update_name>
         <sys_updated_by>jloftas</sys_updated_by>
-        <sys_updated_on>2016-12-22 19:55:38</sys_updated_on>
+        <sys_updated_on>2017-03-24 12:13:45</sys_updated_on>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>
 </record_update>

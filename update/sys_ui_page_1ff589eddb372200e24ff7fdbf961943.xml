@@ -8,11 +8,45 @@
         <endpoint>x_78492_profiling_role_profile_comparison.do</endpoint>
         <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+<!-- Load the colours for the gauges and text -->
+<j2:set var="jvar_matching_color" value="$[gs.getProperty('x_78492_profiling.skill_match.color', 'lime')]"/>
+<j2:set var="jvar_missing_color" value="$[gs.getProperty('x_78492_profiling.skill_missing.color', 'red')]"/>
+<j2:set var="jvar_higher_color" value="$[gs.getProperty('x_78492_profiling.skill_higher.color', '#24d6f2')]"/>
+<j2:set var="jvar_lower_color" value="$[gs.getProperty('x_78492_profiling.skill_lower.color', 'orange')]"/>
+<j2:set var="jvar_inactive_color" value="$[gs.getProperty('x_78492_profiling.skill_inactive.color', '#C0C0C0')]"/>
+<j2:set var="jvar_matching_shadow_color" value="$[gs.getProperty('x_78492_profiling.skill_match.shadow_color', '#347220')]"/>
+<j2:set var="jvar_missing_shadow_color" value="$[gs.getProperty('x_78492_profiling.skill_missing.shadow_color', 'maroon')]"/>
+<j2:set var="jvar_higher_shadow_color" value="$[gs.getProperty('x_78492_profiling.skill_higher.shadow_color', '#137382')]"/>
+<j2:set var="jvar_lower_shadow_color" value="$[gs.getProperty('x_78492_profiling.skill_lower.shadow_color', '#7f5a1e')]"/>
+<j2:set var="jvar_inactive_shadow_color" value="$[gs.getProperty('x_78492_profiling.skill_inactive.shadow_color', '#808080')]"/>
+	
+<!-- Define local styles so we can use system properties -->
+<style>
+.missing-text {
+  color: $[jvar_missing_color];
+}
 
+.matching-text {
+  color: $[jvar_matching_color];
+}
+
+.higher-text {
+  color:  $[jvar_higher_color];
+}
+
+.lower-text {
+  color: $[jvar_lower_color];
+}
+	
+.inactive-text {
+  color: $[jvar_inactive_color];
+}
+</style>
+	
 <g2:evaluate var="jvar_stamp">
   var gr = new GlideRecord('sys_ui_script');  
-  //gr.get('name', 'x_78492_profiling.Ng.profile.controller');
-  gr.get('name', 'x_78492_profiling.Ng.profile.directive');
+  gr.get('name', 'x_78492_profiling.Ng.profile.controller');
+  //gr.get('name', 'x_78492_profiling.Ng.profile.directive');
   gr.getValue('sys_updated_on');
 </g2:evaluate> 
 <link rel="stylesheet" type="text/css" href="a8b00b54db043200e24ff7fdbf961922.cssdbx"/>
@@ -20,74 +54,207 @@
 <g:requires name="x_78492_profiling.angular.1.4.9.jsdbx" params="cache=$[jvar_stamp]"/>
 <g:requires name="x_78492_profiling.Ng.profile.controller.jsdbx" params="cache=$[jvar_stamp]"/>
 <g:requires name="x_78492_profiling.Ng.profile.directive.jsdbx" params="cache=$[jvar_stamp]"/>
+	
+<j2:set var="jvar_user_id" value="$[RP.getParameterValue('sysparm_user_id')]"/>
+<j2:set var="jvar_profile_id" value="$[RP.getParameterValue('sysparm_profile_id')]"/>
+<j2:set var="jvar_has_profile_admin" value="${gs.hasRole('x_78492_profiling.profile_admin')}"/>
+<g2:set_if var="jvar_profile_class" test="$[jvar_has_profile_admin]" true="col-md-offset-2 col-md-4" false="col-md-offset-4 col-md-4"/>
+	
 
+
+
+<g2:evaluate var="jvar_user_name" jelly="true">
+	var userName = ''
+	var grUser = new GlideRecord('sys_user');
+	if (grUser.get(jelly.sysparm_user_id)){
+	    userName = grUser.getValue('name');
+	}
+	userName;
+</g2:evaluate>
+<g2:evaluate var="jvar_profile_name" jelly="true">
+	var profileName = '';
+	var grProfile = new GlideRecord('x_78492_profiling_role_profile');
+	if (grProfile.get(jelly.sysparm_profile_id)){
+	   profileName = grProfile.getValue('name');
+	}
+	profileName;
+	
+</g2:evaluate>
+	
+<!-- Set the color objects for the gauges -->
+	
+<g2:evaluate var="jvar_matching_colors" jelly="true">
+	var matchingColor = jelly.jvar_matching_color;
+	var matchingShadow = jelly.jvar_matching_shadow_color;
+    var matchingColorScheme = "{color : '" + matchingColor + "' , shadow_color : '" + matchingShadow + "'}";
+	matchingColorScheme;
+</g2:evaluate>
+	
+<g2:evaluate var="jvar_missing_colors" jelly="true">
+	var missingColor = jelly.jvar_missing_color;
+	var missingShadow = jelly.jvar_missing_shadow_color;
+    var missingColorScheme = "{color : '" + missingColor + "' , shadow_color : '" + missingShadow + "'}";
+	missingColorScheme;
+</g2:evaluate>
+	
+<g2:evaluate var="jvar_higher_colors" jelly="true">
+	var higherColor = jelly.jvar_higher_color;
+	var higherShadow = jelly.jvar_higher_shadow_color;
+    var higherColorScheme = "{color : '" + higherColor + "' , shadow_color : '" + higherShadow + "'}";
+	higherColorScheme;
+</g2:evaluate>
+	
+<g2:evaluate var="jvar_lower_colors" jelly="true">
+	var lowerColor = jelly.jvar_lower_color;
+	var lowerShadow = jelly.jvar_lower_shadow_color;
+    var lowerColorScheme = "{color : '" + lowerColor + "' , shadow_color : '" + lowerShadow + "'}";
+	lowerColorScheme;
+</g2:evaluate>
+	
+<g2:evaluate var="jvar_inactive_colors" jelly="true">
+	var inactiveColor = jelly.jvar_inactive_color;
+	var inactiveShadow = jelly.jvar_inactive_shadow_color;
+    var inactiveColorScheme = "{color : '" + inactiveColor + "' , shadow_color : '" + inactiveShadow + "'}";
+	inactiveColorScheme;
+</g2:evaluate>
 	
 <div ng-app="profileApp">
 	<div ng-controller="ProfileController as profCtrl">
-		<div class="container">
+		<div class="container ng-cloak">
 			<div class="detail-header">
-			   <div class="row">
-				<div class="col-md-offset-2 col-md-4">
-					<div class="panel panel-default panel-info">
-						<div class="panel-heading column-row-text">${gs.getMessage('Choose a profile:')}</div>
-						<div class="panel-body">
-							<g:ui_reference id="profile" value="d92065e5db772200e24ff7fdbf96199c" displayvalue="ServiceNow Developer" ng-model="profCtrl.profileId" name="profile" table="x_78492_profiling_role_profile"/>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="panel panel-default panel-info">
-						<div class="panel-heading column-row-text ">${gs.getMessage('Choose a user:')}</div>
-						<div class="panel-body">
-							<g:ui_reference id="user" ng-model="profCtrl.userId" name="user" table="sys_user" query="active=true" value="21dd67cadb032200e24ff7fdbf9619dd" displayvalue="Justin Loftas"/>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-2">
-					<div class="btn-holder">
-					<button class="btn btn-primary" type="button" ng-click="profCtrl.getData('profile', 'user');">${gs.getMessage('Compare')}</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="row" ng-show="!profCtrl.userSet || !profCtrl.profileSet">
-				<div class="col-xs-12">
-					<div class="header-description">${gs.getMessage('Select a Profile and a User to compare')}</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">
-					<div ng-show="profCtrl.skills.length > 0">
-						<div class="row">
-							<div class="col-sm-6 col-md-3">
-						        <div class="header-description green-text">${gs.getMessage('Skills match')}</div>
-						        <div class="canvas-container gauge-tooltip ">
-									<profile-gauge when-select="profCtrl.setSkillFilter(skill)" gauge-for="matched" gauge-percent="{{profCtrl.percentMatched}}" gauge-info="{color : 'lime', shadow_color : '#347220'}"></profile-gauge>
-									<gauge-hover gauge-hover-text="${gs.getMessage('User matches')} {{profCtrl.totalMatched}} ${gs.getMessage('of')} {{profCtrl.totalSkills}} ${gs.getMessage('profile skills')}"></gauge-hover>
-								</div>
-					        </div>
-							<div class="col-sm-6 col-md-3">
-								<div class="header-description red-text">${gs.getMessage('User skills missing')}</div>
-								<div class="canvas-container gauge-tooltip">
-									<profile-gauge when-select="profCtrl.setSkillFilter(skill)" gauge-for="missing" gauge-percent="{{profCtrl.percentMissing}}" gauge-info="{color: 'red', shadow_color : 'maroon'}">
-									</profile-gauge>
-									<gauge-hover gauge-hover-text="${gs.getMessage('User is missing')} {{profCtrl.totalMissing}} ${gs.getMessage('of')} {{profCtrl.totalSkills}} ${gs.getMessage('profile skills')}"></gauge-hover>
+				<div class="row">
+					<div class="$[jvar_profile_class]">			   
+						<div class="panel panel-default panel-info">
+							<div class="panel-heading column-row-text">${gs.getMessage('Select a profile:')}</div>
+							<div class="panel-body">
+								<g2:ui_reference id="profile" value="$[jvar_profile_id]" displayvalue="$[jvar_profile_name]" ng-model="profCtrl.profileId" name="profile" table="x_78492_profiling_role_profile"/>
+								<div class="row">
+									<div class="select-description" ng-show="profCtrl.profileSet" ng-bind="profCtrl.profileName">
+									</div>
+									<div class="select-description" ng-hide="profCtrl.profileSet">
+										${gs.getMessage('Select a Profile to compare')}
+									</div>
 								</div>
 							</div>
-							<div class="col-sm-6 col-md-3">
-						        <div class="header-description blue-text">${gs.getMessage('User skills higher')}</div>
-								<div class="canvas-container gauge-tooltip">
-									<profile-gauge when-select="profCtrl.setSkillFilter(skill)" gauge-for="higher" gauge-percent="{{profCtrl.percentHigher}}" gauge-info="{color : '#24d6f2', shadow_color : '#137382'}">
-									</profile-gauge>
-									<gauge-hover gauge-hover-text="${gs.getMessage('User has')} {{profCtrl.totalHigher}} ${gs.getMessage('skills at a higher level than required profile skills')}"></gauge-hover>
+						</div>
+					</div>
+				
+					<j2:if test="$[jvar_has_profile_admin]">
+					<div class="col-md-4">
+						<div class="panel panel-default panel-info">
+							<div class="panel-heading column-row-text ">${gs.getMessage('Select a user:')}</div>
+							<div class="panel-body">
+								<g2:ui_reference id="user" ng-model="profCtrl.userId" name="user" table="sys_user" query="active=true" value="$[jvar_user_id]" displayvalue="$[jvar_user_name]"/>
+								<div class="row">
+									<div class="select-description"  ng-show="profCtrl.userSet" ng-bind="profCtrl.userName">
+									</div>
+									<div class="select-description"  ng-hide="profCtrl.userSet">
+											${gs.getMessage('Select a User to compare')}
+									</div>
+						        </div>
+							</div>
+						</div>
+					</div>
+					</j2:if>
+				   
+					<j2:if test="$[!jvar_has_profile_admin]">
+						<g2:set_if var="jvar_id" test="$[jvar_user_id != '']" true="$[jvar_user_id]" false="$[gs.getUserID()]"/>
+						<j2:set var="jvar_user_field" value="user_hidden"/>
+						<input type="hidden" id="user" value="$[jvar_id]"/>
+					</j2:if>
+				   
+					<div class="col-md-2">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="btn-holder">
+									<button class="btn btn-primary" type="button" ng-click="profCtrl.getData('profile', 'user');">${gs.getMessage('Compare')}</button>
 								</div>
-					        </div>
-							<div class="col-sm-6 col-md-3">
-								<div class="header-description orange-text">${gs.getMessage('User skills lower')}</div>
-								<div class="canvas-container gauge-tooltip">
-									<profile-gauge  when-select="profCtrl.setSkillFilter(skill)" gauge-for="lower" gauge-percent="{{profCtrl.percentLower}}" gauge-info="{color : 'orange', shadow_color : '#7f5a1e'}">
-									</profile-gauge>
-									<gauge-hover gauge-hover-text="${gs.getMessage('User has')} {{profCtrl.totalLower}} ${gs.getMessage('skills at a lower level than the required profile skills')}"></gauge-hover>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12">
+						<div ng-show="profCtrl.skills.length > 0">
+							<div class="row">
+								<!-- Matching skills -->
+								<div class="col-sm-6 col-md-3">
+									<div class="header-description green-text" ng-class="{'inactive-text' : profCtrl.levelFilter != 'matched' $[AND] profCtrl.levelFilter != '', 'matching-text' : profCtrl.levelFilter == 'matched' || profCtrl.levelFilter == ''}">${gs.getMessage('User skills match')}
+									</div>
+									<div class=" gauge-tooltip">
+										<!-- Show the inactive gauge -->
+										<div ng-show="profCtrl.levelFilter != 'matched' $[AND] profCtrl.levelFilter != ''" class="canvas-container">
+											<profile-gauge when-select="profCtrl.setSkillFilter(skill)" gauge-for="matched" gauge-percent="{{profCtrl.percentMatched}}" gauge-info="$[jvar_inactive_colors]">
+											</profile-gauge>
+										</div>
+										<!-- Show the active gauge -->
+										<div ng-show="profCtrl.levelFilter == 'matched' || profCtrl.levelFilter == ''" class="canvas-container">
+											<profile-gauge when-select="profCtrl.setSkillFilter(skill)" gauge-for="matched" gauge-percent="{{profCtrl.percentMatched}}" gauge-info="$[jvar_matching_colors]">
+											</profile-gauge>
+										</div>
+										<gauge-hover gauge-hover-text="${gs.getMessage('User matches')} {{profCtrl.totalMatched}} ${gs.getMessage('of')} {{profCtrl.totalSkills}} ${gs.getMessage('profile skills')}">
+										</gauge-hover>
+									</div>
+								</div>
+								
+								<!-- Missing skills -->
+								<div class="col-sm-6 col-md-3">
+									<div class="header-description red-text" ng-class="{'inactive-text' : profCtrl.levelFilter != 'missing' $[AND] profCtrl.levelFilter != '', 'missing-text' : profCtrl.levelFilter == 'missing' || profCtrl.levelFilter == ''}">${gs.getMessage('User skills missing')}
+									</div>
+									<div class="gauge-tooltip">
+										<!-- Show the inactive gauge -->
+										<div ng-show="profCtrl.levelFilter != 'missing' $[AND] profCtrl.levelFilter != ''" class="canvas-container">
+											<profile-gauge when-select="profCtrl.setSkillFilter(skill)" gauge-for="missing" gauge-percent="{{profCtrl.percentMissing}}" gauge-info="$[jvar_inactive_colors]">
+											</profile-gauge>
+										</div>
+										<!-- Show the active gauge -->
+										<div ng-show="profCtrl.levelFilter == 'missing' || profCtrl.levelFilter == ''" class="canvas-container">	
+											<profile-gauge when-select="profCtrl.setSkillFilter(skill)" gauge-for="missing" gauge-percent="{{profCtrl.percentMissing}}" gauge-info="$[jvar_missing_colors]">
+											</profile-gauge>
+										</div>
+										<gauge-hover gauge-hover-text="${gs.getMessage('User is missing')} {{profCtrl.totalMissing}} ${gs.getMessage('of')} {{profCtrl.totalSkills}} ${gs.getMessage('profile skills')}">
+										</gauge-hover>
+									</div>
+								</div>
+								
+								<!-- Higher skills -->
+								<div class="col-sm-6 col-md-3">
+									<div class="header-description higher-text" ng-class="{'inactive-text' : profCtrl.levelFilter != 'higher' $[AND] profCtrl.levelFilter != '', 'higher-text' : profCtrl.levelFilter == 'higher' || profCtrl.levelFilter == ''}">${gs.getMessage('User skills higher')}
+									</div>
+									<div class="gauge-tooltip">
+										<!-- Show the inactive gauge -->
+										<div ng-show="profCtrl.levelFilter != 'higher' $[AND] profCtrl.levelFilter != ''" class="canvas-container">
+											<profile-gauge when-select="profCtrl.setSkillFilter(skill)" gauge-for="higher" gauge-percent="{{profCtrl.percentHigher}}" gauge-info="$[jvar_inactive_colors]">
+											</profile-gauge>
+										</div>
+										<!-- Show the active gauge -->
+										<div ng-show="profCtrl.levelFilter == 'higher' || profCtrl.levelFilter == ''" class="canvas-container">		
+											<profile-gauge when-select="profCtrl.setSkillFilter(skill)" gauge-for="higher" gauge-percent="{{profCtrl.percentHigher}}" gauge-info="$[jvar_higher_colors]">
+											</profile-gauge>
+										</div>
+										<gauge-hover gauge-hover-text="${gs.getMessage('User has')} {{profCtrl.totalHigher}} ${gs.getMessage('skills at a higher level than required profile skills')}">
+										</gauge-hover>
+									</div>
+								</div>
+								
+								<!-- Lower skills -->
+								<div class="col-sm-6 col-md-3">
+									<div class="header-description lower-text" ng-class="{'inactive-text' : profCtrl.levelFilter != 'lower' $[AND] profCtrl.levelFilter != '', 'lower-text' : profCtrl.levelFilter == 'lower' || profCtrl.levelFilter == ''}">${gs.getMessage('User skills lower')}</div>
+									<div class="gauge-tooltip">
+										<!-- Show the inactive gauge -->
+										<div ng-show="profCtrl.levelFilter != 'lower' $[AND] profCtrl.levelFilter != ''" class="canvas-container">
+											<profile-gauge when-select="profCtrl.setSkillFilter(skill)" gauge-for="lower" gauge-percent="{{profCtrl.percentLower}}" gauge-info="$[jvar_inactive_colors]">
+											</profile-gauge>
+										</div>
+										<!-- Show the active gauge -->
+										<div ng-show="profCtrl.levelFilter == 'lower' || profCtrl.levelFilter == ''" class="canvas-container">	
+											<profile-gauge  when-select="profCtrl.setSkillFilter(skill)" gauge-for="lower" gauge-percent="{{profCtrl.percentLower}}" gauge-info="$[jvar_lower_colors]">
+											</profile-gauge>
+										</div>
+										<gauge-hover gauge-hover-text="${gs.getMessage('User has')} {{profCtrl.totalLower}} ${gs.getMessage('skills at a lower level than the required profile skills')}">
+										</gauge-hover>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -96,57 +263,63 @@
 			</div>
 			
 			<div class="row">
-				<div class="col-xs-12">
-				    <div class="reset-row" ng-click="profCtrl.setSkillFilter('')" ng-show="profCtrl.levelFilter != ''">
-						<span class="glyphicon glyphicon-remove red-text"></span>$[SP]<span class="reset-option" >
-					        Reset filtering
-					    </span>
-					</div>
-				</div>
-			</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-12">
-				<div class="table-responsive" ng-show="profCtrl.skills.length > 0">
+				<div class="col-sm-12 table-container">
+				<div ng-show="profCtrl.skills.length > 0">
 					<table class="table table-striped table-hover">
 						<thead class="results-header">
 							<tr>
 								<th class="column-header">
-									<div class="column-row-header">${gs.getMessage('Category')}</div>
+									<div class="column-row-header">
+										<span class="column-header-sort" ng-click="profCtrl.sortOrder('category')">${gs.getMessage('Category')}</span>
+										<i ng-show="profCtrl.sortColumn === 'category'" ng-class="profCtrl.getOrderIcon(profCtrl.sortAscending)"></i>
+									</div>
 								</th>
 								<th class="column-header">
-									<div class="column-row-header">${gs.getMessage('Skill')}</div>
+									<div class="column-row-header">
+										<span class="column-header-sort" ng-click="profCtrl.sortOrder('skill')">${gs.getMessage('Skill')}</span>
+										<i ng-show="profCtrl.sortColumn === 'skill'" ng-class="profCtrl.getOrderIcon(profCtrl.sortAscending)"></i>
+									</div>
 								</th>
 							    <th class="column-header">
-									<div class="column-row-header">${gs.getMessage('Profile level')}</div>
+									<div class="column-row-header">
+										<span class="column-header-sort" ng-click="profCtrl.sortOrder('skill_level_value')">${gs.getMessage('Profile level')}</span>
+										<i ng-show="profCtrl.sortColumn === 'skill_level_value'" ng-class="profCtrl.getOrderIcon(profCtrl.sortAscending)"></i>
+					
+									</div>
 								</th>
 								<th class="column-header">
-									<div class="column-skill-row-header">${gs.getMessage('User skill level')}</div>
+									<div class="column-skill-row-header">
+										<span class="column-header-sort" ng-click="profCtrl.sortOrder('user_level_value')">${gs.getMessage('User skill level')}</span>
+										<i ng-show="profCtrl.sortColumn === 'user_level_value'" ng-class="profCtrl.getOrderIcon(profCtrl.sortAscending)"></i>
+									</div>
 								</th>
 							</tr>
 						</thead>
 						<tbody class="results-body">
-						<tr ng-repeat="skills in profCtrl.skills | filter: {matched:profCtrl.levelFilter}">		
+						<tr ng-repeat="skills in profCtrl.skills | filter: {matched:profCtrl.levelFilter} | orderBy : profCtrl.sortColumn : profCtrl.sortAscending">		
 						    <td>
 								<div class="column-row-text" ng-bind="skills.category"></div>
 						    </td>
 							<td>
-								<div class="column-row-text" ng-bind="skills.skill"></div>
+								<div class="column-row-text detailed-column-row-text" ng-bind="skills.skill"></div>
 							</td>
 							<td>
-								<div class="column-row-text" ng-bind="skills.skill_level"></div>
+								<div class="detailed-column-row-text" ng-show="skills.skill_level == 'missing'"  ng-class="profCtrl.getGlyphClass(skills.skill_level)">
+								</div>
+								<div class="column-row-text detailed-column-row-text" ng-show="skills.skill_level != 'missing'" ng-bind="skills.skill_level">
+								</div>
 							</td>
 							<td class="column-skill-level">
-								<div ng-show="skills.matched == 'missing'"  ng-class="profCtrl.getGlyphClass(skills.matched)">
+								<div class="detailed-column-row-text" ng-show="skills.matched == 'missing'"  ng-class="profCtrl.getGlyphClass(skills.matched)">
 								</div>
-								<div ng-show="skills.matched != 'missing'" ng-bind="skills.user_level" ng-class="profCtrl.getGlyphClass(skills.matched)">
+								<div class="detailed-column-row-text" ng-show="skills.matched != 'missing'" ng-bind="skills.user_level" ng-class="profCtrl.getGlyphClass(skills.matched)">
 								</div>
 							</td>
 						</tr>
 						</tbody>
 					</table>
 				</div>
-		</div>
+				</div>
             </div>
 		</div>
 	</div>
@@ -159,7 +332,7 @@
         <sys_created_on>2016-12-19 16:44:23</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>1ff589eddb372200e24ff7fdbf961943</sys_id>
-        <sys_mod_count>380</sys_mod_count>
+        <sys_mod_count>511</sys_mod_count>
         <sys_name>role_profile_comparison</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
@@ -167,6 +340,6 @@
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_ui_page_1ff589eddb372200e24ff7fdbf961943</sys_update_name>
         <sys_updated_by>jloftas</sys_updated_by>
-        <sys_updated_on>2017-02-05 22:12:25</sys_updated_on>
+        <sys_updated_on>2017-03-24 11:54:57</sys_updated_on>
     </sys_ui_page>
 </record_update>

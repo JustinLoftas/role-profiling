@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_properties_category_m2m">
+    <sys_properties_category_m2m action="INSERT_OR_UPDATE">
+        <category display_value="Role Profiling Properties">77c2ad2edbf72200e24ff7fdbf961936</category>
+        <order>300</order>
+        <property display_value="x_78492_profiling.skill_match.color" name="x_78492_profiling.skill_match.color">843e8c1ddb613200e24ff7fdbf9619d7</property>
+        <sys_class_name>sys_properties_category_m2m</sys_class_name>
+        <sys_created_by>jloftas</sys_created_by>
+        <sys_created_on>2017-03-15 18:08:46</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>2432d41ddb613200e24ff7fdbf9619d9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_78492_profiling.skill_match.color.Role Profiling Properties</sys_name>
+        <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+        <sys_update_name>sys_properties_category_m2m_2432d41ddb613200e24ff7fdbf9619d9</sys_update_name>
+        <sys_updated_by>jloftas</sys_updated_by>
+        <sys_updated_on>2017-03-15 18:08:46</sys_updated_on>
+    </sys_properties_category_m2m>
+</record_update>

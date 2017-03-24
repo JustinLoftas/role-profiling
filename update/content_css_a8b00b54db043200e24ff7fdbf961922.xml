@@ -12,6 +12,10 @@
    text-transform: uppercase;&#13;
 }&#13;
 &#13;
+.detailed-column-row-text {&#13;
+   padding-left: 10px;&#13;
+}&#13;
+&#13;
 .column-skill-row-text::first-letter {&#13;
    font-size: 12pt;&#13;
    text-transform: uppercase;&#13;
@@ -22,48 +26,25 @@
    text-transform: uppercase;&#13;
 }&#13;
 &#13;
-.column-skill-row-header {&#13;
+div.column-skill-row-header {&#13;
    font-size: 12pt;&#13;
    text-transform: uppercase;&#13;
    text-align: center;&#13;
-}&#13;
-&#13;
-.reset-row {&#13;
-   font-size: 12pt;&#13;
-   text-transform: uppercase;&#13;
-   text-align: center;&#13;
-   position: relative;&#13;
-   top: -20px;&#13;
+   margin-top: -2px;&#13;
 }&#13;
 &#13;
 div.column-row-header {&#13;
    font-size: 12pt;&#13;
-   text-transform: uppercase;&#13;
+   text-transform: uppercase; &#13;
+   margin-top: -2px;&#13;
 }&#13;
 &#13;
 th.column-header {&#13;
    width: 25%;&#13;
-  background-color: #5bc0de; &#13;
+  background-color: #343d47; &#13;
   color: white !important;&#13;
-  position: fixed;&#13;
+  height: 30px;&#13;
 }&#13;
-&#13;
-.red-text {&#13;
-  color: red;&#13;
-}&#13;
-&#13;
-.green-text {&#13;
-  color: lime;&#13;
-}&#13;
-&#13;
-.blue-text {&#13;
-  color:  #1ac6ff;&#13;
-}&#13;
-&#13;
-.orange-text {&#13;
-  color: orange;&#13;
-}&#13;
-&#13;
 &#13;
 .header-description::first-letter {&#13;
   font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
@@ -80,16 +61,27 @@ th.column-header {&#13;
 min-width:200px;&#13;
 }&#13;
 &#13;
+.select-description::first-letter {&#13;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
+   font-size: 14pt;&#13;
+  text-transform: uppercase;&#13;
+}&#13;
+&#13;
+.select-description {&#13;
+   font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
+   font-size: 12pt;&#13;
+  text-transform: uppercase;&#13;
+  text-align: center;&#13;
+  width: 100%;&#13;
+  min-width:200px;&#13;
+  padding-top: 10px;&#13;
+}&#13;
+&#13;
 .header-result {&#13;
   font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
    font-size: 22pt;&#13;
  text-align: right;&#13;
  width: 20%;&#13;
-}&#13;
-&#13;
-div.header-row {&#13;
-    z-index:100;&#13;
-    background-color: white;&#13;
 }&#13;
 &#13;
 div.canvas-container {&#13;
@@ -102,7 +94,8 @@ div.gauge-hover {&#13;
 }&#13;
 &#13;
 div.btn-holder {&#13;
-    padding: 10px 0px 10px 0px;&#13;
+    padding: 10px 0px 10px 0px; &#13;
+    text-align: center;&#13;
 }&#13;
 &#13;
 canvas {&#13;
@@ -130,7 +123,7 @@ div.gauge-tooltiptext {&#13;
     z-index: -1;&#13;
 }&#13;
 &#13;
-div.gauge-tooltip:hover .gauge-tooltiptext {&#13;
+div.gauge-tooltip:hover  .gauge-tooltiptext {&#13;
     visibility: visible;&#13;
     z-index: 1;&#13;
 }&#13;
@@ -139,25 +132,64 @@ div.gauge-tooltip {&#13;
      position: relative;&#13;
 }&#13;
 &#13;
-.reset-option {&#13;
-   cursor: pointer;&#13;
-   border-bottom: 1px dotted black;&#13;
-}&#13;
-&#13;
 div.detail-header {&#13;
    min-width: 300px;&#13;
 }&#13;
 &#13;
-div.table-responsive {&#13;
-   overflow-y: scroll;&#13;
-   height: 400px;&#13;
+i.sort-extra {&#13;
+  vertical-align: text-bottom;&#13;
+ padding-left: 7px;&#13;
+ color: white;&#13;
+font-size: 12pt;&#13;
+}&#13;
+&#13;
+span.column-header-sort {&#13;
+   cursor: pointer;&#13;
+}&#13;
+&#13;
+table {&#13;
+       width: 100%;&#13;
+ }&#13;
+&#13;
+.table-container {&#13;
+    top: -25px;&#13;
+}&#13;
+&#13;
+thead, tbody, tr, td, th { &#13;
+   display: block; &#13;
+}&#13;
+&#13;
+tr:after {&#13;
+    content: ' ';&#13;
+    display: block;&#13;
+    visibility: hidden;&#13;
+    clear: both;&#13;
+}&#13;
+&#13;
+tbody {&#13;
+    height: 400px;&#13;
+    overflow-y: auto;&#13;
+}&#13;
+&#13;
+tbody td, thead th {&#13;
+    width: 25%;&#13;
+    float: left;&#13;
+}&#13;
+&#13;
+.panel-info &gt; .column-row-text {&#13;
+   background-color: #3A424E !important;&#13;
+  border-color: #3A424E !important;&#13;
+}&#13;
+&#13;
+.panel-info {&#13;
+   border-color: #3A424E !important;&#13;
 }</style>
         <sys_class_name>content_css</sys_class_name>
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2016-12-28 14:43:23</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>a8b00b54db043200e24ff7fdbf961922</sys_id>
-        <sys_mod_count>126</sys_mod_count>
+        <sys_mod_count>173</sys_mod_count>
         <sys_name>Role Profiling CSS</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
@@ -165,7 +197,7 @@ div.table-responsive {&#13;
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>content_css_a8b00b54db043200e24ff7fdbf961922</sys_update_name>
         <sys_updated_by>jloftas</sys_updated_by>
-        <sys_updated_on>2017-02-05 22:56:18</sys_updated_on>
+        <sys_updated_on>2017-03-24 12:01:50</sys_updated_on>
         <type>local</type>
         <url/>
     </content_css>

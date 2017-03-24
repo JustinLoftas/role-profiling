@@ -11,6 +11,8 @@
 	var totalSkills = 0;
 	self.profileId = '';
 	self.userId = '';
+	self.userName = '';
+	self.profileName = '';
 	self.skills = [];
 	self.percentMatch = 0;
 	self.totalSkills = 0;
@@ -24,17 +26,32 @@
 	self.levelFilter = '';
 	self.profileSet = false;
 	self.userSet = false;
+	self.sortColumn = 'user_level_value';
+	self.sortAscending = true;
+	
+	self.sortOrder = function(sortColumn){
+	    self.sortAscending = (self.sortColumn === sortColumn) ? !self.sortAscending : true;
+		self.sortColumn = sortColumn;
+	};
 	
 	self.setSkillFilter = function(skill){
-		self.levelFilter = skill;
+		var skillFilter = skill === self.levelFilter ? '' : skill;
+		self.levelFilter = skillFilter;
 	};
 	
 	self.getGlyphClass = function(levelMatch){
 		return {
-			"column-row-text green-text": levelMatch == 'matched',
-			"column-row-text blue-text" : levelMatch == 'higher',
-			"column-row-text orange-text" : levelMatch == 'lower',
-			"glyphicon glyphicon-remove red-text" : levelMatch == 'missing'
+			"column-row-text matched-text": levelMatch == 'matched',
+			"column-row-text higher-text" : levelMatch == 'higher' || levelMatch == 'user_only',
+			"column-row-text lower-text" : levelMatch == 'lower',
+			"glyphicon glyphicon-remove missing-text" : levelMatch == 'missing'
+		};
+	};
+	
+	self.getOrderIcon = function(order){
+		return {
+			"icon-arrow-down-rounded sort-extra" : order == true,
+			"icon-arrow-up-rounded sort-extra" : order == false
 		};
 	};
 	
@@ -53,6 +70,8 @@
 		self.percentMissing = 0;
 		self.levelFilter = '';
 		self.showMatchingDetails = false;
+		self.userName = '';
+		self.profileName = '';
 		
 	};
 	
@@ -61,24 +80,25 @@
 		var userId = $document[0].getElementById(userElementId).value;
 		if (!profileId || !userId){
 			if (!userId && profileId){
+				self.profileName = $document[0].getElementById('sys_display.' + profileElementId).value;
 				self.profileSet = true;
 				self.userSet = false;
-				//alert('Please select a user to compare');
 			}
 			if (!profileId && userId){
+				self.userName = $document[0].getElementById('sys_display.' + userElementId).value;
 				self.userSet = true;
 				self.profileSet = false;
-				//alert('Please select a profile to compare');
 			}
 			if (!profileId && !userId){
 				self.profileSet = false;
 				self.userSet = false;
-				//alert('Please select a profile and a user to compare');
 			}
 			self.setSkillFilter('');
 			self.skills = [];
 			return;
 		}
+		self.profileName = $document[0].getElementById('sys_display.' + profileElementId).value;
+		self.userName = $document[0].getElementById('sys_display.' + userElementId).value;
 		self.userSet = true;
 		self.profileSet = true;
 		var gaGetComparison = new GlideAjax('x_78492_profiling.ProfileManagementAJAX');
@@ -95,6 +115,8 @@
 			self.totalHigher = skillsInfo.totalHigher;
 			self.totalLower = skillsInfo.totalLower;
 			self.totalMissing = skillsInfo.totalMissing;
+			//self.userName = skillsInfo.userName;
+			//self.profileName = skillsInfo.profileName;
 			totalSkills = self.totalSkills;
 			if (totalSkills > 0){
 				self.percentMatched = (self.totalMatched/totalSkills * 100).toFixed(1);
@@ -105,10 +127,6 @@
 		}
 		
 	};
-	self.getComparison = function(){
-		console.log('Logging: '+ self.roleId);
-		alert(self.roleId);
-	};
 }]);]]></script>
         <script_name>Ng.profile.controller</script_name>
         <sys_class_name>sys_ui_script</sys_class_name>
@@ -116,7 +134,7 @@
         <sys_created_on>2016-12-19 22:29:56</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>b123de65dbb72200e24ff7fdbf961913</sys_id>
-        <sys_mod_count>143</sys_mod_count>
+        <sys_mod_count>180</sys_mod_count>
         <sys_name>x_78492_profiling.Ng.profile.controller</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
@@ -124,7 +142,7 @@
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_ui_script_b123de65dbb72200e24ff7fdbf961913</sys_update_name>
         <sys_updated_by>jloftas</sys_updated_by>
-        <sys_updated_on>2017-01-16 21:42:50</sys_updated_on>
+        <sys_updated_on>2017-03-24 12:13:36</sys_updated_on>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>
 </record_update>
