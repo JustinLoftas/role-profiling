@@ -4,7 +4,7 @@
         <sys_class_name>sys_security_acl_role</sys_class_name>
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2017-03-02 17:49:28</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>3c5f45c1db113200e24ff7fdbf961905</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>x_78492_profiling_role_profile.skill_user</sys_name>

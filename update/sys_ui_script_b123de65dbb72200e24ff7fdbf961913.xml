@@ -41,7 +41,7 @@
 	
 	self.getGlyphClass = function(levelMatch){
 		return {
-			"column-row-text matched-text": levelMatch == 'matched',
+			"column-row-text matching-text": levelMatch == 'matched',
 			"column-row-text higher-text" : levelMatch == 'higher' || levelMatch == 'user_only',
 			"column-row-text lower-text" : levelMatch == 'lower',
 			"glyphicon glyphicon-remove missing-text" : levelMatch == 'missing'
@@ -134,15 +134,15 @@
         <sys_created_on>2016-12-19 22:29:56</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>b123de65dbb72200e24ff7fdbf961913</sys_id>
-        <sys_mod_count>180</sys_mod_count>
+        <sys_mod_count>181</sys_mod_count>
         <sys_name>x_78492_profiling.Ng.profile.controller</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_ui_script_b123de65dbb72200e24ff7fdbf961913</sys_update_name>
-        <sys_updated_by>jloftas</sys_updated_by>
-        <sys_updated_on>2017-03-24 12:13:36</sys_updated_on>
+        <sys_updated_by>justin.loftas</sys_updated_by>
+        <sys_updated_on>2017-03-24 15:49:39</sys_updated_on>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>
 </record_update>

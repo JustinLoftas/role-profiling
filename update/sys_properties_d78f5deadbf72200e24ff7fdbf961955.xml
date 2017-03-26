@@ -11,7 +11,7 @@
         <sys_class_name>sys_properties</sys_class_name>
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2016-12-22 21:09:49</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>d78f5deadbf72200e24ff7fdbf961955</sys_id>
         <sys_mod_count>2</sys_mod_count>
         <sys_name>x_78492_profiling.logging.verbosity</sys_name>

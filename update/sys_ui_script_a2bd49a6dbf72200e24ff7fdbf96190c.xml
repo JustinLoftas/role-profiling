@@ -10,7 +10,7 @@
         <sys_class_name>sys_ui_script</sys_class_name>
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2016-12-22 19:53:11</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>a2bd49a6dbf72200e24ff7fdbf96190c</sys_id>
         <sys_mod_count>4</sys_mod_count>
         <sys_name>x_78492_profiling.angular.1.4.9</sys_name>

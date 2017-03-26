@@ -159,8 +159,8 @@
 				   
 					<j2:if test="$[!jvar_has_profile_admin]">
 						<g2:set_if var="jvar_id" test="$[jvar_user_id != '']" true="$[jvar_user_id]" false="$[gs.getUserID()]"/>
-						<j2:set var="jvar_user_field" value="user_hidden"/>
 						<input type="hidden" id="user" value="$[jvar_id]"/>
+						<input type="hidden" id="sys_display.user" value="$[jvar_user_name]"/>
 					</j2:if>
 				   
 					<div class="col-md-2">
@@ -274,14 +274,14 @@
 										<i ng-show="profCtrl.sortColumn === 'category'" ng-class="profCtrl.getOrderIcon(profCtrl.sortAscending)"></i>
 									</div>
 								</th>
-								<th class="column-header">
+								<th class="skill-header">
 									<div class="column-row-header">
 										<span class="column-header-sort" ng-click="profCtrl.sortOrder('skill')">${gs.getMessage('Skill')}</span>
 										<i ng-show="profCtrl.sortColumn === 'skill'" ng-class="profCtrl.getOrderIcon(profCtrl.sortAscending)"></i>
 									</div>
 								</th>
 							    <th class="column-header">
-									<div class="column-row-header">
+									<div class="column-skill-row-header">
 										<span class="column-header-sort" ng-click="profCtrl.sortOrder('skill_level_value')">${gs.getMessage('Profile level')}</span>
 										<i ng-show="profCtrl.sortColumn === 'skill_level_value'" ng-class="profCtrl.getOrderIcon(profCtrl.sortAscending)"></i>
 					
@@ -297,19 +297,19 @@
 						</thead>
 						<tbody class="results-body">
 						<tr ng-repeat="skills in profCtrl.skills | filter: {matched:profCtrl.levelFilter} | orderBy : profCtrl.sortColumn : profCtrl.sortAscending">		
-						    <td>
+						    <td class="column-skill-row">
 								<div class="column-row-text" ng-bind="skills.category"></div>
 						    </td>
-							<td>
+							<td class="skill-description">
 								<div class="column-row-text detailed-column-row-text" ng-bind="skills.skill"></div>
 							</td>
-							<td>
+							<td class="column-skill-level column-skill-row">
 								<div class="detailed-column-row-text" ng-show="skills.skill_level == 'missing'"  ng-class="profCtrl.getGlyphClass(skills.skill_level)">
 								</div>
 								<div class="column-row-text detailed-column-row-text" ng-show="skills.skill_level != 'missing'" ng-bind="skills.skill_level">
 								</div>
 							</td>
-							<td class="column-skill-level">
+							<td class="column-skill-level column-skill-row">
 								<div class="detailed-column-row-text" ng-show="skills.matched == 'missing'"  ng-class="profCtrl.getGlyphClass(skills.matched)">
 								</div>
 								<div class="detailed-column-row-text" ng-show="skills.matched != 'missing'" ng-bind="skills.user_level" ng-class="profCtrl.getGlyphClass(skills.matched)">
@@ -332,14 +332,14 @@
         <sys_created_on>2016-12-19 16:44:23</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>1ff589eddb372200e24ff7fdbf961943</sys_id>
-        <sys_mod_count>511</sys_mod_count>
+        <sys_mod_count>517</sys_mod_count>
         <sys_name>role_profile_comparison</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_ui_page_1ff589eddb372200e24ff7fdbf961943</sys_update_name>
-        <sys_updated_by>jloftas</sys_updated_by>
-        <sys_updated_on>2017-03-24 11:54:57</sys_updated_on>
+        <sys_updated_by>justin.loftas</sys_updated_by>
+        <sys_updated_on>2017-03-26 21:04:12</sys_updated_on>
     </sys_ui_page>
 </record_update>

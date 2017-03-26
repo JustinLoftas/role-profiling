@@ -4,7 +4,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>name</element>
-            <list_id display_value="x_78492_profiling_role_profile" element="NULL" name="x_78492_profiling_role_profile" parent="NULL" relationship="NULL" sys_domain="global" view="7fd52723db222200e24ff7fdbf96197e">23d02da5db772200e24ff7fdbf96195d</list_id>
+            <list_id display_value="x_78492_profiling_role_profile" element="NULL" name="x_78492_profiling_role_profile" parent="NULL" relationship="NULL" sys_domain="global" view="137136303722120007771a7943990e5e">23d02da5db772200e24ff7fdbf96195d</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>0</position>
@@ -29,7 +29,7 @@
             <sys_class_name>sys_ui_list</sys_class_name>
             <sys_created_by>jloftas</sys_created_by>
             <sys_created_on>2016-12-19 18:41:06</sys_created_on>
-            <sys_customer_update>true</sys_customer_update>
+            <sys_customer_update>false</sys_customer_update>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
             <sys_id>23d02da5db772200e24ff7fdbf96195d</sys_id>
@@ -43,7 +43,7 @@
             <sys_updated_by>jloftas</sys_updated_by>
             <sys_updated_on>2016-12-19 18:41:06</sys_updated_on>
             <sys_user/>
-            <view display_value="Reference List" name="sys_ref_list">7fd52723db222200e24ff7fdbf96197e</view>
+            <view display_value="Reference List" name="sys_ref_list">137136303722120007771a7943990e5e</view>
             <view_name/>
         </sys_ui_list>
     </sys_ui_list>

@@ -163,7 +163,7 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2016-12-22 19:44:15</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>ab164526dbf72200e24ff7fdbf96195e</sys_id>
         <sys_mod_count>59</sys_mod_count>
         <sys_name>ProfileManagementAJAX</sys_name>

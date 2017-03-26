@@ -56,7 +56,7 @@
         <sys_class_name>sys_scope_script_access</sys_class_name>
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2016-12-25 11:41:08</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>9e4a3a9fdbb76200e24ff7fdbf96191d</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>JSON</sys_name>

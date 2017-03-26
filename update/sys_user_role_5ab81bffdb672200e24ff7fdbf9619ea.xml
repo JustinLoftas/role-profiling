@@ -12,7 +12,7 @@
         <sys_class_name>sys_user_role</sys_class_name>
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2016-12-14 16:56:11</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>5ab81bffdb672200e24ff7fdbf9619ea</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>x_78492_profiling.profile_admin</sys_name>

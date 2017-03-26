@@ -7,7 +7,7 @@
         <sys_class_name>sys_scope_privilege</sys_class_name>
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2017-02-16 13:53:26</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>70d4dc24db097200e24ff7fdbf9619c7</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>sys_user</sys_name>

@@ -11,7 +11,7 @@
         <sys_class_name>sys_properties</sys_class_name>
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2017-03-15 18:50:15</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>84bb1cdddb613200e24ff7fdbf9619c0</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>x_78492_profiling.skill_lower.shadow_color</sys_name>

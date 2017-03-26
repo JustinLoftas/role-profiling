@@ -37,7 +37,7 @@
         <sys_class_name>sys_script</sys_class_name>
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2016-12-23 22:07:37</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>3fb57abedb7f2200e24ff7fdbf9619ad</sys_id>
