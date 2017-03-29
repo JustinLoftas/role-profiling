@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_filter">
+    <sys_filter action="INSERT_OR_UPDATE">
+        <filter table="sys_user">nameSTARTSWITHsea^nameISNOTEMPTY^EQ<item endquery="false" field="name" goto="false" newquery="false" operator="STARTSWITH" or="false" value="sea"/>
+            <item endquery="false" field="name" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter>
+        <group/>
+        <last_used>2017-03-28 13:02:01</last_used>
+        <mobile>true</mobile>
+        <roles/>
+        <sys_class_name>sys_filter</sys_class_name>
+        <sys_created_by>justin.loftas</sys_created_by>
+        <sys_created_on>2017-03-28 13:02:01</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>35a8825537f53200c0d01a7943990eb3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>mobile</sys_name>
+        <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+        <sys_update_name>sys_filter_35a8825537f53200c0d01a7943990eb3</sys_update_name>
+        <sys_updated_by>justin.loftas</sys_updated_by>
+        <sys_updated_on>2017-03-28 13:02:01</sys_updated_on>
+        <table>sys_user</table>
+        <title>mobile</title>
+        <user display_value="Justin Loftas">6092476037c32a4007771a7943990eee</user>
+    </sys_filter>
+</record_update>

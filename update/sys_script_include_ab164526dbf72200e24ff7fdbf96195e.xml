@@ -25,6 +25,7 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 			this.totalLower = 0;
 			this.userName = this._getUserName(userId);
 			this.profileName = '';
+			this.levelDescription = {};
 			
 			//Local variables used in the function
 			var userProfileSkills = {};
@@ -40,9 +41,12 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 			//Populate the userProfileSkills skills array from the profile
 			userProfileSkills.skills = this.getProfileSkills(profileId);
 			
-			//Get all the
-			this.matchUserSkills(userProfileSkills, userId);
-			
+			if (userProfileSkills.skills.length > 0){
+			//Update the role profile skills with the results of the users skills
+			this._matchUserSkills(userProfileSkills, userId);
+			}
+				
+			//Set our overall result values
 			userProfileSkills.totalSkills = this.totalSkills;
 			userProfileSkills.totalMatched = this.totalMatched;
 			userProfileSkills.totalHigher = this.totalHigher;
@@ -62,11 +66,18 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 		}
 	},
 	
+	//Function for getting all the role profile skills and setting the user defaults from a role profile
+	//@profileId {string} : the sys_id of the role profile to get all the associated role profile skills from
+	//@returns {object array}: an array of objects containing all the role profile skills
 	getProfileSkills : function (profileId){
 		try {
 			var profileSkills = [];
 			var profileSkillInfo = {};
 			var skillId = 0;
+			var skillLevel = '';
+			var skillLevelValue = 0;
+			var skillLevelDescription = '';
+			var userLevelDescription = gs.getMessage('The user does not have this skill');
 			var grProfileSkill = new GlideRecord('x_78492_profiling_role_profile_skill');
 			grProfileSkill.addQuery('role_profile', profileId);
 			grProfileSkill.orderBy('skill.u_category');
@@ -78,15 +89,20 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 				}
 				this.totalSkills ++;
 				skillId = grProfileSkill.getValue('skill');
+				skillLevel = grProfileSkill.getDisplayValue('level');
+				skillLevelValue = grProfileSkill.getValue('level');
+				skillLevelDescription = this._getLevelDescription(skillLevel);
 				profileSkillInfo = {
 					skill_id : skillId,
 					category : grProfileSkill.skill.u_category.getDisplayValue(),
 					skill : grProfileSkill.getDisplayValue('skill'),
-					skill_level : grProfileSkill.getDisplayValue('level'),
-					skill_level_value : grProfileSkill.getValue('level'),
+					skill_level : skillLevel,
+					skill_level_value : skillLevelValue,
+					skill_level_description : skillLevelDescription,
 					matched : 'missing',
 					user_level: 'none',
-					user_level_value : -1
+					user_level_value : -1,
+					user_level_description : userLevelDescription
 				};
 				profileSkills.push(profileSkillInfo);
 			}
@@ -100,12 +116,17 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 		
 	},
 	
-	matchUserSkills: function(userProfileSkills, userId){
+	//Function for matching a users skills with role profile skills and updating the user defaults
+	//@userProfileSkills {object array} : an array of objects containing all the role profile skills
+	//userId {string}: the sys_id of the user to match against the role profile skills
+	//@returns {VOID}: an updated role profile skills object
+	_matchUserSkills: function(userProfileSkills, userId){
 		var matched = false;
 		var skillId = null;
-		var skillLevel = 0;
+		var skillLevelValue = 0;
+		var skillLevel = '';
+		var skillLevelDescription = '';
 		var userSkill = {};
-		
 		var grUserSkill = new GlideRecord('sys_user_has_skill');
 		grUserSkill.addQuery('user', userId);
 		grUserSkill.query();
@@ -116,9 +137,12 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 				if (userProfileSkills.skills[i].skill_id == skillId){
 					matched = true;
 					var upf = userProfileSkills.skills[i];
-					skillLevel = grUserSkill.getValue('u_skill_level');
-					upf.user_level = grUserSkill.getDisplayValue('u_skill_level');
-					upf.user_level_value = grUserSkill.getValue('u_skill_level');
+					skillLevelValue = grUserSkill.getValue('u_skill_level');
+					skillLevel = grUserSkill.getDisplayValue('u_skill_level');
+					skillLevelDescription = this._getLevelDescription(skillLevel);
+					upf.user_level = skillLevel;
+					upf.user_level_value = skillLevel;
+					upf.user_level_description = skillLevelDescription;
 					if (upf.skill_level_value == skillLevel){
 						this.totalMatched++;
 						upf.matched = 'matched';
@@ -135,21 +159,27 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 				}
 			}
 			if (!matched){
+				skillLevel = grUserSkill.getDisplayValue('u_skill_level');
+	            skillLevelDescription = this._getLevelDescription(skillLevel);
 				userSkill = {
 					skill_id : skillId,
 					category : grUserSkill.skill.u_category.getDisplayValue(),
 					skill: grUserSkill.getDisplayValue('skill'),
 					skill_level : 'missing',
 					skill_level_value : -1,
+					skill_level_description : gs.getMessage('The user has this skill but the profile does not'),
 					matched : 'user_only',
-					user_level : grUserSkill.getDisplayValue('u_skill_level'),
-					user_level_value : grUserSkill.getValue('u_skill_level')
+					user_level : skillLevel,
+					user_level_value : grUserSkill.getValue('u_skill_level'),
+					user_level_description : skillLevelDescription
 				};
 				userProfileSkills.skills.push(userSkill);
 			}
 		}
 	},
 	
+	//Function for getting the name of a user
+	//@id {string} : the sys_id of the user
 	_getUserName : function (id){
 		var user = new GlideRecord('sys_user');
 		if (user.get(id)){
@@ -158,21 +188,43 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 		return null;
 	},
 	
+	//Function for getting the description of the skill level, this is held in the hint field on the choice list record
+	//@level {string} : the level of the skill to query the choice list against
+	//@defaultString {string} : the value to return if the hint on the choice list record is empty
+	//@returns: the hint from the choice list or the value in the defaultString if not present
+	_getLevelDescription : function (level){
+		if (this.levelDescription[level]){
+			return this.levelDescription[level];
+		}
+
+		var skillChoice = new GlideRecord('sys_choice');
+		skillChoice.addQuery('inactive', false);
+		skillChoice.addQuery('name', 'sys_user_has_skill');
+		skillChoice.addQuery('label', level);
+		skillChoice.setLimit(1);
+		skillChoice.query();
+		if (skillChoice.next()){
+			this.levelDescription[level] = skillChoice.getValue('hint') != '' ? skillChoice.getValue('hint') : level;
+		}
+		return this.levelDescription[level];
+		
+	},
+	
 	type: 'ProfileManagementAJAX'
 });]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2016-12-22 19:44:15</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
+        <sys_customer_update>true</sys_customer_update>
         <sys_id>ab164526dbf72200e24ff7fdbf96195e</sys_id>
-        <sys_mod_count>59</sys_mod_count>
+        <sys_mod_count>75</sys_mod_count>
         <sys_name>ProfileManagementAJAX</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy>read</sys_policy>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_script_include_ab164526dbf72200e24ff7fdbf96195e</sys_update_name>
-        <sys_updated_by>jloftas</sys_updated_by>
-        <sys_updated_on>2017-03-02 23:39:54</sys_updated_on>
+        <sys_updated_by>justin.loftas</sys_updated_by>
+        <sys_updated_on>2017-03-29 16:34:53</sys_updated_on>
     </sys_script_include>
 </record_update>

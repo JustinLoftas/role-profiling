@@ -31,6 +31,8 @@ ProfileManagementUtils.prototype = {
 		
 	},
 	
+	//Function for creating a new role profile based on the original
+	//@returns {object} : the gliderecord with the new role profile
 	_createRoleProfile: function(){
 		var grProfile = new GlideRecord('x_78492_profiling_role_profile');
 		grProfile.initialize();
@@ -42,15 +44,25 @@ ProfileManagementUtils.prototype = {
 		
 	},
 	
+	//Function for copying the role profile skills of the original record to a new skill profile
+	//@profileId {string}: the sys_id of the new role profile to copy the role profile skills to
+	//@returns {boolean} : true if successful
 	_copyProfileSkills: function(profileId){
 		var grProfileSkill = new GlideRecord('x_78492_profiling_role_profile_skill');
 		grProfileSkill.addQuery('role_profile', this.roleProfile.getValue('sys_id'));
 		grProfileSkill.query();
 		while (grProfileSkill.next()){
-			this._createProfileSkill(grProfileSkill, profileId);
+			if (!this._createProfileSkill(grProfileSkill, profileId)){
+				return false;
+			}
 		}
+		return true;
 	},
 	
+	//Function for creating a role profile skill based on a copy of an existing role profile skill
+	//@profileSkill {object}: a gliderecord containing the existing roel profile skill
+	//@profileId {string} : the sys_id of the role profile to relate the new role profile skill to
+	//@returns {boolean} : true if successful
 	_createProfileSkill : function(profileSkill, profileId){
 		var grProfileSkill = new GlideRecord('x_78492_profiling_role_profile_skill');
 		grProfileSkill.initialize();
@@ -58,8 +70,11 @@ ProfileManagementUtils.prototype = {
 		grProfileSkill.setValue('level', profileSkill.getValue('level'));
 		grProfileSkill.setValue('role_profile', profileId);
 		grProfileSkill.insert();
+		return true;
 	},
 	
+	//Function for updating the role profile skill for if any attributes that force a change to the display name occur
+	//@returns {boolean}: true if successful, false on error
 	updateProfileSkills : function(){
 		try {
 			if (!this.roleProfile){
@@ -72,12 +87,42 @@ ProfileManagementUtils.prototype = {
 				grProfileSkill.setValue('sys_updated_on', new GlideDateTime());
 				grProfileSkill.update();
 			}
+			return true;
 		}
 		catch(err)
 		{
 			//Handle errors here
 			gs.logError('Error detected in Script Include ProfileManagementUtils, function updateProfileSkills, error message is ' + err.message);
-			return;
+			return false;
+		}
+	},
+	
+	//Function for updating the skill count on a role profile
+	//@profileid {string}: the sys_id of the role profile to update
+	//@returns {boolean} : true if an amendment occurs, false if not or an error
+	updateProfileSkillCount : function(profileid){
+		try {
+			var profileSkillCount = 0;
+			var roleProfileSkill = new GlideAggregate('x_78492_profiling_role_profile_skill');
+			roleProfileSkill.addQuery('role_profile', profileid);
+			roleProfileSkill.addAggregate('COUNT');
+			roleProfileSkill.query();
+			if (roleProfileSkill.next()){
+				profileSkillCount  = roleProfileSkill.getAggregate('COUNT');
+			}
+			if (profileSkillCount > 0){
+				var roleProfile = new GlideRecord('x_78492_profiling_role_profile');
+				if (roleProfile.get(profileid)){
+					roleProfile.setValue('skill_count', profileSkillCount);
+					roleProfile.update();
+					return true;
+				}
+			}
+			return false;
+		}
+		catch (err){
+			gs.error('Error detected in Script Include ProfileManagementUtils, function updateProfileSkillCount. Error message is ' + err.message);
+			return false;
 		}
 	},
 	
@@ -86,16 +131,16 @@ ProfileManagementUtils.prototype = {
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2017-02-04 12:24:30</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
+        <sys_customer_update>true</sys_customer_update>
         <sys_id>49f402a0dbb43200e24ff7fdbf961920</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>ProfileManagementUtils</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy>read</sys_policy>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_script_include_49f402a0dbb43200e24ff7fdbf961920</sys_update_name>
-        <sys_updated_by>jloftas</sys_updated_by>
-        <sys_updated_on>2017-02-05 13:54:36</sys_updated_on>
+        <sys_updated_by>justin.loftas</sys_updated_by>
+        <sys_updated_on>2017-03-29 16:12:24</sys_updated_on>
     </sys_script_include>
 </record_update>
