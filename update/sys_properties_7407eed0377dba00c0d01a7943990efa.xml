@@ -11,7 +11,7 @@
         <sys_class_name>sys_properties</sys_class_name>
         <sys_created_by>justin.loftas</sys_created_by>
         <sys_created_on>2017-03-25 12:40:44</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>7407eed0377dba00c0d01a7943990efa</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>x_78492_profiling.skill_inactive.shadow_color</sys_name>

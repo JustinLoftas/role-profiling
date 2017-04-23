@@ -131,7 +131,7 @@ ProfileManagementUtils.prototype = {
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2017-02-04 12:24:30</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>49f402a0dbb43200e24ff7fdbf961920</sys_id>
         <sys_mod_count>5</sys_mod_count>
         <sys_name>ProfileManagementUtils</sys_name>

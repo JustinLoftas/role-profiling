@@ -4,77 +4,62 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>name</element>
-            <list_id display_value="x_78492_profiling_role_profile_skill" element="NULL" name="x_78492_profiling_role_profile_skill" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">a13cb9bfdbbf6200e24ff7fdbf96194c</list_id>
+            <list_id display_value="x_78492_profiling_role_profile_skill" element="NULL" name="x_78492_profiling_role_profile_skill" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">56a067693752ba00c0d01a7943990e00</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>0</position>
             <sum>false</sum>
-            <sys_created_by>jloftas</sys_created_by>
-            <sys_created_on>2016-12-26 20:26:54</sys_created_on>
-            <sys_id>a53cb9bfdbbf6200e24ff7fdbf96194c</sys_id>
+            <sys_created_by>justin.loftas</sys_created_by>
+            <sys_created_on>2017-04-23 10:36:25</sys_created_on>
+            <sys_id>92a067693752ba00c0d01a7943990e01</sys_id>
             <sys_mod_count>0</sys_mod_count>
-            <sys_updated_by>jloftas</sys_updated_by>
-            <sys_updated_on>2016-12-26 20:26:54</sys_updated_on>
-        </sys_ui_list_element>
-        <sys_ui_list_element action="INSERT_OR_UPDATE">
-            <average_value>false</average_value>
-            <element>role_profile</element>
-            <list_id display_value="x_78492_profiling_role_profile_skill" element="NULL" name="x_78492_profiling_role_profile_skill" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">a13cb9bfdbbf6200e24ff7fdbf96194c</list_id>
-            <max_value>false</max_value>
-            <min_value>false</min_value>
-            <position>1</position>
-            <sum>false</sum>
-            <sys_created_by>jloftas</sys_created_by>
-            <sys_created_on>2016-12-26 20:26:54</sys_created_on>
-            <sys_id>293cb9bfdbbf6200e24ff7fdbf96194c</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_updated_by>jloftas</sys_updated_by>
-            <sys_updated_on>2016-12-26 20:26:54</sys_updated_on>
-        </sys_ui_list_element>
-        <sys_ui_list_element action="INSERT_OR_UPDATE">
-            <average_value>false</average_value>
-            <element>skill</element>
-            <list_id display_value="x_78492_profiling_role_profile_skill" element="NULL" name="x_78492_profiling_role_profile_skill" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">a13cb9bfdbbf6200e24ff7fdbf96194c</list_id>
-            <max_value>false</max_value>
-            <min_value>false</min_value>
-            <position>2</position>
-            <sum>false</sum>
-            <sys_created_by>jloftas</sys_created_by>
-            <sys_created_on>2016-12-26 20:26:54</sys_created_on>
-            <sys_id>a93cb9bfdbbf6200e24ff7fdbf96194c</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_updated_by>jloftas</sys_updated_by>
-            <sys_updated_on>2016-12-26 20:26:54</sys_updated_on>
-        </sys_ui_list_element>
-        <sys_ui_list_element action="INSERT_OR_UPDATE">
-            <average_value>false</average_value>
-            <element>skill.u_category</element>
-            <list_id display_value="x_78492_profiling_role_profile_skill" element="NULL" name="x_78492_profiling_role_profile_skill" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">a13cb9bfdbbf6200e24ff7fdbf96194c</list_id>
-            <max_value>false</max_value>
-            <min_value>false</min_value>
-            <position>3</position>
-            <sum>false</sum>
-            <sys_created_by>jloftas</sys_created_by>
-            <sys_created_on>2016-12-26 20:26:54</sys_created_on>
-            <sys_id>2d3cb9bfdbbf6200e24ff7fdbf96194c</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_updated_by>jloftas</sys_updated_by>
-            <sys_updated_on>2016-12-26 20:26:54</sys_updated_on>
+            <sys_updated_by>justin.loftas</sys_updated_by>
+            <sys_updated_on>2017-04-23 10:36:25</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>level</element>
-            <list_id display_value="x_78492_profiling_role_profile_skill" element="NULL" name="x_78492_profiling_role_profile_skill" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">a13cb9bfdbbf6200e24ff7fdbf96194c</list_id>
+            <list_id display_value="x_78492_profiling_role_profile_skill" element="NULL" name="x_78492_profiling_role_profile_skill" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">56a067693752ba00c0d01a7943990e00</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
-            <position>4</position>
+            <position>1</position>
             <sum>false</sum>
-            <sys_created_by>jloftas</sys_created_by>
-            <sys_created_on>2016-12-26 20:26:54</sys_created_on>
-            <sys_id>ad3cb9bfdbbf6200e24ff7fdbf96194c</sys_id>
+            <sys_created_by>justin.loftas</sys_created_by>
+            <sys_created_on>2017-04-23 10:36:25</sys_created_on>
+            <sys_id>9aa067693752ba00c0d01a7943990e01</sys_id>
             <sys_mod_count>0</sys_mod_count>
-            <sys_updated_by>jloftas</sys_updated_by>
-            <sys_updated_on>2016-12-26 20:26:54</sys_updated_on>
+            <sys_updated_by>justin.loftas</sys_updated_by>
+            <sys_updated_on>2017-04-23 10:36:25</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>role_profile</element>
+            <list_id display_value="x_78492_profiling_role_profile_skill" element="NULL" name="x_78492_profiling_role_profile_skill" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">56a067693752ba00c0d01a7943990e00</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>justin.loftas</sys_created_by>
+            <sys_created_on>2017-04-23 10:36:25</sys_created_on>
+            <sys_id>1ea067693752ba00c0d01a7943990e01</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>justin.loftas</sys_updated_by>
+            <sys_updated_on>2017-04-23 10:36:25</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>skill</element>
+            <list_id display_value="x_78492_profiling_role_profile_skill" element="NULL" name="x_78492_profiling_role_profile_skill" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">56a067693752ba00c0d01a7943990e00</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>3</position>
+            <sum>false</sum>
+            <sys_created_by>justin.loftas</sys_created_by>
+            <sys_created_on>2017-04-23 10:36:25</sys_created_on>
+            <sys_id>9ea067693752ba00c0d01a7943990e01</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>justin.loftas</sys_updated_by>
+            <sys_updated_on>2017-04-23 10:36:25</sys_updated_on>
         </sys_ui_list_element>
         <sys_ui_list action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
@@ -89,7 +74,7 @@
             <sys_class_name>sys_ui_list</sys_class_name>
             <sys_created_by>justin.loftas</sys_created_by>
             <sys_created_on>2017-03-29 16:14:10</sys_created_on>
-            <sys_customer_update>true</sys_customer_update>
+            <sys_customer_update>false</sys_customer_update>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
             <sys_id>ca3ebf2d377d3200c0d01a7943990e19</sys_id>

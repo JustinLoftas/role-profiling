@@ -138,7 +138,7 @@
         <sys_class_name>sys_ui_script</sys_class_name>
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2016-12-19 22:29:56</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>b123de65dbb72200e24ff7fdbf961913</sys_id>
         <sys_mod_count>182</sys_mod_count>
         <sys_name>x_78492_profiling.Ng.profile.controller</sys_name>

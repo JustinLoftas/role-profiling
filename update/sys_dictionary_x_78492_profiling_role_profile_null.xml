@@ -3,6 +3,7 @@
     <sys_dictionary action="INSERT_OR_UPDATE" element="" table="x_78492_profiling_role_profile">
         <active>true</active>
         <array>false</array>
+        <array_denormalized>false</array_denormalized>
         <attributes/>
         <audit>false</audit>
         <calculation><![CDATA[(function calculatedFieldValue(current) {
@@ -52,7 +53,7 @@
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2016-12-14 16:54:14</sys_created_on>
         <sys_customer_update>false</sys_customer_update>
-        <sys_id>36093d043779ba00c0d01a7943990ec1</sys_id>
+        <sys_id>cea2e68c3756f600c0d01a7943990e4b</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>x_78492_profiling_role_profile</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
@@ -61,7 +62,7 @@
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_dictionary_x_78492_profiling_role_profile_NULL</sys_update_name>
         <sys_updated_by>system</sys_updated_by>
-        <sys_updated_on>2017-03-24 14:41:31</sys_updated_on>
+        <sys_updated_on>2017-04-18 14:14:44</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>

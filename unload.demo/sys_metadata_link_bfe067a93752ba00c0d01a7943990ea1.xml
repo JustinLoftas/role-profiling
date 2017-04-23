@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_metadata_link">
+    <sys_metadata_link action="INSERT_OR_UPDATE">
+        <directory>unload.demo</directory>
+        <documentkey>4fd702c83779ba00c0d01a7943990eac</documentkey>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="x_78492_profiling_role_profile_skill">
+    <x_78492_profiling_role_profile_skill action="INSERT_OR_UPDATE">
+        <level>2</level>
+        <name>ServiceNow Developer &gt; API's (ServiceNow Platform) : Working knowledge</name>
+        <role_profile display_value="ServiceNow Developer">d92065e5db772200e24ff7fdbf96199c</role_profile>
+        <skill display_value="API's (ServiceNow Platform)">2deaca9d376b2200c0d01a7943990ece</skill>
+        <sys_created_by>justin.loftas</sys_created_by>
+        <sys_created_on>2017-03-24 15:46:09</sys_created_on>
+        <sys_id>4fd702c83779ba00c0d01a7943990eac</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>justin.loftas</sys_updated_by>
+        <sys_updated_on>2017-03-24 15:46:09</sys_updated_on>
+    </x_78492_profiling_role_profile_skill>
+</record_update>
+]]></payload>
+        <sys_class_name>sys_metadata_link</sys_class_name>
+        <sys_created_by>justin.loftas</sys_created_by>
+        <sys_created_on>2017-04-23 10:37:36</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>bfe067a93752ba00c0d01a7943990ea1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>ServiceNow Developer &gt; API's (ServiceNow Platform) : Working knowledge</sys_name>
+        <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+        <sys_update_name>sys_metadata_link_bfe067a93752ba00c0d01a7943990ea1</sys_update_name>
+        <sys_updated_by>justin.loftas</sys_updated_by>
+        <sys_updated_on>2017-04-23 10:37:36</sys_updated_on>
+        <tablename>x_78492_profiling_role_profile_skill</tablename>
+    </sys_metadata_link>
+</record_update>

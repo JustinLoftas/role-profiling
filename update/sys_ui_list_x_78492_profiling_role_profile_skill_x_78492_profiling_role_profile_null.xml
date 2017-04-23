@@ -4,7 +4,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>name</element>
-            <list_id display_value="x_78492_profiling_role_profile_skill" element="NULL" name="x_78492_profiling_role_profile_skill" parent="x_78492_profiling_role_profile" relationship="NULL" sys_domain="global" view="Default view">18f246483779ba00c0d01a7943990e27</list_id>
+            <list_id display_value="x_78492_profiling_role_profile_skill" element="NULL" name="x_78492_profiling_role_profile_skill" parent="x_78492_profiling_role_profile" relationship="NULL" sys_domain="global" view="Default view">e14582883779ba00c0d01a7943990e22</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>0</position>
@@ -19,7 +19,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>level</element>
-            <list_id display_value="x_78492_profiling_role_profile_skill" element="NULL" name="x_78492_profiling_role_profile_skill" parent="x_78492_profiling_role_profile" relationship="NULL" sys_domain="global" view="Default view">18f246483779ba00c0d01a7943990e27</list_id>
+            <list_id display_value="x_78492_profiling_role_profile_skill" element="NULL" name="x_78492_profiling_role_profile_skill" parent="x_78492_profiling_role_profile" relationship="NULL" sys_domain="global" view="Default view">e14582883779ba00c0d01a7943990e22</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>1</position>
@@ -34,7 +34,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>role_profile</element>
-            <list_id display_value="x_78492_profiling_role_profile_skill" element="NULL" name="x_78492_profiling_role_profile_skill" parent="x_78492_profiling_role_profile" relationship="NULL" sys_domain="global" view="Default view">18f246483779ba00c0d01a7943990e27</list_id>
+            <list_id display_value="x_78492_profiling_role_profile_skill" element="NULL" name="x_78492_profiling_role_profile_skill" parent="x_78492_profiling_role_profile" relationship="NULL" sys_domain="global" view="Default view">e14582883779ba00c0d01a7943990e22</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>2</position>
@@ -49,7 +49,7 @@
         <sys_ui_list_element action="INSERT_OR_UPDATE">
             <average_value>false</average_value>
             <element>skill</element>
-            <list_id display_value="x_78492_profiling_role_profile_skill" element="NULL" name="x_78492_profiling_role_profile_skill" parent="x_78492_profiling_role_profile" relationship="NULL" sys_domain="global" view="Default view">18f246483779ba00c0d01a7943990e27</list_id>
+            <list_id display_value="x_78492_profiling_role_profile_skill" element="NULL" name="x_78492_profiling_role_profile_skill" parent="x_78492_profiling_role_profile" relationship="NULL" sys_domain="global" view="Default view">e14582883779ba00c0d01a7943990e22</list_id>
             <max_value>false</max_value>
             <min_value>false</min_value>
             <position>3</position>
@@ -74,7 +74,7 @@
             <sys_class_name>sys_ui_list</sys_class_name>
             <sys_created_by>justin.loftas</sys_created_by>
             <sys_created_on>2017-03-24 15:34:52</sys_created_on>
-            <sys_customer_update>true</sys_customer_update>
+            <sys_customer_update>false</sys_customer_update>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
             <sys_id>e14582883779ba00c0d01a7943990e22</sys_id>
