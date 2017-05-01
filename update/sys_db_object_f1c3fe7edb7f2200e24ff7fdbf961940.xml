@@ -17,7 +17,7 @@
         <number_ref/>
         <provider_class/>
         <read_access>true</read_access>
-        <super_class display_value="Import Set Row" name="sys_import_set_row">7962b6703722120007771a7943990eb7</super_class>
+        <super_class display_value="Import Set Row" name="sys_import_set_row">c9762b63db222200e24ff7fdbf96197d</super_class>
         <sys_class_name>sys_db_object</sys_class_name>
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2016-12-23 21:55:45</sys_created_on>

@@ -22,7 +22,7 @@
         <sys_class_name>sys_metadata_link</sys_class_name>
         <sys_created_by>justin.loftas</sys_created_by>
         <sys_created_on>2017-04-23 10:37:45</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>f1f0e7a93752ba00c0d01a7943990e50</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>ServiceNow Graduate Developer &gt; Prioritisation (Soft Skills) : Learning</sys_name>

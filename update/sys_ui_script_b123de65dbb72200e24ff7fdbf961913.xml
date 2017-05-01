@@ -6,7 +6,7 @@
         <global>false</global>
         <name>x_78492_profiling.Ng.profile.controller</name>
         <script><![CDATA[angular.module('profileApp', [])
-.controller('ProfileController' , ['$document', function($document){
+.controller('ProfileController' , ['$document', '$http', function($document, $http){
 	var self = this;
 	var totalSkills = 0;
 	self.profileId = '';
@@ -30,7 +30,7 @@
 	self.sortAscending = true;
 	
 	self.sortOrder = function(sortColumn){
-	    self.sortAscending = (self.sortColumn === sortColumn) ? !self.sortAscending : true;
+		self.sortAscending = (self.sortColumn === sortColumn) ? !self.sortAscending : true;
 		self.sortColumn = sortColumn;
 	};
 	
@@ -101,22 +101,15 @@
 		self.userName = $document[0].getElementById('sys_display.' + userElementId).value;
 		self.userSet = true;
 		self.profileSet = true;
-		var gaGetComparison = new GlideAjax('x_78492_profiling.ProfileManagementAJAX');
-		gaGetComparison.addParam('sysparm_name','getComparisonData');
-		gaGetComparison.addParam('sysparm_profile_id',profileId);
-		gaGetComparison.addParam('sysparm_user_id',userId);
-		//We have to use getXMLWait and gteAnswer as Angular doesn't like the callback on getXML, impact is minimal in this case
-		gaGetComparison.getXMLWait();
-		var skillsInfo = gaGetComparison.getAnswer().evalJSON();
-		if (skillsInfo){
+		$http.get('/api/x_78492_profiling/role_profile_data/get_data?user_id=' + userId + '&profile_id=' + profileId)
+		.then(function(response){
+			var skillsInfo = response.data.result;
 			self.skills = skillsInfo.skills;
 			self.totalSkills = skillsInfo.totalSkills;
 			self.totalMatched = skillsInfo.totalMatched;
 			self.totalHigher = skillsInfo.totalHigher;
 			self.totalLower = skillsInfo.totalLower;
 			self.totalMissing = skillsInfo.totalMissing;
-			//self.userName = skillsInfo.userName;
-			//self.profileName = skillsInfo.profileName;
 			totalSkills = self.totalSkills;
 			if (totalSkills > 0){
 				self.percentMatched = (self.totalMatched/totalSkills * 100).toFixed(1);
@@ -128,9 +121,17 @@
 				self.percentMatched = 0;
 				self.percentHigher = 0;
 				self.percentLower = 0;
-				self.percentMissing = 0;	
+				self.percentMissing = 0;
 			}
-		}
+		}, function(errResponse){
+			jslog(JSON.stringify(errResponse));
+			self.setSkillFilter('');
+			self.skills = [];
+			self.percentMatched = 0;
+			self.percentHigher = 0;
+			self.percentLower = 0;
+			self.percentMissing = 0;
+		});
 		
 	};
 }]);]]></script>
@@ -138,17 +139,17 @@
         <sys_class_name>sys_ui_script</sys_class_name>
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2016-12-19 22:29:56</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
+        <sys_customer_update>true</sys_customer_update>
         <sys_id>b123de65dbb72200e24ff7fdbf961913</sys_id>
-        <sys_mod_count>182</sys_mod_count>
+        <sys_mod_count>194</sys_mod_count>
         <sys_name>x_78492_profiling.Ng.profile.controller</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_ui_script_b123de65dbb72200e24ff7fdbf961913</sys_update_name>
-        <sys_updated_by>justin.loftas</sys_updated_by>
-        <sys_updated_on>2017-03-29 15:35:55</sys_updated_on>
+        <sys_updated_by>jloftas</sys_updated_by>
+        <sys_updated_on>2017-05-01 10:12:45</sys_updated_on>
         <use_scoped_format>false</use_scoped_format>
     </sys_ui_script>
 </record_update>
