@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="cmn_skill" version="2" view="role_profiling">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>name</element>
+            <list_id display_value="cmn_skill" element="NULL" name="cmn_skill" parent="NULL" relationship="NULL" sys_domain="global" view="fae9d54edbffbb40e24ff7fdbf9619a3">95cdeaf8db5084d0e24ff7fdbf961946</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>justin.loftas</sys_created_by>
+            <sys_created_on>2019-10-02 17:48:48</sys_created_on>
+            <sys_id>ddcdeaf8db5084d0e24ff7fdbf961946</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>justin.loftas</sys_updated_by>
+            <sys_updated_on>2019-10-02 17:48:48</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>x_78492_profiling_category</element>
+            <list_id display_value="cmn_skill" element="NULL" name="cmn_skill" parent="NULL" relationship="NULL" sys_domain="global" view="fae9d54edbffbb40e24ff7fdbf9619a3">95cdeaf8db5084d0e24ff7fdbf961946</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>justin.loftas</sys_created_by>
+            <sys_created_on>2019-10-02 17:48:48</sys_created_on>
+            <sys_id>51cdeaf8db5084d0e24ff7fdbf961947</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>justin.loftas</sys_updated_by>
+            <sys_updated_on>2019-10-02 17:48:48</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>x_78492_profiling_default_skill_level</element>
+            <list_id display_value="cmn_skill" element="NULL" name="cmn_skill" parent="NULL" relationship="NULL" sys_domain="global" view="fae9d54edbffbb40e24ff7fdbf9619a3">95cdeaf8db5084d0e24ff7fdbf961946</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>justin.loftas</sys_created_by>
+            <sys_created_on>2019-10-02 17:48:48</sys_created_on>
+            <sys_id>d1cdeaf8db5084d0e24ff7fdbf961947</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>justin.loftas</sys_updated_by>
+            <sys_updated_on>2019-10-02 17:48:48</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>active</element>
+            <list_id display_value="cmn_skill" element="NULL" name="cmn_skill" parent="NULL" relationship="NULL" sys_domain="global" view="fae9d54edbffbb40e24ff7fdbf9619a3">95cdeaf8db5084d0e24ff7fdbf961946</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>3</position>
+            <sum>false</sum>
+            <sys_created_by>justin.loftas</sys_created_by>
+            <sys_created_on>2019-10-02 17:48:48</sys_created_on>
+            <sys_id>55cdeaf8db5084d0e24ff7fdbf961947</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>justin.loftas</sys_updated_by>
+            <sys_updated_on>2019-10-02 17:48:48</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>description</element>
+            <list_id display_value="cmn_skill" element="NULL" name="cmn_skill" parent="NULL" relationship="NULL" sys_domain="global" view="fae9d54edbffbb40e24ff7fdbf9619a3">95cdeaf8db5084d0e24ff7fdbf961946</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>4</position>
+            <sum>false</sum>
+            <sys_created_by>justin.loftas</sys_created_by>
+            <sys_created_on>2019-10-02 17:48:48</sys_created_on>
+            <sys_id>d5cdeaf8db5084d0e24ff7fdbf961947</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>justin.loftas</sys_updated_by>
+            <sys_updated_on>2019-10-02 17:48:48</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>cmn_skill</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>justin.loftas</sys_created_by>
+            <sys_created_on>2019-10-02 17:48:48</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>95cdeaf8db5084d0e24ff7fdbf961946</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>cmn_skill</sys_name>
+            <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+            <sys_update_name>sys_ui_list_cmn_skill_role_profiling</sys_update_name>
+            <sys_updated_by>justin.loftas</sys_updated_by>
+            <sys_updated_on>2019-10-02 17:48:48</sys_updated_on>
+            <sys_user/>
+            <view display_value="Role Profiling" name="role_profiling">fae9d54edbffbb40e24ff7fdbf9619a3</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

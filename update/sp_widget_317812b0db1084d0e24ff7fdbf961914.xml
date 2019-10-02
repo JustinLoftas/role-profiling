@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope, $http, $rootScope) {
+	/* widget controller */
+	var c = this;
+	$scope.setProfile = function(displayValue, sysId){
+		$scope.profileSelect = {  
+			displayValue: displayValue,
+			value: sysId,  
+			name:  'profile'
+		}; 
+		if (!displayValue && !sysId){
+			$scope.profileSet = false;
+		}
+		else {
+			$scope.profileSet = true;
+		}
+	};
+	
+	$scope.setUser = function(displayValue, sysId){
+		$scope.userSelect = {  
+			displayValue: displayValue,
+			value: sysId,  
+			name:  'user'
+		}; 
+		if (!displayValue && !sysId){
+			$scope.userSet = false;
+		}
+		else {
+			$scope.userSet = true;
+		}
+	};
+
+	$scope.setProfile(c.data.profileInfo.displayValue, c.data.profileInfo.value);
+	$scope.setUser(c.data.userInfo.displayValue, c.data.userInfo.value);
+
+	$scope.$on("field.change", function(evt, parms) {  
+		if (parms.field.name === 'profile'){
+			$scope.setProfile(parms.field.displayValue, parms.field.value);
+		}
+		if (parms.field.name === 'user'){
+			$scope.setUser(parms.field.displayValue, parms.field.value);
+		}
+		
+	});
+	
+	$scope.getComparison = function(){
+		var profileData = {
+			'userId' : $scope.userSelect.value,
+			'userName' : $scope.userSelect.displayValue,
+			'profileId' : $scope.profileSelect.value,
+			'profileName' : $scope.profileSelect.displayValue
+		};
+		$rootScope.$broadcast('GetComparisonData', profileData);
+	};
+
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.column-row-text::first-letter {&#13;
+   font-size: 12pt;&#13;
+   text-transform: uppercase;&#13;
+}&#13;
+&#13;
+.column-row-text {&#13;
+   font-size: 10pt;&#13;
+   text-transform: uppercase;&#13;
+}&#13;
+&#13;
+.panel-heading {&#13;
+   color: white; &#13;
+}&#13;
+&#13;
+.select-description::first-letter {&#13;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
+   font-size: 14pt;&#13;
+  text-transform: uppercase;&#13;
+}&#13;
+&#13;
+.select-description {&#13;
+   font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
+   font-size: 12pt;&#13;
+  text-transform: uppercase;&#13;
+  text-align: center;&#13;
+  width: 100%;&#13;
+  min-width:200px;&#13;
+  padding-top: 10px;&#13;
+}&#13;
+&#13;
+div.btn-holder {&#13;
+    padding: 10px 0px 10px 0px; &#13;
+    text-align: center;&#13;
+}&#13;
+&#13;
+&#13;
+.panel-info &gt; .column-row-text {&#13;
+   background-color: #3A424E !important;&#13;
+  border-color: #3A424E !important;&#13;
+}&#13;
+&#13;
+.panel-info {&#13;
+   border-color: #3A424E !important;&#13;
+}&#13;
+&#13;
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>role-profiling</id>
+        <internal>false</internal>
+        <link/>
+        <name>Role Profiling</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+  
+	data.css = {};
+	data.css.missingColour = gs.getProperty('x_78492_profiling.skill_missing.color', 'red');
+
+	data.isAdmin = gs.hasRole('x_78492_profiling.profile_admin');
+
+	data.profileInfo = {
+		displayValue: 'ServiceNow Developer',
+		value: 'd92065e5db772200e24ff7fdbf96199c'
+	};
+
+	data.userInfo = {
+		displayValue: '',
+		value: ''
+	};
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>justin.loftas</sys_created_by>
+        <sys_created_on>2019-10-02 16:15:43</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>317812b0db1084d0e24ff7fdbf961914</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Role Profiling</sys_name>
+        <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+        <sys_update_name>sp_widget_317812b0db1084d0e24ff7fdbf961914</sys_update_name>
+        <sys_updated_by>justin.loftas</sys_updated_by>
+        <sys_updated_on>2019-10-02 21:18:37</sys_updated_on>
+        <template><![CDATA[<div>
+  <div class="row">
+    <div ng-class="{'col-md-offset-2 col-md-4' : data.isAdmin, 'col-md-offset-4 col-md-4' : !data.isAdmin}"> 
+      <div class="panel panel-default panel-info">
+        <div class="panel-heading column-row-text">${Select a profile:}</div>
+        <div class="panel-body">
+          <sn-record-picker field="profileSelect" table="'x_78492_profiling_role_profile'" default-query="" display-field="'name'" value-field="'sys_id'" search-fields="'name'" page-size="100" ></sn-record-picker>
+          <div class="row">
+            <div class="select-description" ng-show="profileSet" ng-bind="profileSelect.displayValue"></div>
+            <div class="select-description" ng-hide="profileSet">
+              ${Select a Profile to compare}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-if="data.isAdmin">
+      <div class="col-md-4">
+        <div class="panel panel-default panel-info">
+          <div class="panel-heading column-row-text ">${Select a user:}</div>
+          <div class="panel-body">
+            <sn-record-picker field="userSelect" table="'sys_user'" default-query="'active=true'" display-field="'name'" value-field="'sys_id'" search-fields="'name,email'" page-size="100" ></sn-record-picker>
+            <div class="row">
+              <div class="select-description"  ng-show="userSet" ng-bind="userSelect.displayValue"></div>
+              <div class="select-description"  ng-hide="userSet">
+                ${Select a User to compare}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="btn-holder">
+            <button class="btn btn-primary" type="button" ng-click="getComparison()">${Compare}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+]]></template>
+    </sp_widget>
+</record_update>

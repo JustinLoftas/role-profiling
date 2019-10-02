@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sys_ui_form_sections form_id="d1197d043779ba00c0d01a7943990e77" sys_domain="global" table="cmn_skill" version="3">
         <sys_ui_form_section action="INSERT_OR_UPDATE">
             <position>0</position>

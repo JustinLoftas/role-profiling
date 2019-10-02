@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<database>
+<?xml version="1.0" encoding="UTF-8"?><database>
     <element label="Role profile" max_length="40" name="x_78492_profiling_role_profile" type="collection">
-        <element label="Description" max_length="1000" name="description" type="translated_text"/>
-        <element display="true" label="Name" max_length="80" name="name" type="translated_text"/>
-        <element default="0" label="Skill count" max_length="40" name="skill_count" type="integer"/>
+        <element attributes="edge_encryption_enabled=true" label="Description" max_length="1000" name="description" type="translated_text"/>
+        <element attributes="edge_encryption_enabled=true" display="true" label="Name" max_length="80" name="name" type="translated_text"/>
+        <element attributes="edge_encryption_enabled=true" default="0" label="Skill count" max_length="40" name="skill_count" type="integer"/>
     </element>
 </database>

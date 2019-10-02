@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sys_db_object">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_db_object">
     <sys_db_object action="INSERT_OR_UPDATE">
         <access/>
         <actions_access>false</actions_access>
         <alter_access>false</alter_access>
+        <caller_access/>
         <client_scripts_access>false</client_scripts_access>
         <configuration_access>false</configuration_access>
         <create_access>false</create_access>
@@ -17,8 +17,10 @@
         <number_ref/>
         <provider_class/>
         <read_access>true</read_access>
-        <super_class display_value="Import Set Row" name="sys_import_set_row">c9762b63db222200e24ff7fdbf96197d</super_class>
+        <super_class display_value="Import Set Row" name="sys_import_set_row">d20b03a69430030092c01899af6cf337</super_class>
+        <sys_class_code/>
         <sys_class_name>sys_db_object</sys_class_name>
+        <sys_class_path/>
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2016-12-23 21:55:45</sys_created_on>
         <sys_customer_update>false</sys_customer_update>

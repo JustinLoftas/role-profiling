@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update>
+<?xml version="1.0" encoding="UTF-8"?><record_update>
     <sys_documentation element="" label="Profile Skills Import" language="en" table="x_78492_profiling_profile_skills_import">
         <sys_documentation action="INSERT_OR_UPDATE">
             <element/>

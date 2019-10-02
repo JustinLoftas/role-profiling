@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<database>
-    <element attributes="all_tables.text_index_translations=true,update_synch=true,iterativeDelete=true" extends="sys_metadata" label="Skill" max_length="40" name="cmn_skill" text_index="true" type="collection">
-        <element label="Category" max_length="32" name="x_78492_profiling_category" reference="u_skill_category" type="reference"/>
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="update_synch=true,iterativeDelete=true" extends="sys_metadata" label="Skill" max_length="40" name="cmn_skill" text_index="true" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="Category" max_length="32" name="x_78492_profiling_category" reference="x_78492_profiling_skill_category" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" choice="3" choice_field="level" choice_table="x_78492_profiling_role_profile_skill" default="0" label="Default skill level" max_length="40" name="x_78492_profiling_default_skill_level" type="string">
+            <choice/>
+        </element>
         <index name="index">
             <element name="x_78492_profiling_category"/>
         </index>

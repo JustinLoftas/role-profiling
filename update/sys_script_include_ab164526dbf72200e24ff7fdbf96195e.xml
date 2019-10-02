@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<record_update table="sys_script_include">
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>public</access>
         <active>true</active>
         <api_name>x_78492_profiling.ProfileManagementAJAX</api_name>
+        <caller_access/>
         <client_callable>true</client_callable>
         <description/>
         <name>ProfileManagementAJAX</name>
@@ -45,10 +45,10 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 			userProfileSkills.skills = this.getProfileSkills(profileId);
 			
 			if (userProfileSkills.skills.length > 0){
-			//Update the role profile skills with the results of the users skills
-			this._matchUserSkills(userProfileSkills, userId);
+				//Update the role profile skills with the results of the users skills
+				this._matchUserSkills(userProfileSkills, userId);
 			}
-				
+
 			//Set our overall result values
 			userProfileSkills.totalSkills = this.totalSkills;
 			userProfileSkills.totalMatched = this.totalMatched;
@@ -87,7 +87,7 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 			var userLevelDescription = gs.getMessage('The user does not have this skill');
 			var grProfileSkill = new GlideRecord('x_78492_profiling_role_profile_skill');
 			grProfileSkill.addQuery('role_profile', profileId);
-			grProfileSkill.orderBy('skill.u_category');
+			grProfileSkill.orderBy('skill.x_78492_profiling_skill_category');
 			grProfileSkill.orderBy('skill.name');
 			grProfileSkill.query();
 			while (grProfileSkill.next()){
@@ -98,10 +98,10 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 				skillId = grProfileSkill.getValue('skill');
 				skillLevel = grProfileSkill.getDisplayValue('level');
 				skillLevelValue = grProfileSkill.getValue('level');
-				skillLevelDescription = this._getLevelDescription(skillLevel);
+				skillLevelDescription = this._getLevelDescription(skillLevelValue);
 				profileSkillInfo = {
 					skill_id : skillId,
-					category : grProfileSkill.skill.u_category.getDisplayValue(),
+					category : grProfileSkill.skill.x_78492_profiling_category.getDisplayValue(),
 					skill : grProfileSkill.getDisplayValue('skill'),
 					skill_level : skillLevel,
 					skill_level_value : skillLevelValue,
@@ -140,43 +140,43 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 		while (grUserSkill.next()){
 			matched = false;
 			skillId = grUserSkill.getValue('skill');
+			userLevelValue = grUserSkill.getValue('x_78492_profiling_skill_level');
+			userLevel = grUserSkill.getDisplayValue('x_78492_profiling_skill_level');
+			skillLevelDescription = this._getLevelDescription(userLevelValue);
 			for (var i = 0; i < userProfileSkills.skills.length; i++){
 				if (userProfileSkills.skills[i].skill_id == skillId){
 					matched = true;
 					var upf = userProfileSkills.skills[i];
-					userLevelValue = grUserSkill.getValue('u_skill_level');
-					userLevel = grUserSkill.getDisplayValue('u_skill_level');
-					skillLevelDescription = this._getLevelDescription(userLevel);
 					upf.user_level = userLevel;
 					upf.user_level_value = userLevelValue;
 					upf.user_level_description = skillLevelDescription;
-					if (upf.skill_level_value == userLevelValue){
-						this.totalMatched++;
-						upf.matched = 'matched';
-					}
-					else if (upf.skill_level_value < userLevelValue){
-						this.totalHigher++;
-						upf.matched = 'higher';
-					}
-					else {
-						this.totalLower++;
-						upf.matched = 'lower';
+					switch(true){
+						case upf.skill_level_value == userLevelValue:
+							this.totalMatched++;
+							upf.matched = 'matched';
+							break;
+						case upf.skill_level_value < userLevelValue:
+							this.totalHigher++;
+							upf.matched = 'higher';
+							break;
+						default:
+							this.totalLower++;
+							upf.matched = 'lower';
+							break;
 					}
 					break;
 				}
 			}
 			if (!matched){
-				userLevel = grUserSkill.getDisplayValue('u_skill_level');
-				userLevelValue = grUserSkill.getValue('u_skill_level');
-	            skillLevelDescription = this._getLevelDescription(userLevel);
+				this.totalMatched++;
 				userSkill = {
 					skill_id : skillId,
-					category : grUserSkill.skill.u_category.getDisplayValue(),
+					category : grUserSkill.skill.x_78492_profiling_category.getDisplayValue(),
 					skill: grUserSkill.getDisplayValue('skill'),
 					skill_level : 'missing',
 					skill_level_value : -1,
 					skill_level_description : gs.getMessage('The user has this skill but the profile does not'),
-					matched : 'user_only',
+					matched : 'matched',
 					user_level : userLevel,
 					user_level_value : userLevelValue,
 					user_level_description : skillLevelDescription
@@ -208,7 +208,8 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 		var skillChoice = new GlideRecord('sys_choice');
 		skillChoice.addQuery('inactive', false);
 		skillChoice.addQuery('name', 'sys_user_has_skill');
-		skillChoice.addQuery('label', level);
+		skillChoice.addQuery('value', level);
+		skillChoice.addQuery('element', 'x_78492_profiling_skill_level');
 		skillChoice.setLimit(1);
 		skillChoice.query();
 		if (skillChoice.next()){
@@ -225,14 +226,14 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
         <sys_created_on>2016-12-22 19:44:15</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>ab164526dbf72200e24ff7fdbf96195e</sys_id>
-        <sys_mod_count>81</sys_mod_count>
+        <sys_mod_count>91</sys_mod_count>
         <sys_name>ProfileManagementAJAX</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy>read</sys_policy>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_script_include_ab164526dbf72200e24ff7fdbf96195e</sys_update_name>
-        <sys_updated_by>jloftas</sys_updated_by>
-        <sys_updated_on>2017-05-01 08:55:48</sys_updated_on>
+        <sys_updated_by>justin.loftas</sys_updated_by>
+        <sys_updated_on>2019-10-02 17:10:04</sys_updated_on>
     </sys_script_include>
 </record_update>
