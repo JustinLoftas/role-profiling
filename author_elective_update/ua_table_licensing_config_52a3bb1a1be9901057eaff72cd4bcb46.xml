@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="ua_table_licensing_config">
+    <ua_table_licensing_config action="DELETE">
+        <is_fulfillment>false</is_fulfillment>
+        <license_condition/>
+        <license_model>none</license_model>
+        <license_roles/>
+        <name>u_imp_tmpl_cmdb_ci_computer</name>
+        <op_delete>true</op_delete>
+        <op_insert>true</op_insert>
+        <op_update>true</op_update>
+        <owner_condition/>
+        <sys_class_name>ua_table_licensing_config</sys_class_name>
+        <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
+        <sys_created_on>2020-06-24 14:14:41</sys_created_on>
+        <sys_id>52a3bb1a1be9901057eaff72cd4bcb46</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>u_imp_tmpl_cmdb_ci_computer</sys_name>
+        <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+        <sys_update_name>ua_table_licensing_config_52a3bb1a1be9901057eaff72cd4bcb46</sys_update_name>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-06-24 14:14:41</sys_updated_on>
+    </ua_table_licensing_config>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</application>
+        <file_path/>
+        <instance_id>20709d27db4bcc90f492c597059619f9</instance_id>
+        <instance_name>ap3support</instance_name>
+        <name>ua_table_licensing_config_52a3bb1a1be9901057eaff72cd4bcb46</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="ua_table_licensing_config"><ua_table_licensing_config action="INSERT_OR_UPDATE"><is_fulfillment>false</is_fulfillment><license_condition/><license_model>none</license_model><license_roles/><name>u_imp_tmpl_cmdb_ci_computer</name><op_delete>true</op_delete><op_insert>true</op_insert><op_update>true</op_update><owner_condition/><sys_class_name>ua_table_licensing_config</sys_class_name><sys_created_by>justin.loftas@up3.co.uk</sys_created_by><sys_created_on>2020-06-24 14:14:41</sys_created_on><sys_id>52a3bb1a1be9901057eaff72cd4bcb46</sys_id><sys_mod_count>0</sys_mod_count><sys_name>u_imp_tmpl_cmdb_ci_computer</sys_name><sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package><sys_policy/><sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope><sys_update_name>ua_table_licensing_config_52a3bb1a1be9901057eaff72cd4bcb46</sys_update_name><sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by><sys_updated_on>2020-06-24 14:14:41</sys_updated_on></ua_table_licensing_config></record_update>]]></payload>
+        <payload_hash>-1377676598</payload_hash>
+        <record_name>u_imp_tmpl_cmdb_ci_computer</record_name>
+        <reverted_from/>
+        <source>b3faba0b1bf4145057eaff72cd4bcbfc</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
+        <sys_created_on>2020-06-24 14:14:41</sys_created_on>
+        <sys_id>9ea3bb1a1be9901057eaff72cd4bcb47</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>172e6ae4bc30000001</sys_recorded_at>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-06-24 14:14:41</sys_updated_on>
+        <type>Table Subscription Configuration</type>
+        <update_guid>d6a3bb1aa8e99010adeed04981ab6447</update_guid>
+        <update_guid_history>d6a3bb1aa8e99010adeed04981ab6447:-1377676598</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
+        <sys_created_on>2020-08-28 16:15:09</sys_created_on>
+        <sys_db_object display_value="" name="ua_table_licensing_config">ua_table_licensing_config</sys_db_object>
+        <sys_id>02f4705934524c2b81c537842a9b0099</sys_id>
+        <sys_metadata>52a3bb1a1be9901057eaff72cd4bcb46</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>u_imp_tmpl_cmdb_ci_computer</sys_name>
+        <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+        <sys_scope_delete display_value="">5dfecb0a1ba64ef8ac903775bd953240</sys_scope_delete>
+        <sys_update_name>ua_table_licensing_config_52a3bb1a1be9901057eaff72cd4bcb46</sys_update_name>
+        <sys_update_version display_value="ua_table_licensing_config_52a3bb1a1be9901057eaff72cd4bcb46">9ea3bb1a1be9901057eaff72cd4bcb47</sys_update_version>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-08-28 16:15:09</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

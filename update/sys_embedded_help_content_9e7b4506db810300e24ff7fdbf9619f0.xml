@@ -15,7 +15,6 @@
         <sys_class_name>sys_embedded_help_content</sys_class_name>
         <sys_created_by>system</sys_created_by>
         <sys_created_on>2017-09-08 05:54:13</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>9e7b4506db810300e24ff7fdbf9619f0</sys_id>
@@ -23,7 +22,6 @@
         <sys_name>report_home-normal</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
-        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_embedded_help_content_9e7b4506db810300e24ff7fdbf9619f0</sys_update_name>
         <sys_updated_by>system</sys_updated_by>

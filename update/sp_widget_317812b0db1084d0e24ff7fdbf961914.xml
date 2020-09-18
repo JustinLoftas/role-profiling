@@ -4,53 +4,53 @@
         <client_script><![CDATA[function($scope, $http, $rootScope) {
 	/* widget controller */
 	var c = this;
-	$scope.setProfile = function(displayValue, sysId){
-		$scope.profileSelect = {  
+	c.setProfile = function(displayValue, sysId){
+		c.profileSelect = {  
 			displayValue: displayValue,
 			value: sysId,  
 			name:  'profile'
 		}; 
 		if (!displayValue && !sysId){
-			$scope.profileSet = false;
+			c.profileSet = false;
 		}
 		else {
-			$scope.profileSet = true;
+			c.profileSet = true;
 		}
 	};
 	
-	$scope.setUser = function(displayValue, sysId){
-		$scope.userSelect = {  
+	c.setUser = function(displayValue, sysId){
+		c.userSelect = {  
 			displayValue: displayValue,
 			value: sysId,  
 			name:  'user'
 		}; 
 		if (!displayValue && !sysId){
-			$scope.userSet = false;
+			c.userSet = false;
 		}
 		else {
-			$scope.userSet = true;
+			c.userSet = true;
 		}
 	};
 
-	$scope.setProfile(c.data.profileInfo.displayValue, c.data.profileInfo.value);
-	$scope.setUser(c.data.userInfo.displayValue, c.data.userInfo.value);
+	c.setProfile(c.data.profileInfo.displayValue, c.data.profileInfo.value);
+	c.setUser(c.data.userInfo.displayValue, c.data.userInfo.value);
 
 	$scope.$on("field.change", function(evt, parms) {  
 		if (parms.field.name === 'profile'){
-			$scope.setProfile(parms.field.displayValue, parms.field.value);
+			c.setProfile(parms.field.displayValue, parms.field.value);
 		}
 		if (parms.field.name === 'user'){
-			$scope.setUser(parms.field.displayValue, parms.field.value);
+			c.setUser(parms.field.displayValue, parms.field.value);
 		}
 		
 	});
 	
-	$scope.getComparison = function(){
+	c.getComparison = function(){
 		var profileData = {
-			'userId' : $scope.userSelect.value,
-			'userName' : $scope.userSelect.displayValue,
-			'profileId' : $scope.profileSelect.value,
-			'profileName' : $scope.profileSelect.displayValue
+			'userId' : c.userSelect.value,
+			'userName' : c.userSelect.displayValue,
+			'profileId' : c.profileSelect.value,
+			'profileName' : c.profileSelect.displayValue
 		};
 		$rootScope.$broadcast('GetComparisonData', profileData);
 	};
@@ -126,55 +126,53 @@ div.btn-holder {&#13;
 	data.isAdmin = gs.hasRole('x_78492_profiling.profile_admin');
 
 	data.profileInfo = {
-		displayValue: 'ServiceNow Developer',
-		value: 'd92065e5db772200e24ff7fdbf96199c'
+		displayValue: '',
+		value: ''
 	};
 
 	data.userInfo = {
-		displayValue: '',
-		value: ''
+		displayValue: gs.getUserDisplayName(),
+		value: gs.getUserID()
 	};
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>justin.loftas</sys_created_by>
         <sys_created_on>2019-10-02 16:15:43</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
         <sys_id>317812b0db1084d0e24ff7fdbf961914</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>Role Profiling</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
-        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sp_widget_317812b0db1084d0e24ff7fdbf961914</sys_update_name>
-        <sys_updated_by>justin.loftas</sys_updated_by>
-        <sys_updated_on>2019-10-02 21:18:37</sys_updated_on>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-08-28 16:18:52</sys_updated_on>
         <template><![CDATA[<div>
   <div class="row">
-    <div ng-class="{'col-md-offset-2 col-md-4' : data.isAdmin, 'col-md-offset-4 col-md-4' : !data.isAdmin}"> 
+    <div ng-class="{'col-md-offset-2 col-md-4' : c.data.isAdmin, 'col-md-offset-4 col-md-4' : !c.data.isAdmin}"> 
       <div class="panel panel-default panel-info">
         <div class="panel-heading column-row-text">${Select a profile:}</div>
         <div class="panel-body">
-          <sn-record-picker field="profileSelect" table="'x_78492_profiling_role_profile'" default-query="" display-field="'name'" value-field="'sys_id'" search-fields="'name'" page-size="100" ></sn-record-picker>
+          <sn-record-picker field="c.profileSelect" table="'x_78492_profiling_role_profile'" default-query="" display-field="'name'" value-field="'sys_id'" search-fields="'name'" page-size="100" ></sn-record-picker>
           <div class="row">
-            <div class="select-description" ng-show="profileSet" ng-bind="profileSelect.displayValue"></div>
-            <div class="select-description" ng-hide="profileSet">
+            <div class="select-description" ng-show="c.profileSet" ng-bind="c.profileSelect.displayValue"></div>
+            <div class="select-description" ng-hide="c.profileSet">
               ${Select a Profile to compare}
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div ng-if="data.isAdmin">
+    <div ng-if="c.data.isAdmin">
       <div class="col-md-4">
         <div class="panel panel-default panel-info">
           <div class="panel-heading column-row-text ">${Select a user:}</div>
           <div class="panel-body">
-            <sn-record-picker field="userSelect" table="'sys_user'" default-query="'active=true'" display-field="'name'" value-field="'sys_id'" search-fields="'name,email'" page-size="100" ></sn-record-picker>
+            <sn-record-picker field="c.userSelect" table="'sys_user'" default-query="'active=true'" display-field="'name'" value-field="'sys_id'" search-fields="'name,email'" page-size="100" ></sn-record-picker>
             <div class="row">
-              <div class="select-description"  ng-show="userSet" ng-bind="userSelect.displayValue"></div>
-              <div class="select-description"  ng-hide="userSet">
+              <div class="select-description"  ng-show="c.userSet" ng-bind="c.userSelect.displayValue"></div>
+              <div class="select-description"  ng-hide="c.userSet">
                 ${Select a User to compare}
               </div>
             </div>
@@ -186,7 +184,7 @@ div.btn-holder {&#13;
       <div class="row">
         <div class="col-md-6">
           <div class="btn-holder">
-            <button class="btn btn-primary" type="button" ng-click="getComparison()">${Compare}</button>
+            <button class="btn btn-primary" type="button" ng-click="c.getComparison()">${Compare}</button>
           </div>
         </div>
       </div>

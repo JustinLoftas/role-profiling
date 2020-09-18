@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_embedded_help_role">
+    <sys_embedded_help_role action="INSERT_OR_UPDATE">
+        <order>1000</order>
+        <role/>
+        <sys_class_name>sys_embedded_help_role</sys_class_name>
+        <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
+        <sys_created_on>2020-06-09 16:04:08</sys_created_on>
+        <sys_id>8fdc3eed1b15d01057eaff72cd4bcb59</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>4bdc3eed1b15d01057eaff72cd4bcb56</sys_name>
+        <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+        <sys_update_name>sys_embedded_help_role_8fdc3eed1b15d01057eaff72cd4bcb59</sys_update_name>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-06-09 16:04:08</sys_updated_on>
+    </sys_embedded_help_role>
+</record_update>

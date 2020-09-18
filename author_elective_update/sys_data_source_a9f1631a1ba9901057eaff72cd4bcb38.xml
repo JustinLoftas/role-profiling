@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_data_source">
+    <sys_data_source action="DELETE">
+        <category/>
+        <connection_timeout>0</connection_timeout>
+        <connection_url>attachment://sys_data_source:a9f1631a1ba9901057eaff72cd4bcb38/up£ assets.xlsx</connection_url>
+        <connection_url_parameters/>
+        <csv_delimiter/>
+        <database_name/>
+        <database_port/>
+        <discard_arrays>true</discard_arrays>
+        <expand_node_children>false</expand_node_children>
+        <file_path>up£ assets.xlsx</file_path>
+        <file_retrieval_method>Attachment</file_retrieval_method>
+        <format>Excel</format>
+        <glide_keystore>false</glide_keystore>
+        <header_row>0</header_row>
+        <import_set_table_label/>
+        <import_set_table_name>u_imp_tmpl_alm_hardware</import_set_table_name>
+        <instance_name/>
+        <jdbc_password/>
+        <jdbc_server/>
+        <jdbc_user_name/>
+        <jpath_root_node/>
+        <last_run_database_field/>
+        <last_run_datetime/>
+        <ldap_target/>
+        <maximum_rows>10000</maximum_rows>
+        <mid_server/>
+        <name>up£ assets.xlsx (Uploaded)</name>
+        <oracle_port>1521</oracle_port>
+        <oracle_sid>orcl</oracle_sid>
+        <properties/>
+        <query>All Rows from Table</query>
+        <query_timeout>0</query_timeout>
+        <scp_authentication>Username and Password</scp_authentication>
+        <scp_password/>
+        <scp_port/>
+        <scp_server/>
+        <scp_user_name/>
+        <sheet_number>0</sheet_number>
+        <sql_statement/>
+        <ssh_keyfile_path/>
+        <sys_class_name>sys_data_source</sys_class_name>
+        <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
+        <sys_created_on>2020-06-24 12:57:21</sys_created_on>
+        <sys_id>a9f1631a1ba9901057eaff72cd4bcb38</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>up£ assets.xlsx (Uploaded)</sys_name>
+        <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+        <sys_update_name>sys_data_source_a9f1631a1ba9901057eaff72cd4bcb38</sys_update_name>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-06-24 12:57:21</sys_updated_on>
+        <table_name/>
+        <type>File</type>
+        <use_integrated_authentication>false</use_integrated_authentication>
+        <use_last_run_datetime>false</use_last_run_datetime>
+        <xpath_root_node/>
+        <zipped>false</zipped>
+    </sys_data_source>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</application>
+        <file_path/>
+        <instance_id>20709d27db4bcc90f492c597059619f9</instance_id>
+        <instance_name>ap3support</instance_name>
+        <name>sys_data_source_a9f1631a1ba9901057eaff72cd4bcb38</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_data_source"><sys_data_source action="INSERT_OR_UPDATE"><category/><connection_timeout>0</connection_timeout><connection_url>attachment://sys_data_source:a9f1631a1ba9901057eaff72cd4bcb38/up£ assets.xlsx</connection_url><connection_url_parameters/><csv_delimiter/><database_name/><database_port/><discard_arrays>true</discard_arrays><expand_node_children>false</expand_node_children><file_path>up£ assets.xlsx</file_path><file_retrieval_method>Attachment</file_retrieval_method><format>Excel</format><glide_keystore>false</glide_keystore><header_row>0</header_row><import_set_table_label/><import_set_table_name>u_imp_tmpl_alm_hardware</import_set_table_name><instance_name/><jdbc_password/><jdbc_server/><jdbc_user_name/><jpath_root_node/><last_run_database_field/><last_run_datetime/><ldap_target/><maximum_rows>10000</maximum_rows><mid_server/><name>up£ assets.xlsx (Uploaded)</name><oracle_port>1521</oracle_port><oracle_sid>orcl</oracle_sid><properties/><query>All Rows from Table</query><query_timeout>0</query_timeout><scp_authentication>Username and Password</scp_authentication><scp_password/><scp_port/><scp_server/><scp_user_name/><sheet_number>0</sheet_number><sql_statement/><ssh_keyfile_path/><sys_class_name>sys_data_source</sys_class_name><sys_created_by>justin.loftas@up3.co.uk</sys_created_by><sys_created_on>2020-06-24 12:57:21</sys_created_on><sys_id>a9f1631a1ba9901057eaff72cd4bcb38</sys_id><sys_mod_count>1</sys_mod_count><sys_name>up£ assets.xlsx (Uploaded)</sys_name><sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package><sys_policy/><sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope><sys_update_name>sys_data_source_a9f1631a1ba9901057eaff72cd4bcb38</sys_update_name><sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by><sys_updated_on>2020-06-24 12:57:21</sys_updated_on><table_name/><type>File</type><use_integrated_authentication>false</use_integrated_authentication><use_last_run_datetime>false</use_last_run_datetime><xpath_root_node/><zipped>false</zipped></sys_data_source></record_update>]]></payload>
+        <payload_hash>-715290377</payload_hash>
+        <record_name>up£ assets.xlsx (Uploaded)</record_name>
+        <reverted_from/>
+        <source>b3faba0b1bf4145057eaff72cd4bcbfc</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
+        <sys_created_on>2020-06-24 12:57:21</sys_created_on>
+        <sys_id>e1f1631a1ba9901057eaff72cd4bcb3e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>172e6677f440000001</sys_recorded_at>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-06-24 12:57:21</sys_updated_on>
+        <type>Data Source</type>
+        <update_guid>6df1631af3a99010f7fa0f578982023d</update_guid>
+        <update_guid_history>6df1631af3a99010f7fa0f578982023d:-715290377,adf1631ab0a990103f4ca5abf327d33c:-264000440</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
+        <sys_created_on>2020-08-28 16:15:30</sys_created_on>
+        <sys_db_object display_value="" name="sys_data_source">sys_data_source</sys_db_object>
+        <sys_id>228e13494c744038951408c2f081d5c9</sys_id>
+        <sys_metadata>a9f1631a1ba9901057eaff72cd4bcb38</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>up£ assets.xlsx (Uploaded)</sys_name>
+        <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+        <sys_scope_delete display_value="">5dfecb0a1ba64ef8ac903775bd953240</sys_scope_delete>
+        <sys_update_name>sys_data_source_a9f1631a1ba9901057eaff72cd4bcb38</sys_update_name>
+        <sys_update_version display_value="sys_data_source_a9f1631a1ba9901057eaff72cd4bcb38">e1f1631a1ba9901057eaff72cd4bcb3e</sys_update_version>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-08-28 16:15:30</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -9,6 +9,14 @@
         <name>ProfileManagementUtils</name>
         <script><![CDATA[var ProfileManagementUtils = Class.create();
 ProfileManagementUtils.prototype = {
+	
+	TABLES : {
+		ROLE_PROFILE : 'x_78492_profiling_role_profile',
+		ROLE_PROFILE_SKILL : 'x_78492_profiling_role_profile_skill',
+		SKILL_VERSION : 'x_78492_profiling_skill_version',
+		SKILL_SNAPSHOT : 'x_78492_profiling_skill_snapshot'
+	},
+	
 	initialize: function(grRoleProfile) {
 		this.roleProfile = grRoleProfile;
 	},
@@ -34,7 +42,7 @@ ProfileManagementUtils.prototype = {
 	//Function for creating a new role profile based on the original
 	//@returns {object} : the gliderecord with the new role profile
 	_createRoleProfile: function(){
-		var grProfile = new GlideRecord('x_78492_profiling_role_profile');
+		var grProfile = new GlideRecord(this.TABLES.ROLE_PROFILE);
 		grProfile.initialize();
 		grProfile.setValue('name', 'Copy of ' + this.roleProfile.getValue('name'));
 		grProfile.setValue('description', this.roleProfile.getValue('description'));
@@ -48,7 +56,7 @@ ProfileManagementUtils.prototype = {
 	//@profileId {string}: the sys_id of the new role profile to copy the role profile skills to
 	//@returns {boolean} : true if successful
 	_copyProfileSkills: function(profileId){
-		var grProfileSkill = new GlideRecord('x_78492_profiling_role_profile_skill');
+		var grProfileSkill = new GlideRecord(this.TABLES.ROLE_PROFILE_SKILL);
 		grProfileSkill.addQuery('role_profile', this.roleProfile.getValue('sys_id'));
 		grProfileSkill.query();
 		while (grProfileSkill.next()){
@@ -64,7 +72,7 @@ ProfileManagementUtils.prototype = {
 	//@profileId {string} : the sys_id of the role profile to relate the new role profile skill to
 	//@returns {boolean} : true if successful
 	_createProfileSkill : function(profileSkill, profileId){
-		var grProfileSkill = new GlideRecord('x_78492_profiling_role_profile_skill');
+		var grProfileSkill = new GlideRecord(this.TABLES.ROLE_PROFILE_SKILL);
 		grProfileSkill.initialize();
 		grProfileSkill.setValue('skill', profileSkill.getValue('skill'));
 		grProfileSkill.setValue('level', profileSkill.getValue('level'));
@@ -80,12 +88,12 @@ ProfileManagementUtils.prototype = {
 			if (!this.roleProfile){
 				throw 'Class instantiated without profile';
 			}
-			var grProfileSkill = new GlideRecord('x_78492_profiling_role_profile_skill');
-			grProfileSkill.addQuery('role_profile', this.roleProfile.getValue('sys_id'));
-			grProfileSkill.query();
-			while (grProfileSkill.next()){
-				grProfileSkill.setValue('sys_updated_on', new GlideDateTime());
-				grProfileSkill.update();
+			var profileSkillGR = new GlideRecord(this.TABLES.ROLE_PROFILE_SKILL);
+			profileSkillGR.addQuery('role_profile', this.roleProfile.getValue('sys_id'));
+			profileSkillGR.query();
+			while (profileSkillGR.next()){
+				profileSkillGR.setValue('sys_updated_on', new GlideDateTime());
+				profileSkillGR.update();
 			}
 			return true;
 		}
@@ -103,18 +111,18 @@ ProfileManagementUtils.prototype = {
 	updateProfileSkillCount : function(profileid){
 		try {
 			var profileSkillCount = 0;
-			var roleProfileSkill = new GlideAggregate('x_78492_profiling_role_profile_skill');
-			roleProfileSkill.addQuery('role_profile', profileid);
-			roleProfileSkill.addAggregate('COUNT');
-			roleProfileSkill.query();
-			if (roleProfileSkill.next()){
-				profileSkillCount  = roleProfileSkill.getAggregate('COUNT');
+			var roleProfileSkillGR = new GlideAggregate(this.TABLES.ROLE_PROFILE_SKILL);
+			roleProfileSkillGR.addQuery('role_profile', profileid);
+			roleProfileSkillGR.addAggregate('COUNT');
+			roleProfileSkillGR.query();
+			if (roleProfileSkillGR.next()){
+				profileSkillCount  = roleProfileSkillGR.getAggregate('COUNT');
 			}
 			if (profileSkillCount > 0){
-				var roleProfile = new GlideRecord('x_78492_profiling_role_profile');
-				if (roleProfile.get(profileid)){
-					roleProfile.setValue('skill_count', profileSkillCount);
-					roleProfile.update();
+				var roleProfileGR = new GlideRecord(this.TABLES.ROLE_PROFILE);
+				if (roleProfileGR.get(profileid)){
+					roleProfileGR.setValue('skill_count', profileSkillCount);
+					roleProfileGR.update();
 					return true;
 				}
 			}
@@ -126,21 +134,81 @@ ProfileManagementUtils.prototype = {
 		}
 	},
 	
+	//Function for getting the applicable versions for a skill category
+	//@skillCategoryID {string}: the sys_id of the skill category
+	//@returns {array} : An array of skill version sys_ids that are applicable  
+	getApplicableVersions : function(skillCategoryID){
+		try {
+			if (gs.nil(skillCategoryID)){
+				return '';
+			}
+			var skillVersion = [];
+			var skillVersionGR = new GlideRecord(this.TABLES.SKILL_VERSION);
+			skillVersionGR.addQuery('applicable_categories', 'CONTAINS', skillCategoryID);
+			skillVersionGR.addActiveQuery();
+			skillVersionGR.query();
+			while (skillVersionGR.next()){
+				skillVersion.push(skillVersionGR.getUniqueValue());
+			}
+			return skillVersion.join();
+		}
+		catch (err){
+			gs.error('Error detected in Script Include ProfileManagementUtils, function getApplicableVersions. Error message is ' + err.message);
+			return null;
+		}
+	},
+	
+	//Function for getting the applicable versions for a skill category
+	//@skillCategoryID {string}: the sys_id of the skill category
+	//@returns {array} : An array of skill version sys_ids that are applicable  
+	filterExistingSkills : function(roleProfileID){
+		try {
+			if (gs.nil(roleProfileID)){
+				return '';
+			}
+			var skills = [];
+			var profileSkillGR = new GlideRecord(this.TABLES.ROLE_PROFILE_SKILL);
+			profileSkillGR.addQuery('role_profile', roleProfileID);
+			profileSkillGR.query();
+			while (profileSkillGR.next()){
+				skills.push(profileSkillGR.getValue('skill'));
+			}
+			return skills.join();
+		}
+		catch (err){
+			gs.error('Error detected in Script Include ProfileManagementUtils, function filterExistingSkills. Error message is ' + err.message);
+			return '';
+		}
+	},
+	
+	createSnapshot : function (userId, profileId, higher, lower, matching, missing) {
+		try {
+			var snapshotGR = new GlideRecord(this.TABLES.SKILL_SNAPSHOT);
+			snapshotGR.initialize();
+			snapshotGR.setValue('user', userId);
+			snapshotGR.setValue('role_profile', profileId);
+			snapshotGR.setValue('skills_higher', higher);
+			snapshotGR.insert();
+		}
+				catch (err){
+			gs.error('Error detected in Script Include ProfileManagementUtils, function createSnapshot. Error message is ' + err.message);
+			return '';
+		}
+	},
+	
 	type: 'ProfileManagementUtils'
 };]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2017-02-04 12:24:30</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
         <sys_id>49f402a0dbb43200e24ff7fdbf961920</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>ProfileManagementUtils</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy>read</sys_policy>
-        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_script_include_49f402a0dbb43200e24ff7fdbf961920</sys_update_name>
-        <sys_updated_by>justin.loftas</sys_updated_by>
-        <sys_updated_on>2017-03-29 16:12:24</sys_updated_on>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-08-29 19:41:02</sys_updated_on>
     </sys_script_include>
 </record_update>

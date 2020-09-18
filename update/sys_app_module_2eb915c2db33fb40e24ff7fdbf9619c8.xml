@@ -3,7 +3,6 @@
         <active>true</active>
         <application display_value="Skills">488d3ed2ac10017362c07e178e3e36c7</application>
         <assessment/>
-        <content_page/>
         <device_type/>
         <filter/>
         <hint/>
@@ -19,27 +18,23 @@
         <query/>
         <report/>
         <roles>x_78492_profiling.profile_admin</roles>
-        <survey/>
-        <survey_overwrite>true</survey_overwrite>
         <sys_class_name>sys_app_module</sys_class_name>
         <sys_created_by>justin.loftas</sys_created_by>
         <sys_created_on>2019-09-11 12:22:38</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>2eb915c2db33fb40e24ff7fdbf9619c8</sys_id>
-        <sys_mod_count>3</sys_mod_count>
-        <sys_name> Skill categories</sys_name>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Skill Categories</sys_name>
         <sys_overrides/>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
-        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_app_module_2eb915c2db33fb40e24ff7fdbf9619c8</sys_update_name>
-        <sys_updated_by>justin.loftas</sys_updated_by>
-        <sys_updated_on>2019-10-02 16:20:29</sys_updated_on>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-06-09 16:03:54</sys_updated_on>
         <timeline_page/>
-        <title> Skill categories</title>
+        <title>Skill Categories</title>
         <uncancelable>false</uncancelable>
         <view_name/>
         <window_name/>

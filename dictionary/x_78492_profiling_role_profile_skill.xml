@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element label="Role profile skill" max_length="40" name="x_78492_profiling_role_profile_skill" type="collection">
+    <element label="Role Profile Skill" max_length="40" name="x_78492_profiling_role_profile_skill" type="collection">
         <element attributes="edge_encryption_enabled=true" choice="3" choice_field="u_category" default="0" label="Level" max_length="40" name="level" type="choice">
             <choice>
-                <element inactive_on_update="false" label="None" sequence="0" value="0"/>
-                <element inactive_on_update="false" label="Learning" sequence="1" value="1"/>
-                <element inactive_on_update="false" label="Working knowledge" sequence="2" value="2"/>
-                <element inactive_on_update="false" label="Competent" sequence="3" value="3"/>
-                <element inactive_on_update="false" label="Expert" sequence="4" value="4"/>
+                <element hint="Does not have any experience or knowledge" inactive_on_update="false" label="None" sequence="0" value="0"/>
+                <element hint="Is in the process of learning" inactive_on_update="false" label="Learning" sequence="1" value="1"/>
+                <element hint="Has working level experience but may require oversight" inactive_on_update="false" label="Working knowledge" sequence="2" value="2"/>
+                <element hint="Has the necessary ability and knowledge and requires little oversight" inactive_on_update="false" label="Competent" sequence="3" value="3"/>
+                <element hint="Is classed as a Subject Matter Expert in this field. Can train or coach others" inactive_on_update="false" label="Expert" sequence="4" value="4"/>
             </choice>
         </element>
-        <element attributes="edge_encryption_enabled=true" label="Name" max_length="120" name="name" type="translated_text"/>
+        <element attributes="edge_encryption_enabled=true,no_truncate=true" label="Name" max_length="120" name="name" type="translated_text"/>
         <element attributes="edge_encryption_enabled=true" label="Role profile" max_length="32" name="role_profile" reference="x_78492_profiling_role_profile" reference_cascade_rule="delete" type="reference"/>
-        <element attributes="edge_encryption_enabled=true" label="Skill" max_length="32" name="skill" reference="cmn_skill" reference_cascade_rule="delete" reference_qual="active=true^EQ" reference_qual_condition="active=true^EQ" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" label="Skill" max_length="32" name="skill" reference="cmn_skill" reference_cascade_rule="delete" reference_qual="javascript: 'active=true^sys_idNOT IN' + new x_78492_profiling.ProfileManagementUtils().filterExistingSkills(current.getValue('role_profile'))" type="reference" use_reference_qualifier="advanced"/>
         <index name="index">
             <element name="skill"/>
         </index>

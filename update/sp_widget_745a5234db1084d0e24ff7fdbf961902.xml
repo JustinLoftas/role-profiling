@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[function($scope, $http) {
+        <client_script><![CDATA[function($scope,$http) {
 	/* widget controller */
 	var c = this;
 	var totalSkills = 0;
-	$scope.profileId = '';
-	$scope.userId = '';
-	$scope.userName = '';
-	$scope.profileName = '';
-	$scope.skills = [];
-	$scope.percentMatch = 0;
-	$scope.totalSkills = 0;
-	$scope.totalMatched = 0;
-	$scope.totalLower = 0;
-	$scope.totalHigher = 0;
-	$scope.percentMatched = 0;
-	$scope.percentLower = 0;
-	$scope.percentHigher = 0;
-	$scope.percentMissing = 0;
-	$scope.levelFilter = '';
-	$scope.profileSet = false;
-	$scope.userSet = false;
-	$scope.sortColumn = 'user_level_value';
-	$scope.sortAscending = true;
+	c.profileId = '';
+	c.userId = '';
+	c.userName = '';
+	c.profileName = '';
+	c.skills = [];
+	c.percentMatch = 0;
+	c.totalSkills = 0;
+	c.totalMatched = 0;
+	c.totalLower = 0;
+	c.totalHigher = 0;
+	c.percentMatched = 0;
+	c.percentLower = 0;
+	c.percentHigher = 0;
+	c.percentMissing = 0;
+	c.levelFilter = '';
+	c.profileSet = false;
+	c.userSet = false;
+	c.sortColumn = 'user_level_value';
+	c.sortAscending = true;
 
-	$scope.sortOrder = function(sortColumn){
-		$scope.sortAscending = ($scope.sortColumn === sortColumn) ? !$scope.sortAscending : true;
-		$scope.sortColumn = sortColumn;
+	c.sortOrder = function(sortColumn){
+		c.sortAscending = (c.sortColumn === sortColumn) ? !c.sortAscending : true;
+		c.sortColumn = sortColumn;
 	};
 
-	$scope.setSkillFilter = function(skill){
-		var skillFilter = skill === $scope.levelFilter ? '' : skill;
-		$scope.levelFilter = skillFilter;
+	c.setSkillFilter = function(skill){
+		var skillFilter = skill === c.levelFilter ? '' : skill;
+		c.levelFilter = skillFilter;
 	};
 
-	$scope.getGlyphClass = function(levelMatch){
+	c.getGlyphClass = function(levelMatch){
 		return {
 			"column-row-text matching-text": levelMatch == 'matched',
 			"column-row-text higher-text" : levelMatch == 'higher' || levelMatch == 'user_only',
@@ -44,8 +44,8 @@
 		};
 	};
 
-	$scope.getOrderIcon = function(order){
-		if ($scope.sortColumn === 'user_level_value' || $scope.sortColumn === 'skill_level_value'){
+	c.getOrderIcon = function(order){
+		if (c.sortColumn === 'user_level_value' || c.sortColumn === 'skill_level_value'){
 			return {
 				"glyphicon glyphicon-sort-by-order-alt sort-extra" : order == true,
 				"glyphicon glyphicon-sort-by-order sort-extra" : order == false
@@ -59,297 +59,304 @@
 		}
 	};
 
-	$scope.resetData = function(){
-		$scope.profileId = '';
-		$scope.userId = '';
-		$scope.skills = [];
-		$scope.percentMatch = 0;
-		$scope.totalSkills = 0;
-		$scope.totalMatched = 0;
-		$scope.totalLower = 0;
-		$scope.totalHigher = 0;
-		$scope.percentMatched = 0;
-		$scope.percentLower = 0;
-		$scope.percentHigher = 0;
-		$scope.percentMissing = 0;
-		$scope.levelFilter = '';
-		$scope.showMatchingDetails = false;
-		$scope.userName = '';
-		$scope.profileName = '';
+	c.resetData = function(){
+		c.profileId = '';
+		c.userId = '';
+		c.skills = [];
+		c.percentMatch = 0;
+		c.totalSkills = 0;
+		c.totalMatched = 0;
+		c.totalLower = 0;
+		c.totalHigher = 0;
+		c.percentMatched = 0;
+		c.percentLower = 0;
+		c.percentHigher = 0;
+		c.percentMissing = 0;
+		c.levelFilter = '';
+		c.showMatchingDetails = false;
+		c.userName = '';
+		c.profileName = '';
 
 	};
 
 	$scope.$on('GetComparisonData', function(evt, profileData){
 		if (!profileData.profileId || !profileData.userId){
-			$scope.setSkillFilter('');
-			$scope.skills = [];
+			c.setSkillFilter('');
+			c.skills = [];
 			return;
 		}
-		$scope.profileName = profileData.profileName;
-		$scope.userName = profileData.userName;
-		$scope.userSet = true;
-		$scope.profileSet = true;
+		c.profileName = profileData.profileName;
+		c.userName = profileData.userName;
+		c.userSet = true;
+		c.profileSet = true;
 		$http.get('/api/x_78492_profiling/role_profile_data/get_data?user_id=' + profileData.userId + '&profile_id=' + profileData.profileId)
 			.then(function(response){
 			var skillsInfo = response.data.result;
-			$scope.skills = skillsInfo.skills;
-			$scope.totalSkills = skillsInfo.totalSkills;
-			$scope.totalMatched = skillsInfo.totalMatched;
-			$scope.totalHigher = skillsInfo.totalHigher;
-			$scope.totalLower = skillsInfo.totalLower;
-			$scope.totalMissing = skillsInfo.totalMissing;
-			totalSkills = $scope.totalSkills;
+			c.skills = skillsInfo.skills;
+			c.totalSkills = skillsInfo.totalSkills;
+			c.totalMatched = skillsInfo.totalMatched;
+			c.totalHigher = skillsInfo.totalHigher;
+			c.totalLower = skillsInfo.totalLower;
+			c.totalMissing = skillsInfo.totalMissing;
+			totalSkills = c.totalSkills;
 			if (totalSkills > 0){
-				$scope.percentMatched = ($scope.totalMatched/totalSkills * 100).toFixed(1);
-				$scope.percentHigher = ($scope.totalHigher/totalSkills * 100).toFixed(1);
-				$scope.percentLower = ($scope.totalLower/totalSkills * 100).toFixed(1);
-				$scope.percentMissing = ($scope.totalMissing/totalSkills * 100).toFixed(1);
+				c.percentMatched = (c.totalMatched/totalSkills * 100).toFixed(1);
+				c.percentHigher = (c.totalHigher/totalSkills * 100).toFixed(1);
+				c.percentLower = (c.totalLower/totalSkills * 100).toFixed(1);
+				c.percentMissing = (c.totalMissing/totalSkills * 100).toFixed(1);
 			}
 			else {
-				$scope.percentMatched = 0;
-				$scope.percentHigher = 0;
-				$scope.percentLower = 0;
-				$scope.percentMissing = 0;
+				c.percentMatched = 0;
+				c.percentHigher = 0;
+				c.percentLower = 0;
+				c.percentMissing = 0;
 			}
 		}, function(errResponse){
-			console.log(JSON.stringify(errResponse));
-			$scope.setSkillFilter('');
-			$scope.skills = [];
-			$scope.percentMatched = 0;
-			$scope.percentHigher = 0;
-			$scope.percentLower = 0;
-			$scope.percentMissing = 0;
+			c.setSkillFilter('');
+			c.skills = [];
+			c.percentMatched = 0;
+			c.percentHigher = 0;
+			c.percentLower = 0;
+			c.percentMissing = 0;
 		});
 	});
 }
 				]]></client_script>
         <controller_as>c</controller_as>
-        <css>.column-row-text::first-letter {&#13;
-   font-size: 12pt;&#13;
-   text-transform: uppercase;&#13;
-}&#13;
-&#13;
-.column-row-text {&#13;
-   font-size: 10pt;&#13;
-   text-transform: uppercase;&#13;
-   color: black;&#13;
-}&#13;
-&#13;
-.detailed-column-row-text {&#13;
-   padding-left: 5px;&#13;
-}&#13;
-&#13;
-.column-skill-row-text::first-letter {&#13;
-   font-size: 12pt;&#13;
-   text-transform: uppercase;&#13;
-}&#13;
-&#13;
-.column-skill-row-text {&#13;
-   font-size: 10pt;&#13;
-   text-transform: uppercase;&#13;
-}&#13;
-&#13;
-div.column-skill-row-header {&#13;
-   font-size: 12pt;&#13;
-   text-transform: uppercase;&#13;
-   text-align: center;&#13;
-   margin-top: -6px;&#13;
-  font-weight: normal;&#13;
-}&#13;
-&#13;
-div.column-row-header {&#13;
-   font-size: 12pt;&#13;
-   text-transform: uppercase; &#13;
-   margin-top: -6px;&#13;
-   font-weight: normal;&#13;
-}&#13;
-&#13;
-th {&#13;
-  background-color: #343d47; &#13;
-  color: white !important;&#13;
-  height: 30px;&#13;
-}&#13;
-&#13;
-th.column-header {&#13;
-   width: 20%;&#13;
-}&#13;
-&#13;
-th.skill-header {&#13;
-   width: 40%;&#13;
-}&#13;
-&#13;
-td.column-skill-row {&#13;
-  width: 20%;&#13;
-}&#13;
-&#13;
-td.skill-description {&#13;
-  width: 40%;&#13;
-}&#13;
-&#13;
-.header-description::first-letter {&#13;
-  font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
-   font-size: 20pt;&#13;
-  text-transform: uppercase;&#13;
-}&#13;
-&#13;
-.header-description {&#13;
-  font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
-   font-size: 16pt;&#13;
-  text-transform: uppercase;&#13;
- text-align: center;&#13;
- width: 100%;&#13;
-min-width:200px;&#13;
-}&#13;
-&#13;
-.select-description::first-letter {&#13;
-  font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
-   font-size: 14pt;&#13;
-  text-transform: uppercase;&#13;
-}&#13;
-&#13;
-.select-description {&#13;
-   font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
-   font-size: 12pt;&#13;
-  text-transform: uppercase;&#13;
-  text-align: center;&#13;
-  width: 100%;&#13;
-  min-width:200px;&#13;
-  padding-top: 10px;&#13;
-}&#13;
-&#13;
-.header-result {&#13;
-  font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
-   font-size: 22pt;&#13;
- text-align: right;&#13;
- width: 20%;&#13;
-}&#13;
-&#13;
-div.canvas-container {&#13;
-  text-align: center;&#13;
-}&#13;
-&#13;
-div.gauge-hover {&#13;
-   position: absolute;&#13;
-   top: -50px;&#13;
-}&#13;
-&#13;
-div.btn-holder {&#13;
-    padding: 10px 0px 10px 0px; &#13;
-    text-align: center;&#13;
-}&#13;
-&#13;
-canvas {&#13;
-    cursor:pointer;&#13;
-}&#13;
-&#13;
-td.column-skill-level {&#13;
-    text-align: center;&#13;
-}&#13;
-&#13;
-div.gauge-tooltiptext {&#13;
-    visibility: hidden;&#13;
-    width: 100%;&#13;
-    background-color: white;&#13;
-    color: black;&#13;
-    text-align: center;&#13;
-    padding: 5px;&#13;
-    border: 1px solid black;&#13;
-    border-radius: 5px;&#13;
-    font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
-   font-size: 9pt;&#13;
-    /* Position the tooltip text - see examples below! */&#13;
-    position: relative;&#13;
-    top: -30px;&#13;
-    z-index: -1;&#13;
-}&#13;
-&#13;
-div.gauge-tooltip:hover .gauge-tooltiptext {&#13;
-    visibility: visible;&#13;
-    z-index: 1;&#13;
-}&#13;
-&#13;
-div.gauge-tooltip {&#13;
-     position: relative;&#13;
-}&#13;
-&#13;
-div.detail-header {&#13;
-   min-width: 300px;&#13;
-}&#13;
-&#13;
-i.sort-extra {&#13;
-  vertical-align: text-bottom;&#13;
- padding-left: 7px;&#13;
- color: white;&#13;
-font-size: 12pt;&#13;
-}&#13;
-&#13;
-span.column-header-sort {&#13;
-   cursor: pointer;&#13;
-}&#13;
-&#13;
-table {&#13;
-       width: 100%;&#13;
- }&#13;
-&#13;
-.table-container {&#13;
-    top: -25px;&#13;
-}&#13;
-&#13;
-thead, tbody, tr, td, th { &#13;
-   display: block; &#13;
-}&#13;
-&#13;
-tr:after {&#13;
-    content: ' ';&#13;
-    display: block;&#13;
-    visibility: hidden;&#13;
-    clear: both;&#13;
-}&#13;
-&#13;
-tbody {&#13;
-    height: 400px;&#13;
-    overflow-y: auto;&#13;
-}&#13;
-&#13;
-tbody td, thead th  {&#13;
-    width: 20%;&#13;
-    float: left;&#13;
-}&#13;
-&#13;
-.panel-info &gt; .column-row-text {&#13;
-   background-color: #3A424E !important;&#13;
-  border-color: #3A424E !important;&#13;
-}&#13;
-&#13;
-.panel-info {&#13;
-   border-color: #3A424E !important;&#13;
-}&#13;
-&#13;
-div.skill-level-tooltiptext {&#13;
-    visibility: hidden;&#13;
-    width: 100%;&#13;
-    background-color: white;&#13;
-    color: black;&#13;
-    text-align: center;&#13;
-    padding: 5px;&#13;
-    border: 1px solid black;&#13;
-    border-radius: 5px;&#13;
-    font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
-   font-size: 9pt;&#13;
-    /* Position the tooltip text - see examples below! */&#13;
-    position: absolute;&#13;
-    width: 100%;&#13;
-    z-index: -1;&#13;
-}&#13;
-&#13;
-div.skill-level-tooltip:hover div.skill-level-tooltiptext {&#13;
-    visibility: visible;&#13;
-    z-index: 1;&#13;
-}&#13;
-&#13;
-div.skill-level-tooltip {&#13;
-    position: relative;&#13;
-}&#13;
+        <css>.column-row-text::first-letter {
+   font-size: 12pt;
+   text-transform: uppercase;
+}
+
+.column-row-text {
+   font-size: 10pt;
+   text-transform: uppercase;
+   color: black;
+}
+
+.detailed-column-row-text {
+   padding-left: 5px;
+}
+
+.column-skill-row-text::first-letter {
+   font-size: 12pt;
+   text-transform: uppercase;
+}
+
+.column-skill-row-text {
+   font-size: 10pt;
+   text-transform: uppercase;
+}
+
+div.column-skill-row-header {
+   font-size: 12pt;
+   text-transform: uppercase;
+   text-align: center;
+   margin-top: -6px;
+  font-weight: normal;
+}
+
+div.column-row-header {
+   font-size: 12pt;
+   text-transform: uppercase; 
+   margin-top: -6px;
+   font-weight: normal;
+}
+
+th {
+  background-color: #343d47; 
+  color: white !important;
+  height: 30px;
+}
+
+th.column-header {
+   width: 20%;
+}
+
+th.skill-header {
+   width: 40%;
+}
+
+td.column-skill-row {
+  width: 20%;
+}
+
+td.skill-description {
+  width: 40%;
+}
+
+.header-description::first-letter {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+   font-size: 20pt;
+  text-transform: uppercase;
+}
+
+.header-description {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+   font-size: 16pt;
+  text-transform: uppercase;
+ text-align: center;
+ width: 100%;
+min-width:200px;
+}
+
+.select-description::first-letter {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+   font-size: 14pt;
+  text-transform: uppercase;
+}
+
+.select-description {
+   font-family: "Trebuchet MS", Helvetica, sans-serif;
+   font-size: 12pt;
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+  min-width:200px;
+  padding-top: 10px;
+}
+
+.header-result {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+   font-size: 22pt;
+ text-align: right;
+ width: 20%;
+}
+
+div.canvas-container {
+  text-align: center;
+}
+
+div.gauge-hover {
+   position: absolute;
+   top: -50px;
+}
+
+div.btn-holder {
+    padding: 10px 0px 10px 0px; 
+    text-align: center;
+}
+
+canvas {
+    cursor:pointer;
+}
+
+td.column-skill-level {
+    text-align: center;
+}
+
+div.gauge-tooltiptext {
+    visibility: hidden;
+    width: 100%;
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+   font-size: 9pt;
+    /* Position the tooltip text - see examples below! */
+    position: relative;
+    top: -30px;
+    z-index: -1;
+}
+
+div.gauge-tooltip:hover .gauge-tooltiptext {
+    visibility: visible;
+    z-index: 1;
+}
+
+div.gauge-tooltip {
+     position: relative;
+}
+
+div.detail-header {
+   min-width: 300px;
+}
+
+i.sort-extra {
+  vertical-align: text-bottom;
+ padding-left: 7px;
+ color: white;
+font-size: 12pt;
+}
+
+span.column-header-sort {
+   cursor: pointer;
+}
+
+table {
+       width: 100%;
+ }
+
+.table-container {
+    top: -25px;
+}
+
+thead, tbody, tr, td, th { 
+   display: block; 
+}
+
+tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+tbody {
+    height: 400px;
+    overflow-y: auto;
+}
+
+tbody td, thead th  {
+    width: 20%;
+    float: left;
+}
+
+.panel-info &gt; .column-row-text {
+   background-color: #3A424E !important;
+  border-color: #3A424E !important;
+}
+
+.panel-info {
+   border-color: #3A424E !important;
+}
+
+div.skill-level-tooltiptext {
+    visibility: hidden;
+    width: 100%;
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+   font-size: 9pt;
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
+
+div.skill-level-tooltip:hover div.skill-level-tooltiptext {
+    visibility: visible;
+    z-index: 1;
+}
+
+div.skill-level-tooltip {
+    position: relative;
+}
+
+.fa-camera {
+   padding-right: 10px; 
+}
+
+.snapshot {
+   text-align: center; 
+}
 </css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -388,125 +395,128 @@ div.skill-level-tooltip {&#13;
 			'color' : gs.getProperty('x_78492_profiling.skill_inactive.color', '#C0C0C0'),
 			'shadow_color' : gs.getProperty('x_78492_profiling.skill_inactive.shadow_color', '#808080')
 		}
-
-	}
+	};
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>justin.loftas</sys_created_by>
         <sys_created_on>2019-10-02 16:23:51</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
         <sys_id>745a5234db1084d0e24ff7fdbf961902</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>39</sys_mod_count>
         <sys_name>Role Profiling Comparison</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
-        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sp_widget_745a5234db1084d0e24ff7fdbf961902</sys_update_name>
-        <sys_updated_by>justin.loftas</sys_updated_by>
-        <sys_updated_on>2019-10-02 16:25:23</sys_updated_on>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-08-28 16:40:45</sys_updated_on>
         <template><![CDATA[<div>
   <style>
     .missing-text {
-      color: {{data.gaugeColours.missing.color}} !important;
+      color: {{c.data.gaugeColours.missing.color}} !important;
     }
 
     .matching-text {
-      color: {{data.gaugeColours.matching.color}} !important;
+      color: {{c.data.gaugeColours.matching.color}} !important;
     }
 
     .higher-text {
-      color:  {{data.gaugeColours.higher.color}} !important;
+      color: {{c.data.gaugeColours.higher.color}} !important;
     }
 
     .lower-text {
-      color: {{data.gaugeColours.lower.color}} !important;
+      color: {{c.data.gaugeColours.lower.color}} !important;
     }
 
     .inactive-text {
-      color: {{data.gaugeColours.inactive.color}} !important;
+      color: {{c.data.gaugeColours.inactive.color}} !important;
     }
   </style>
   <div class="row">
     <div class="col-xs-12">
-      <div ng-show="skills.length > 0">
+      <div ng-show="c.skills.length > 0">
         <div class="row">
+          <div class="snapshot col-lg-12">
+            <button class="btn btn-primary" type="button">
+              <i class="fa fa-camera"></i>Skill snapshot
+            </button>
+          </div>
+
           <!-- Matching skills -->
           <div class="col-sm-6 col-md-3">
-            <div class="header-description green-text" ng-class="{'inactive-text' : levelFilter != 'matched' && levelFilter != '', 'matching-text' : levelFilter == 'matched' || levelFilter == ''}">${User skills match}
+            <div class="header-description green-text" ng-class="{'inactive-text' : c.levelFilter != 'matched' && c.levelFilter != '', 'matching-text' : c.levelFilter == 'matched' || c.levelFilter == ''}">${User skills match}
             </div>
             <div class="gauge-tooltip">
               <!-- Show the inactive gauge -->
-              <div ng-show="levelFilter != 'matched' && levelFilter != ''" class="canvas-container">
-                <role-profile-gauge when-select="setSkillFilter(skill)" gauge-for="matched" gauge-percent="{{percentMatched}}" gauge-info="data.gaugeColours.inactive">
+              <div ng-show="c.levelFilter != 'matched' && c.levelFilter != ''" class="canvas-container">
+                <role-profile-gauge when-select="c.setSkillFilter(skill)" gauge-for="matched" gauge-percent="{{c.percentMatched}}" gauge-info="c.data.gaugeColours.inactive">
                 </role-profile-gauge>
               </div>
               <!-- Show the active gauge -->
-              <div ng-show="levelFilter == 'matched' || levelFilter == ''" class="canvas-container">
-                <role-profile-gauge when-select="setSkillFilter(skill)" gauge-for="matched" gauge-percent="{{percentMatched}}" gauge-info="data.gaugeColours.matching">
+              <div ng-show="c.levelFilter == 'matched' || c.levelFilter == ''" class="canvas-container">
+                <role-profile-gauge when-select="c.setSkillFilter(skill)" gauge-for="matched" gauge-percent="{{c.percentMatched}}" gauge-info="c.data.gaugeColours.matching">
                 </role-profile-gauge>
               </div>
-              <role-profile-gauge-hover gauge-hover-text="${User matches} {{totalMatched}} ${of} {{totalSkills}} ${profile skills}">
+              <role-profile-gauge-hover gauge-hover-text="${User matches} {{c.totalMatched}} ${of} {{c.totalSkills}} ${profile skills}">
               </role-profile-gauge-hover>
             </div>
           </div>
 
           <!-- Missing skills -->
           <div class="col-sm-6 col-md-3">
-            <div class="header-description red-text" ng-class="{'inactive-text' : levelFilter != 'missing' && levelFilter != '', 'missing-text' : levelFilter == 'missing' || levelFilter == ''}">${User skills missing}
+            <div class="header-description red-text" ng-class="{'inactive-text' : c.levelFilter != 'missing' && c.levelFilter != '', 'missing-text' : c.levelFilter == 'missing' || c.levelFilter == ''}">${User skills missing}
             </div>
             <div class="gauge-tooltip">
               <!-- Show the inactive gauge -->
-              <div ng-show="levelFilter != 'missing' && levelFilter != ''" class="canvas-container">
-                <role-profile-gauge when-select="setSkillFilter(skill)" gauge-for="missing" gauge-percent="{{percentMissing}}" gauge-info="data.gaugeColours.inactive">
+              <div ng-show="c.levelFilter != 'missing' && c.levelFilter != ''" class="canvas-container">
+                <role-profile-gauge when-select="c.setSkillFilter(skill)" gauge-for="missing" gauge-percent="{{c.percentMissing}}" gauge-info="c.data.gaugeColours.inactive">
                 </role-profile-gauge>
               </div>
               <!-- Show the active gauge -->
-              <div ng-show="levelFilter == 'missing' || levelFilter == ''" class="canvas-container">	
-                <role-profile-gauge when-select="setSkillFilter(skill)" gauge-for="missing" gauge-percent="{{percentMissing}}" gauge-info="data.gaugeColours.missing">
+              <div ng-show="c.levelFilter == 'missing' || c.levelFilter == ''" class="canvas-container">	
+                <role-profile-gauge when-select="c.setSkillFilter(skill)" gauge-for="missing" gauge-percent="{{c.percentMissing}}" gauge-info="c.data.gaugeColours.missing">
                 </role-profile-gauge>
               </div>
-              <role-profile-gauge-hover gauge-hover-text="${User is missing} {{totalMissing}} ${of} {{totalSkills}} ${profile skills}">
+              <role-profile-gauge-hover gauge-hover-text="${User is missing} {{c.totalMissing}} ${of} {{c.totalSkills}} ${profile skills}">
               </role-profile-gauge-hover>
             </div>
           </div>
 
           <!-- Higher skills -->
           <div class="col-sm-6 col-md-3">
-            <div class="header-description higher-text" ng-class="{'inactive-text' : levelFilter != 'higher' && levelFilter != '', 'higher-text' : levelFilter == 'higher' || levelFilter == ''}">${User skills higher}
+            <div class="header-description higher-text" ng-class="{'inactive-text' : c.levelFilter != 'higher' && c.levelFilter != '', 'higher-text' : c.levelFilter == 'higher' || c.levelFilter == ''}">${User skills higher}
             </div>
             <div class="gauge-tooltip">
               <!-- Show the inactive gauge -->
-              <div ng-show="levelFilter != 'higher' && levelFilter != ''" class="canvas-container">
-                <role-profile-gauge when-select="setSkillFilter(skill)" gauge-for="higher" gauge-percent="{{percentHigher}}" gauge-info="data.gaugeColours.inactive">
+              <div ng-show="c.levelFilter != 'higher' && c.levelFilter != ''" class="canvas-container">
+                <role-profile-gauge when-select="c.setSkillFilter(skill)" gauge-for="higher" gauge-percent="{{c.percentHigher}}" gauge-info="c.data.gaugeColours.inactive">
                 </role-profile-gauge>
               </div>
               <!-- Show the active gauge -->
-              <div ng-show="levelFilter == 'higher' || levelFilter == ''" class="canvas-container">		
-                <role-profile-gauge when-select="setSkillFilter(skill)" gauge-for="higher" gauge-percent="{{percentHigher}}" gauge-info="data.gaugeColours.higher">
+              <div ng-show="c.levelFilter == 'higher' || c.levelFilter == ''" class="canvas-container">		
+                <role-profile-gauge when-select="c.setSkillFilter(skill)" gauge-for="higher" gauge-percent="{{c.percentHigher}}" gauge-info="c.data.gaugeColours.higher">
                 </role-profile-gauge>
               </div>
-              <role-profile-gauge-hover gauge-hover-text="${User has} {{profCtrl.totalHigher}} ${skills at a higher level than required profile skills}">
+              <role-profile-gauge-hover gauge-hover-text="${User has} {{c.totalHigher}} ${skills at a higher level than required profile skills}">
               </role-profile-gauge-hover>
             </div>
           </div>
 
           <!-- Lower skills -->
           <div class="col-sm-6 col-md-3">
-            <div class="lower-text header-description" ng-class="{'inactive-text' : levelFilter != 'lower' && levelFilter != '', 'lower-text' : levelFilter == 'lower' || levelFilter == ''}">${User skills lower}</div>
+            <div class="lower-text header-description" ng-class="{'inactive-text' : c.levelFilter != 'lower' && c.levelFilter != '', 'lower-text' : c.levelFilter == 'lower' || c.levelFilter == ''}">${User skills lower}</div>
             <div class="gauge-tooltip">
               <!-- Show the inactive gauge -->
-              <div ng-show="levelFilter != 'lower' && levelFilter != ''" class="canvas-container">
-                <role-profile-gauge when-select="setSkillFilter(skill)" gauge-for="lower" gauge-percent="{{percentLower}}" gauge-info="data.gaugeColours.inactive">
+              <div ng-show="c.levelFilter != 'lower' && c.levelFilter != ''" class="canvas-container">
+                <role-profile-gauge when-select="c.setSkillFilter(skill)" gauge-for="lower" gauge-percent="{{c.percentLower}}" gauge-info="c.data.gaugeColours.inactive">
                 </role-profile-gauge>
               </div>
               <!-- Show the active gauge -->
-              <div ng-show="levelFilter == 'lower' || levelFilter == ''" class="canvas-container">	
-                <role-profile-gauge  when-select="setSkillFilter(skill)" gauge-for="lower" gauge-percent="{{percentLower}}" gauge-info="data.gaugeColours.lower">
+              <div ng-show="c.levelFilter == 'lower' || c.levelFilter == ''" class="canvas-container">	
+                <role-profile-gauge  when-select="c.setSkillFilter(skill)" gauge-for="lower" gauge-percent="{{c.percentLower}}" gauge-info="c.data.gaugeColours.lower">
                 </role-profile-gauge>
               </div>
-              <role-profile-gauge-hover gauge-hover-text="${User has} {{totalLower}} ${skills at a lower level than the required profile skills}">
+              <role-profile-gauge-hover gauge-hover-text="${User has} {{c.totalLower}} ${skills at a lower level than the required profile skills}">
               </role-profile-gauge-hover>
             </div>
           </div>
@@ -516,39 +526,39 @@ div.skill-level-tooltip {&#13;
         <!-- Table data -->
         <div class="row">
           <div class="col-sm-12 table-container">
-            <div ng-show="skills.length > 0">
+            <div ng-show="c.skills.length > 0">
               <table class="table table-striped table-hover">
                 <thead class="results-header">
                   <tr>
                     <th class="column-header">
                       <div class="column-row-header">
-                        <span class="column-header-sort" ng-click="sortOrder('category')">${Category}</span>
-                        <i ng-show="sortColumn === 'category'" ng-class="getOrderIcon(sortAscending)"></i>
+                        <span class="column-header-sort" ng-click="c.sortOrder('category')">${Category}</span>
+                        <i ng-show="c.sortColumn === 'category'" ng-class="c.getOrderIcon(c.sortAscending)"></i>
                       </div>
                     </th>
                     <th class="skill-header">
                       <div class="column-row-header">
-                        <span class="column-header-sort" ng-click="sortOrder('skill')">${Skill}</span>
-                        <i ng-show="sortColumn === 'skill'" ng-class="getOrderIcon(sortAscending)"></i>
+                        <span class="column-header-sort" ng-click="c.sortOrder('skill')">${Skill}</span>
+                        <i ng-show="c.sortColumn === 'skill'" ng-class="c.getOrderIcon(c.sortAscending)"></i>
                       </div>
                     </th>
                     <th class="column-header">
                       <div class="column-skill-row-header">
-                        <span class="column-header-sort" ng-click="sortOrder('skill_level_value')">${Profile level}</span>
-                        <i ng-show="sortColumn === 'skill_level_value'" ng-class="getOrderIcon(sortAscending)"></i>
+                        <span class="column-header-sort" ng-click="c.sortOrder('skill_level_value')">${Profile level}</span>
+                        <i ng-show="c.sortColumn === 'skill_level_value'" ng-class="c.getOrderIcon(c.sortAscending)"></i>
 
                       </div>
                     </th>
                     <th class="column-header">
                       <div class="column-skill-row-header">
-                        <span class="column-header-sort" ng-click="sortOrder('user_level_value')">${User skill level}</span>
-                        <i ng-show="sortColumn === 'user_level_value'" ng-class="getOrderIcon(sortAscending)"></i>
+                        <span class="column-header-sort" ng-click="c.sortOrder('user_level_value')">${User skill level}</span>
+                        <i ng-show="c.sortColumn === 'user_level_value'" ng-class="c.getOrderIcon(c.sortAscending)"></i>
                       </div>
                     </th>
                   </tr>
                 </thead>
                 <tbody class="results-body">
-                  <tr ng-repeat="skill in skills | filter: {matched:levelFilter} | orderBy : sortColumn : sortAscending">		
+                  <tr ng-repeat="skill in c.skills | filter: {matched:c.levelFilter} | orderBy : c.sortColumn : c.sortAscending">		
                     <td class="column-skill-row">
                       <div class="column-row-text" ng-bind="skill.category"></div>
                     </td>
@@ -557,7 +567,7 @@ div.skill-level-tooltip {&#13;
                     </td>
                     <td class="column-skill-level column-skill-row">
                       <div class="skill-level-tooltip">
-                        <div class="detailed-column-row-text" ng-show="skill.skill_level == 'missing'"  ng-class="getGlyphClass(skill.skill_level)">
+                        <div class="detailed-column-row-text" ng-show="skill.skill_level == 'missing'"  ng-class="c.getGlyphClass(skill.skill_level)">
                         </div>
                         <div class="column-row-text detailed-column-row-text" ng-show="skill.skill_level != 'missing'" ng-bind="skill.skill_level">
                         </div>
@@ -566,9 +576,9 @@ div.skill-level-tooltip {&#13;
                     </td>
                     <td class="column-skill-level column-skill-row">
                       <div class="skill-level-tooltip">
-                        <div class="detailed-column-row-text" ng-show="skill.matched == 'missing'"  ng-class="getGlyphClass(skill.matched)">
+                        <div class="detailed-column-row-text" ng-show="skill.matched == 'missing'"  ng-class="c.getGlyphClass(skill.matched)">
                         </div>
-                        <div class="detailed-column-row-text" ng-show="skill.matched != 'missing'" ng-bind="skill.user_level" ng-class="getGlyphClass(skill.matched)">		
+                        <div class="detailed-column-row-text" ng-show="skill.matched != 'missing'" ng-bind="skill.user_level" ng-class="c.getGlyphClass(skill.matched)">		
                         </div>
                         <div class="skill-level-tooltiptext" ng-bind="skill.user_level_description"><i class="icon-arrow-down-rounded"></i></div>
                       </div>

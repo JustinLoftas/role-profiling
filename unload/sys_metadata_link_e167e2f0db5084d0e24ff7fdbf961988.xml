@@ -20,13 +20,11 @@
         <sys_class_name>sys_metadata_link</sys_class_name>
         <sys_created_by>justin.loftas</sys_created_by>
         <sys_created_on>2019-10-02 17:20:58</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
         <sys_id>e167e2f0db5084d0e24ff7fdbf961988</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>ServiceNow Graduate Developer &gt; Notifications (ServiceNow Platform) : Working knowledge</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
-        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_metadata_link_e167e2f0db5084d0e24ff7fdbf961988</sys_update_name>
         <sys_updated_by>justin.loftas</sys_updated_by>

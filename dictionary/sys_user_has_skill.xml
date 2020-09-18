@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element label="User Skill" max_length="40" name="sys_user_has_skill" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="Certificate number" max_length="40" name="x_78492_profiling_certificate_number" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Expiry date" max_length="40" name="x_78492_profiling_expiry_date" type="glide_date"/>
         <element attributes="edge_encryption_enabled=true" choice="3" default="0" label="Skill level" max_length="40" name="x_78492_profiling_skill_level" type="string">
             <choice>
                 <element hint="Does not have any experience or knowledge" inactive_on_update="false" label="None" sequence="0" value="0"/>
@@ -9,5 +11,10 @@
                 <element hint="Is classed as a Subject Matter Expert in this field. Can train or coach others" inactive_on_update="false" label="Expert" sequence="4" value="4"/>
             </choice>
         </element>
+        <element label="SME" max_length="40" name="x_78492_profiling_sme" type="boolean"/>
+        <element attributes="encode_utf8=false" label="Version" max_length="32" name="x_78492_profiling_version" reference="x_78492_profiling_skill_version" reference_qual="javascript: 'sys_idIN' + new x_78492_profiling.ProfileManagementUtils().getApplicableVersions(current.skill.x_78492_profiling_category.sys_id)&#13;&#10;" type="reference" use_reference_qualifier="advanced"/>
+        <index name="index">
+            <element name="x_78492_profiling_version"/>
+        </index>
     </element>
 </database>

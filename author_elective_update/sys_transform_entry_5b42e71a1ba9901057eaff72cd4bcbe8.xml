@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_transform_entry">
+    <sys_transform_entry action="DELETE">
+        <choice_action>ignore</choice_action>
+        <coalesce>false</coalesce>
+        <coalesce_case_sensitive>false</coalesce_case_sensitive>
+        <coalesce_empty_fields>false</coalesce_empty_fields>
+        <date_format>dd/MM/yyyy</date_format>
+        <map display_value="u_imp_tmpl_alm_hardware">4742ebd61ba9901057eaff72cd4bcbfc</map>
+        <reference_value_field/>
+        <source_field>u_warranty_expiration</source_field>
+        <source_script><![CDATA[answer = (function transformEntry(source) {
+
+	// Add your code here
+	return ""; // return the value to be put into the target field
+
+})(source);]]></source_script>
+        <source_table>u_imp_tmpl_alm_hardware</source_table>
+        <sys_class_name>sys_transform_entry</sys_class_name>
+        <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
+        <sys_created_on>2020-06-24 12:58:50</sys_created_on>
+        <sys_id>5b42e71a1ba9901057eaff72cd4bcbe8</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>u_warranty_expiration</sys_name>
+        <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+        <sys_update_name>sys_transform_entry_5b42e71a1ba9901057eaff72cd4bcbe8</sys_update_name>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-06-24 12:58:50</sys_updated_on>
+        <target_field>warranty_expiration</target_field>
+        <target_table>alm_hardware</target_table>
+        <use_source_script>false</use_source_script>
+    </sys_transform_entry>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</application>
+        <file_path/>
+        <instance_id>20709d27db4bcc90f492c597059619f9</instance_id>
+        <instance_name>ap3support</instance_name>
+        <name>sys_transform_entry_5b42e71a1ba9901057eaff72cd4bcbe8</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_transform_entry"&gt;&lt;sys_transform_entry action="INSERT_OR_UPDATE"&gt;&lt;choice_action&gt;ignore&lt;/choice_action&gt;&lt;coalesce&gt;false&lt;/coalesce&gt;&lt;coalesce_case_sensitive&gt;false&lt;/coalesce_case_sensitive&gt;&lt;coalesce_empty_fields&gt;false&lt;/coalesce_empty_fields&gt;&lt;date_format&gt;dd/MM/yyyy&lt;/date_format&gt;&lt;map display_value="u_imp_tmpl_alm_hardware"&gt;4742ebd61ba9901057eaff72cd4bcbfc&lt;/map&gt;&lt;reference_value_field/&gt;&lt;source_field&gt;u_warranty_expiration&lt;/source_field&gt;&lt;source_script&gt;&lt;![CDATA[answer = (function transformEntry(source) {
+
+	// Add your code here
+	return ""; // return the value to be put into the target field
+
+})(source);]]&gt;&lt;/source_script&gt;&lt;source_table&gt;u_imp_tmpl_alm_hardware&lt;/source_table&gt;&lt;sys_class_name&gt;sys_transform_entry&lt;/sys_class_name&gt;&lt;sys_created_by&gt;justin.loftas@up3.co.uk&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2020-06-24 12:58:50&lt;/sys_created_on&gt;&lt;sys_id&gt;5b42e71a1ba9901057eaff72cd4bcbe8&lt;/sys_id&gt;&lt;sys_mod_count&gt;1&lt;/sys_mod_count&gt;&lt;sys_name&gt;u_warranty_expiration&lt;/sys_name&gt;&lt;sys_package display_value="Role Profiling" source="x_78492_profiling"&gt;98075f7fdb672200e24ff7fdbf961997&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Role Profiling"&gt;98075f7fdb672200e24ff7fdbf961997&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_transform_entry_5b42e71a1ba9901057eaff72cd4bcbe8&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;justin.loftas@up3.co.uk&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2020-06-24 12:58:50&lt;/sys_updated_on&gt;&lt;target_field&gt;warranty_expiration&lt;/target_field&gt;&lt;target_table&gt;alm_hardware&lt;/target_table&gt;&lt;use_source_script&gt;false&lt;/use_source_script&gt;&lt;/sys_transform_entry&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>1665103293</payload_hash>
+        <record_name>u_warranty_expiration</record_name>
+        <reverted_from/>
+        <source>b3faba0b1bf4145057eaff72cd4bcbfc</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
+        <sys_created_on>2020-06-24 12:58:50</sys_created_on>
+        <sys_id>1742e71a1ba9901057eaff72cd4bcbeb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>172e668d94f0000001</sys_recorded_at>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-06-24 12:58:50</sys_updated_on>
+        <type>Field Map</type>
+        <update_guid>9f42e71a91a9901090ff6ec2d320b1ea</update_guid>
+        <update_guid_history>9f42e71a91a9901090ff6ec2d320b1ea:1665103293,1742e71aafa990109ad0680a0dce5ee9:-2009160109</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
+        <sys_created_on>2020-08-28 16:15:39</sys_created_on>
+        <sys_db_object display_value="" name="sys_transform_entry">sys_transform_entry</sys_db_object>
+        <sys_id>90b6fd3c02d041b5a09fd9c57e6c9679</sys_id>
+        <sys_metadata>5b42e71a1ba9901057eaff72cd4bcbe8</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>u_warranty_expiration</sys_name>
+        <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+        <sys_scope_delete display_value="">5dfecb0a1ba64ef8ac903775bd953240</sys_scope_delete>
+        <sys_update_name>sys_transform_entry_5b42e71a1ba9901057eaff72cd4bcbe8</sys_update_name>
+        <sys_update_version display_value="sys_transform_entry_5b42e71a1ba9901057eaff72cd4bcbe8">1742e71a1ba9901057eaff72cd4bcbeb</sys_update_version>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-08-28 16:15:39</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

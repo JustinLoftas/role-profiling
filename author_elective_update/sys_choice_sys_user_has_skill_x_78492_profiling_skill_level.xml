@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="x_78492_profiling_skill_level" table="sys_user_has_skill" version="3">
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>x_78492_profiling_skill_level</element>
+            <hint>Does not have any experience or knowledge</hint>
+            <inactive>false</inactive>
+            <label>None</label>
+            <language>en</language>
+            <name>sys_user_has_skill</name>
+            <sequence>0</sequence>
+            <sys_created_by>justin.loftas</sys_created_by>
+            <sys_created_on>2019-10-02 15:52:18</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>76135278dbdc44d0e24ff7fdbf961927</sys_id>
+            <sys_mod_count>3</sys_mod_count>
+            <sys_updated_by>justin.loftas</sys_updated_by>
+            <sys_updated_on>2019-10-02 16:06:47</sys_updated_on>
+            <value>0</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>x_78492_profiling_skill_level</element>
+            <hint>Is in the process of learning</hint>
+            <inactive>false</inactive>
+            <label>Learning</label>
+            <language>en</language>
+            <name>sys_user_has_skill</name>
+            <sequence>1</sequence>
+            <sys_created_by>justin.loftas</sys_created_by>
+            <sys_created_on>2019-10-02 15:52:19</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>be135278dbdc44d0e24ff7fdbf961928</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>justin.loftas</sys_updated_by>
+            <sys_updated_on>2019-10-02 16:07:14</sys_updated_on>
+            <value>1</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>x_78492_profiling_skill_level</element>
+            <hint>Has working level experience but may require oversight</hint>
+            <inactive>false</inactive>
+            <label>Working Knowledge</label>
+            <language>en</language>
+            <name>sys_user_has_skill</name>
+            <sequence>2</sequence>
+            <sys_created_by>justin.loftas</sys_created_by>
+            <sys_created_on>2019-10-02 15:52:19</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>3613d6f8dbdc44d0e24ff7fdbf9619ef</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>justin.loftas</sys_updated_by>
+            <sys_updated_on>2019-10-02 16:07:46</sys_updated_on>
+            <value>2</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>x_78492_profiling_skill_level</element>
+            <hint>Has the necessary ability and knowledge and requires little oversight</hint>
+            <inactive>false</inactive>
+            <label>Competent</label>
+            <language>en</language>
+            <name>sys_user_has_skill</name>
+            <sequence>3</sequence>
+            <sys_created_by>justin.loftas</sys_created_by>
+            <sys_created_on>2019-10-02 15:52:19</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>3a13d6f8dbdc44d0e24ff7fdbf9619f0</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>justin.loftas</sys_updated_by>
+            <sys_updated_on>2019-10-02 16:09:30</sys_updated_on>
+            <value>3</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>x_78492_profiling_skill_level</element>
+            <hint>Is classed as a Subject Matter Expert in this field. Can train or coach others</hint>
+            <inactive>false</inactive>
+            <label>Expert</label>
+            <language>en</language>
+            <name>sys_user_has_skill</name>
+            <sequence>4</sequence>
+            <sys_created_by>justin.loftas</sys_created_by>
+            <sys_created_on>2019-10-02 15:52:19</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>3e13d6f8dbdc44d0e24ff7fdbf9619f1</sys_id>
+            <sys_mod_count>2</sys_mod_count>
+            <sys_updated_by>justin.loftas</sys_updated_by>
+            <sys_updated_on>2019-10-02 16:09:57</sys_updated_on>
+            <value>4</value>
+        </sys_choice>
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>x_78492_profiling_skill_level</element>
+            <name>sys_user_has_skill</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>justin.loftas</sys_created_by>
+            <sys_created_on>2019-10-02 15:52:19</sys_created_on>
+            <sys_id>ccdeeeb21b38d05057eaff72cd4bcbbe</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_78492_profiling_skill_level</sys_name>
+            <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+            <sys_update_name>sys_choice_sys_user_has_skill_x_78492_profiling_skill_level</sys_update_name>
+            <sys_updated_by>justin.loftas</sys_updated_by>
+            <sys_updated_on>2019-10-02 15:52:19</sys_updated_on>
+        </sys_choice_set>
+    </sys_choice>
+</record_update>

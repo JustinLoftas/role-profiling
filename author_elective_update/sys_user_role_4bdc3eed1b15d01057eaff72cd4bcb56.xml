@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_user_role">
+    <sys_user_role action="DELETE">
+        <assignable_by/>
+        <can_delegate>true</can_delegate>
+        <description/>
+        <elevated_privilege>false</elevated_privilege>
+        <grantable>true</grantable>
+        <includes_roles/>
+        <name>x_78492_profiling.skill_version_user</name>
+        <requires_subscription>-1</requires_subscription>
+        <scoped_admin>false</scoped_admin>
+        <suffix>skill_version_user</suffix>
+        <sys_class_name>sys_user_role</sys_class_name>
+        <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
+        <sys_created_on>2020-06-09 16:04:08</sys_created_on>
+        <sys_id>4bdc3eed1b15d01057eaff72cd4bcb56</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_78492_profiling.skill_version_user</sys_name>
+        <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+        <sys_update_name>sys_user_role_4bdc3eed1b15d01057eaff72cd4bcb56</sys_update_name>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-06-09 16:04:08</sys_updated_on>
+    </sys_user_role>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</application>
+        <file_path/>
+        <instance_id>20709d27db4bcc90f492c597059619f9</instance_id>
+        <instance_name>ap3support</instance_name>
+        <name>sys_user_role_4bdc3eed1b15d01057eaff72cd4bcb56</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_user_role"><sys_user_role action="INSERT_OR_UPDATE"><assignable_by/><can_delegate>true</can_delegate><description/><elevated_privilege>false</elevated_privilege><grantable>true</grantable><includes_roles/><name>x_78492_profiling.skill_version_user</name><requires_subscription>-1</requires_subscription><scoped_admin>false</scoped_admin><suffix>skill_version_user</suffix><sys_class_name>sys_user_role</sys_class_name><sys_created_by>justin.loftas@up3.co.uk</sys_created_by><sys_created_on>2020-06-09 16:04:08</sys_created_on><sys_id>4bdc3eed1b15d01057eaff72cd4bcb56</sys_id><sys_mod_count>0</sys_mod_count><sys_name>x_78492_profiling.skill_version_user</sys_name><sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package><sys_policy/><sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope><sys_update_name>sys_user_role_4bdc3eed1b15d01057eaff72cd4bcb56</sys_update_name><sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by><sys_updated_on>2020-06-09 16:04:08</sys_updated_on></sys_user_role></record_update>]]></payload>
+        <payload_hash>-299056045</payload_hash>
+        <record_name>x_78492_profiling.skill_version_user</record_name>
+        <reverted_from/>
+        <source>b3faba0b1bf4145057eaff72cd4bcbfc</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
+        <sys_created_on>2020-06-09 16:04:08</sys_created_on>
+        <sys_id>8fdcba211b55d01057eaff72cd4bcb0e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>17299d319ea0000001</sys_recorded_at>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-06-09 16:04:08</sys_updated_on>
+        <type>Role</type>
+        <update_guid>43dc3eedde15d01043b614081a814c5b</update_guid>
+        <update_guid_history>43dc3eedde15d01043b614081a814c5b:-299056045</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="x_78492_profiling.skill_version_user">32b533ca1b55541057eaff72cd4bcb17</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
+        <sys_created_on>2020-06-11 09:29:34</sys_created_on>
+        <sys_db_object display_value="" name="sys_user_role">sys_user_role</sys_db_object>
+        <sys_id>5e9c4d17f5ec4114bbde8d0b5cbaa339</sys_id>
+        <sys_metadata>4bdc3eed1b15d01057eaff72cd4bcb56</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_78492_profiling.skill_version_user</sys_name>
+        <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+        <sys_scope_delete display_value="">5dfecb0a1ba64ef8ac903775bd953240</sys_scope_delete>
+        <sys_update_name>sys_user_role_4bdc3eed1b15d01057eaff72cd4bcb56</sys_update_name>
+        <sys_update_version display_value="sys_user_role_4bdc3eed1b15d01057eaff72cd4bcb56">8fdcba211b55d01057eaff72cd4bcb0e</sys_update_version>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-06-11 09:29:34</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

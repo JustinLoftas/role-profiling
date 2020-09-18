@@ -16,9 +16,9 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 			var ajaxUsed = false;
 			//Parameters passed in by the GlideAjax call, we need both
 			if (!profileId && !userId){
-			  profileId = this.getParameter('sysparm_profile_id');
-			  userId = this.getParameter('sysparm_user_id');
-			  ajaxUsed = true;
+				profileId = this.getParameter('sysparm_profile_id');
+				userId = this.getParameter('sysparm_user_id');
+				ajaxUsed = true;
 			}
 			
 			//Object function variables
@@ -26,6 +26,7 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 			this.totalMatched = 0;
 			this.totalHigher = 0;
 			this.totalLower = 0;
+			this.totalMissing = 0;
 			this.userName = this._getUserName(userId);
 			this.profileName = '';
 			this.levelDescription = {};
@@ -54,12 +55,12 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 			userProfileSkills.totalMatched = this.totalMatched;
 			userProfileSkills.totalHigher = this.totalHigher;
 			userProfileSkills.totalLower = this.totalLower;
-			userProfileSkills.totalMissing = this.totalSkills - this.totalMatched - this.totalHigher - this.totalLower;
+			userProfileSkills.totalMissing = this.totalMissing;
 			userProfileSkills.userName = this.userName;
 			userProfileSkills.profileName = this.profileName;
-			
+
 			if (ajaxUsed){
-			   return json.encode(userProfileSkills);
+				return json.encode(userProfileSkills);
 			}
 			
 			return userProfileSkills;
@@ -95,6 +96,7 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 					this.profileName = grProfileSkill.getDisplayValue('role_profile');
 				}
 				this.totalSkills ++;
+				this.totalMissing ++;
 				skillId = grProfileSkill.getValue('skill');
 				skillLevel = grProfileSkill.getDisplayValue('level');
 				skillLevelValue = grProfileSkill.getValue('level');
@@ -153,22 +155,26 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 					switch(true){
 						case upf.skill_level_value == userLevelValue:
 							this.totalMatched++;
+							this.totalMissing--;
 							upf.matched = 'matched';
 							break;
 						case upf.skill_level_value < userLevelValue:
 							this.totalHigher++;
+							this.totalMissing--;
 							upf.matched = 'higher';
 							break;
 						default:
 							this.totalLower++;
 							upf.matched = 'lower';
+							this.totalMissing--;
 							break;
 					}
 					break;
 				}
 			}
 			if (!matched){
-				this.totalMatched++;
+				this.totalHigher++;
+				this.totalSkills++;
 				userSkill = {
 					skill_id : skillId,
 					category : grUserSkill.skill.x_78492_profiling_category.getDisplayValue(),
@@ -176,7 +182,7 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 					skill_level : 'missing',
 					skill_level_value : -1,
 					skill_level_description : gs.getMessage('The user has this skill but the profile does not'),
-					matched : 'matched',
+					matched : 'higher',
 					user_level : userLevel,
 					user_level_value : userLevelValue,
 					user_level_description : skillLevelDescription
@@ -224,16 +230,14 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2016-12-22 19:44:15</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
         <sys_id>ab164526dbf72200e24ff7fdbf96195e</sys_id>
-        <sys_mod_count>91</sys_mod_count>
+        <sys_mod_count>95</sys_mod_count>
         <sys_name>ProfileManagementAJAX</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy>read</sys_policy>
-        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_script_include_ab164526dbf72200e24ff7fdbf96195e</sys_update_name>
-        <sys_updated_by>justin.loftas</sys_updated_by>
-        <sys_updated_on>2019-10-02 17:10:04</sys_updated_on>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-06-03 18:32:15</sys_updated_on>
     </sys_script_include>
 </record_update>
