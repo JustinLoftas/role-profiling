@@ -81,7 +81,7 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 		try {
 			var profileSkills = [];
 			var profileSkillInfo = {};
-			var skillId = 0;
+			var skillId = null;
 			var skillLevel = '';
 			var skillLevelValue = 0;
 			var skillLevelDescription = '';
@@ -110,8 +110,12 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 					skill_level_description : skillLevelDescription,
 					matched : 'missing',
 					user_level: 'none',
-					user_level_value : -1,
-					user_level_description : userLevelDescription
+					is_sme : false,
+					user_level_value : '-1',
+					user_level_description : userLevelDescription,
+					user_skill_sys_id : this.totalSkills,
+					editing : false,
+					temp_user_level_value : '-1'
 				};
 				profileSkills.push(profileSkillInfo);
 			}
@@ -132,7 +136,7 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 	_matchUserSkills: function(userProfileSkills, userId){
 		var matched = false;
 		var skillId = null;
-		var userLevelValue = 0;
+		var userLevelValue = '-1';
 		var userLevel = '';
 		var skillLevelDescription = '';
 		var userSkill = {};
@@ -150,8 +154,11 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 					matched = true;
 					var upf = userProfileSkills.skills[i];
 					upf.user_level = userLevel;
+					upf.is_sme = grUserSkill.getDisplayValue('x_78492_profiling_sme');
 					upf.user_level_value = userLevelValue;
 					upf.user_level_description = skillLevelDescription;
+					upf.user_skill_sys_id = grUserSkill.getUniqueValue();
+					upf.temp_user_level_value = userLevelValue;
 					switch(true){
 						case upf.skill_level_value == userLevelValue:
 							this.totalMatched++;
@@ -185,7 +192,11 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 					matched : 'higher',
 					user_level : userLevel,
 					user_level_value : userLevelValue,
-					user_level_description : skillLevelDescription
+					user_level_description : skillLevelDescription,
+					is_sme : grUserSkill.getDisplayValue('x_78492_profiling_sme'),
+					user_skill_sys_id : grUserSkill.getUniqueValue(),
+					editing : false,
+					temp_user_level_value : userLevelValue
 				};
 				userProfileSkills.skills.push(userSkill);
 			}
@@ -231,13 +242,13 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2016-12-22 19:44:15</sys_created_on>
         <sys_id>ab164526dbf72200e24ff7fdbf96195e</sys_id>
-        <sys_mod_count>95</sys_mod_count>
+        <sys_mod_count>105</sys_mod_count>
         <sys_name>ProfileManagementAJAX</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_script_include_ab164526dbf72200e24ff7fdbf96195e</sys_update_name>
         <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-        <sys_updated_on>2020-06-03 18:32:15</sys_updated_on>
+        <sys_updated_on>2020-10-29 22:39:06</sys_updated_on>
     </sys_script_include>
 </record_update>

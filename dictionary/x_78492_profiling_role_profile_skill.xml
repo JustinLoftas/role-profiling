@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element label="Role Profile Skill" max_length="40" name="x_78492_profiling_role_profile_skill" type="collection">
+    <element label="Role Profile Skill" max_length="40" name="x_78492_profiling_role_profile_skill" sizeclass="486" type="collection">
         <element attributes="edge_encryption_enabled=true" choice="3" choice_field="u_category" default="0" label="Level" max_length="40" name="level" type="choice">
             <choice>
                 <element hint="Does not have any experience or knowledge" inactive_on_update="false" label="None" sequence="0" value="0"/>

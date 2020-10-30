@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[function($scope,$http) {
+        <client_script><![CDATA[function roleProfilingComparison($scope,$http,spUtil) {
 	/* widget controller */
 	var c = this;
 	var totalSkills = 0;
@@ -24,6 +24,7 @@
 	c.userSet = false;
 	c.sortColumn = 'user_level_value';
 	c.sortAscending = true;
+	c.editingSkill = -1;
 
 	c.sortOrder = function(sortColumn){
 		c.sortAscending = (c.sortColumn === sortColumn) ? !c.sortAscending : true;
@@ -76,7 +77,7 @@
 		c.showMatchingDetails = false;
 		c.userName = '';
 		c.profileName = '';
-
+		c.editingSkill = -1;
 	};
 
 	$scope.$on('GetComparisonData', function(evt, profileData){
@@ -87,9 +88,12 @@
 		}
 		c.profileName = profileData.profileName;
 		c.userName = profileData.userName;
+		c.userId = profileData.userId;
+		c.profileId = profileData.profileId;
 		c.userSet = true;
+		c.editingSkill = -1;
 		c.profileSet = true;
-		$http.get('/api/x_78492_profiling/role_profile_data/get_data?user_id=' + profileData.userId + '&profile_id=' + profileData.profileId)
+		$http.get('/api/x_78492_profiling/role_profile_data/get_data?user_id=' + c.userId + '&profile_id=' + c.profileId)
 			.then(function(response){
 			var skillsInfo = response.data.result;
 			c.skills = skillsInfo.skills;
@@ -120,7 +124,58 @@
 			c.percentMissing = 0;
 		});
 	});
+
+	c.takeSnapShot = function(){
+		var snapshotData = {
+			userId : c.userId,
+			profileId : c.profileId,	  
+			totalSkills : c.totalSkills,
+			skillsHigher : c.percentHigher,
+			skillsLower : c.percentLower,
+			skillsMatched : c.percentMatched,
+			skillsMissing : c.percentMissing
+		};
+		$http.post('/api/x_78492_profiling/role_profile_data/take_snapshot', snapshotData)
+			.then(function(response){
+				spUtil.addInfoMessage('Skill snapshot taken');
+			});
+	}
+	
+	c.cancelEdit = function(skill){
+		skill.temp_user_level_value = skill.user_level_value;
+		c.editingSkill = -1;
+	}
+	
+	c.startEdit = function(skill){
+		c.editingSkill = skill.user_skill_sys_id;
+		
+	}
+	
+	c.updateSkillLevel = function(skill){
+		var skillData = {
+			skill : skill,
+			userId : c.userId
+		};
+		$http.post('/api/x_78492_profiling/role_profile_data/update_user_skill', skillData)
+			.then(function(response){
+			console.log(response);
+			spUtil.addInfoMessage(response.data.result.message);
+			skill.user_level_value = skill.temp_user_level_value;
+			var profileData = {
+				profileName :	c.profileName,
+				userName :c.userName,
+				userId :c.userId,
+				profileId : c.profileId
+			}
+			$scope.$broadcast('GetComparisonData', profileData);
+			c.editingSkill = -1;
+		}, function(error){
+			spUtil.addInfoMessage(error.data.result.message);
+			c.cancelEdit();
+		});
+	}
 }
+
 				]]></client_script>
         <controller_as>c</controller_as>
         <css>.column-row-text::first-letter {
@@ -132,10 +187,12 @@
    font-size: 10pt;
    text-transform: uppercase;
    color: black;
+
 }
 
 .detailed-column-row-text {
    padding-left: 5px;
+
 }
 
 .column-skill-row-text::first-letter {
@@ -259,7 +316,7 @@ div.gauge-tooltiptext {
     /* Position the tooltip text - see examples below! */
     position: relative;
     top: -30px;
-    z-index: -1;
+    z-index: -100;
 }
 
 div.gauge-tooltip:hover .gauge-tooltiptext {
@@ -357,6 +414,45 @@ div.skill-level-tooltip {
 .snapshot {
    text-align: center; 
 }
+
+.skill-level-edit-dialog {
+    z-index: 50; 
+  position: absolute;
+  width: 100%;
+  background-color: #FFF;
+  border: solid 1px black;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: -8px;
+  text-align: left;
+}
+
+.color-green {
+   color: #48c891; 
+}
+
+.color-red {
+   color: red; 
+}
+
+.fa-check-circle-o, .fa-times-circle-o {
+  font-size: 15pt;
+  vertical-align: middle;
+}
+
+tbody.skill-level-edit {
+   height: auto; 
+}
+
+.skill-level-select {
+   width: 76%; 
+}
+
+.skill-edit-buttons {
+  width : 12%;
+}
+
+
 </css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -396,20 +492,22 @@ div.skill-level-tooltip {
 			'shadow_color' : gs.getProperty('x_78492_profiling.skill_inactive.shadow_color', '#808080')
 		}
 	};
+	
+	data.skillLevels = new x_78492_profiling.ProfileManagementUtils().getSkillLevelChoices();
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>justin.loftas</sys_created_by>
         <sys_created_on>2019-10-02 16:23:51</sys_created_on>
         <sys_id>745a5234db1084d0e24ff7fdbf961902</sys_id>
-        <sys_mod_count>39</sys_mod_count>
+        <sys_mod_count>115</sys_mod_count>
         <sys_name>Role Profiling Comparison</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sp_widget_745a5234db1084d0e24ff7fdbf961902</sys_update_name>
         <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-        <sys_updated_on>2020-08-28 16:40:45</sys_updated_on>
+        <sys_updated_on>2020-10-30 13:56:47</sys_updated_on>
         <template><![CDATA[<div>
   <style>
     .missing-text {
@@ -437,7 +535,7 @@ div.skill-level-tooltip {
       <div ng-show="c.skills.length > 0">
         <div class="row">
           <div class="snapshot col-lg-12">
-            <button class="btn btn-primary" type="button">
+            <button class="btn btn-primary" type="button" ng-click="c.takeSnapShot()">
               <i class="fa fa-camera"></i>Skill snapshot
             </button>
           </div>
@@ -448,12 +546,12 @@ div.skill-level-tooltip {
             </div>
             <div class="gauge-tooltip">
               <!-- Show the inactive gauge -->
-              <div ng-show="c.levelFilter != 'matched' && c.levelFilter != ''" class="canvas-container">
+              <div ng-if="c.levelFilter != 'matched' && c.levelFilter != ''" class="canvas-container">
                 <role-profile-gauge when-select="c.setSkillFilter(skill)" gauge-for="matched" gauge-percent="{{c.percentMatched}}" gauge-info="c.data.gaugeColours.inactive">
                 </role-profile-gauge>
               </div>
               <!-- Show the active gauge -->
-              <div ng-show="c.levelFilter == 'matched' || c.levelFilter == ''" class="canvas-container">
+              <div ng-if="c.levelFilter == 'matched' || c.levelFilter == ''" class="canvas-container">
                 <role-profile-gauge when-select="c.setSkillFilter(skill)" gauge-for="matched" gauge-percent="{{c.percentMatched}}" gauge-info="c.data.gaugeColours.matching">
                 </role-profile-gauge>
               </div>
@@ -468,12 +566,12 @@ div.skill-level-tooltip {
             </div>
             <div class="gauge-tooltip">
               <!-- Show the inactive gauge -->
-              <div ng-show="c.levelFilter != 'missing' && c.levelFilter != ''" class="canvas-container">
+              <div ng-if="c.levelFilter != 'missing' && c.levelFilter != ''" class="canvas-container">
                 <role-profile-gauge when-select="c.setSkillFilter(skill)" gauge-for="missing" gauge-percent="{{c.percentMissing}}" gauge-info="c.data.gaugeColours.inactive">
                 </role-profile-gauge>
               </div>
               <!-- Show the active gauge -->
-              <div ng-show="c.levelFilter == 'missing' || c.levelFilter == ''" class="canvas-container">	
+              <div ng-if="c.levelFilter == 'missing' || c.levelFilter == ''" class="canvas-container">	
                 <role-profile-gauge when-select="c.setSkillFilter(skill)" gauge-for="missing" gauge-percent="{{c.percentMissing}}" gauge-info="c.data.gaugeColours.missing">
                 </role-profile-gauge>
               </div>
@@ -488,12 +586,12 @@ div.skill-level-tooltip {
             </div>
             <div class="gauge-tooltip">
               <!-- Show the inactive gauge -->
-              <div ng-show="c.levelFilter != 'higher' && c.levelFilter != ''" class="canvas-container">
+              <div ng-if="c.levelFilter != 'higher' && c.levelFilter != ''" class="canvas-container">
                 <role-profile-gauge when-select="c.setSkillFilter(skill)" gauge-for="higher" gauge-percent="{{c.percentHigher}}" gauge-info="c.data.gaugeColours.inactive">
                 </role-profile-gauge>
               </div>
               <!-- Show the active gauge -->
-              <div ng-show="c.levelFilter == 'higher' || c.levelFilter == ''" class="canvas-container">		
+              <div ng-if="c.levelFilter == 'higher' || c.levelFilter == ''" class="canvas-container">		
                 <role-profile-gauge when-select="c.setSkillFilter(skill)" gauge-for="higher" gauge-percent="{{c.percentHigher}}" gauge-info="c.data.gaugeColours.higher">
                 </role-profile-gauge>
               </div>
@@ -507,12 +605,12 @@ div.skill-level-tooltip {
             <div class="lower-text header-description" ng-class="{'inactive-text' : c.levelFilter != 'lower' && c.levelFilter != '', 'lower-text' : c.levelFilter == 'lower' || c.levelFilter == ''}">${User skills lower}</div>
             <div class="gauge-tooltip">
               <!-- Show the inactive gauge -->
-              <div ng-show="c.levelFilter != 'lower' && c.levelFilter != ''" class="canvas-container">
+              <div ng-if="c.levelFilter != 'lower' && c.levelFilter != ''" class="canvas-container">
                 <role-profile-gauge when-select="c.setSkillFilter(skill)" gauge-for="lower" gauge-percent="{{c.percentLower}}" gauge-info="c.data.gaugeColours.inactive">
                 </role-profile-gauge>
               </div>
               <!-- Show the active gauge -->
-              <div ng-show="c.levelFilter == 'lower' || c.levelFilter == ''" class="canvas-container">	
+              <div ng-if="c.levelFilter == 'lower' || c.levelFilter == ''" class="canvas-container">	
                 <role-profile-gauge  when-select="c.setSkillFilter(skill)" gauge-for="lower" gauge-percent="{{c.percentLower}}" gauge-info="c.data.gaugeColours.lower">
                 </role-profile-gauge>
               </div>
@@ -526,33 +624,33 @@ div.skill-level-tooltip {
         <!-- Table data -->
         <div class="row">
           <div class="col-sm-12 table-container">
-            <div ng-show="c.skills.length > 0">
+            <div ng-if="c.skills.length > 0">
               <table class="table table-striped table-hover">
                 <thead class="results-header">
                   <tr>
                     <th class="column-header">
                       <div class="column-row-header">
                         <span class="column-header-sort" ng-click="c.sortOrder('category')">${Category}</span>
-                        <i ng-show="c.sortColumn === 'category'" ng-class="c.getOrderIcon(c.sortAscending)"></i>
+                        <i ng-if="c.sortColumn === 'category'" ng-class="c.getOrderIcon(c.sortAscending)"></i>
                       </div>
                     </th>
                     <th class="skill-header">
                       <div class="column-row-header">
                         <span class="column-header-sort" ng-click="c.sortOrder('skill')">${Skill}</span>
-                        <i ng-show="c.sortColumn === 'skill'" ng-class="c.getOrderIcon(c.sortAscending)"></i>
+                        <i ng-if="c.sortColumn === 'skill'" ng-class="c.getOrderIcon(c.sortAscending)"></i>
                       </div>
                     </th>
                     <th class="column-header">
                       <div class="column-skill-row-header">
                         <span class="column-header-sort" ng-click="c.sortOrder('skill_level_value')">${Profile level}</span>
-                        <i ng-show="c.sortColumn === 'skill_level_value'" ng-class="c.getOrderIcon(c.sortAscending)"></i>
+                        <i ng-if="c.sortColumn === 'skill_level_value'" ng-class="c.getOrderIcon(c.sortAscending)"></i>
 
                       </div>
                     </th>
                     <th class="column-header">
                       <div class="column-skill-row-header">
                         <span class="column-header-sort" ng-click="c.sortOrder('user_level_value')">${User skill level}</span>
-                        <i ng-show="c.sortColumn === 'user_level_value'" ng-class="c.getOrderIcon(c.sortAscending)"></i>
+                        <i ng-if="c.sortColumn === 'user_level_value'" ng-class="c.getOrderIcon(c.sortAscending)"></i>
                       </div>
                     </th>
                   </tr>
@@ -567,20 +665,39 @@ div.skill-level-tooltip {
                     </td>
                     <td class="column-skill-level column-skill-row">
                       <div class="skill-level-tooltip">
-                        <div class="detailed-column-row-text" ng-show="skill.skill_level == 'missing'"  ng-class="c.getGlyphClass(skill.skill_level)">
+                        <div class="detailed-column-row-text" ng-if="skill.skill_level == 'missing'"  ng-class="c.getGlyphClass(skill.skill_level)">
                         </div>
-                        <div class="column-row-text detailed-column-row-text" ng-show="skill.skill_level != 'missing'" ng-bind="skill.skill_level">
+                        <div class="column-row-text detailed-column-row-text" ng-if="skill.skill_level != 'missing'" ng-bind="skill.skill_level">
                         </div>
                         <div class="skill-level-tooltiptext" ng-bind="skill.skill_level_description"></div>
                       </div>
                     </td>
-                    <td class="column-skill-level column-skill-row">
+                    <td class="column-skill-level column-skill-row" ng-dblclick="c.startEdit(skill)">                     
                       <div class="skill-level-tooltip">
-                        <div class="detailed-column-row-text" ng-show="skill.matched == 'missing'"  ng-class="c.getGlyphClass(skill.matched)">
+                        <div ng-if="c.editingSkill == skill.user_skill_sys_id && c.data.skillLevels.length > 0" class="skill-level-edit-dialog">                    
+                          <table class="skill-level-edit">
+                            <tbody class="skill-level-edit">
+                            <tr>
+                              <td class="skill-level-select">     
+                                <select ng-model="skill.temp_user_level_value">
+                                  <option ng-selected="skill.user_level_value == skillLevel.value" ng-repeat="skillLevel in c.data.skillLevels" value="{{skillLevel.value}}">{{skillLevel.label}}</option>
+                                </select>
+                              </td>
+                              <td class="skill-edit-buttons">
+                                <i class="fa fa-check-circle-o color-green" ng-click="c.updateSkillLevel(skill)"></i> 
+                              </td>
+                              <td class="skill-edit-buttons">
+                                <i class="fa fa-times-circle-o color-red" ng-click="c.cancelEdit(skill)"></i>
+                              </td>
+                            </tr>
+                            </tbody>
+                          </table>
                         </div>
-                        <div class="detailed-column-row-text" ng-show="skill.matched != 'missing'" ng-bind="skill.user_level" ng-class="c.getGlyphClass(skill.matched)">		
+                        <div class="detailed-column-row-text" ng-if="skill.matched == 'missing'"  ng-class="c.getGlyphClass(skill.matched)">
                         </div>
-                        <div class="skill-level-tooltiptext" ng-bind="skill.user_level_description"><i class="icon-arrow-down-rounded"></i></div>
+                        <div class="detailed-column-row-text" ng-if="skill.matched != 'missing'" ng-bind="skill.user_level" ng-class="c.getGlyphClass(skill.matched)">		
+                        </div>
+                        <div ng-if="c.editingSkill == -1" class="skill-level-tooltiptext" ng-bind="skill.user_level_description"><i class="icon-arrow-down-rounded"></i></div>
                       </div>
                     </td>
                   </tr>
@@ -588,7 +705,7 @@ div.skill-level-tooltip {
               </table>
             </div>
           </div>
-        </div>
+      </div>
       </div>
     </div>
   </div>]]></template>

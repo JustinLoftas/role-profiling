@@ -14,7 +14,9 @@ ProfileManagementUtils.prototype = {
 		ROLE_PROFILE : 'x_78492_profiling_role_profile',
 		ROLE_PROFILE_SKILL : 'x_78492_profiling_role_profile_skill',
 		SKILL_VERSION : 'x_78492_profiling_skill_version',
-		SKILL_SNAPSHOT : 'x_78492_profiling_skill_snapshot'
+		SKILL_SNAPSHOT : 'x_78492_profiling_skill_snapshot',
+		CHOICE : 'sys_choice',
+		USER_SKILL : 'sys_user_has_skill'
 	},
 	
 	initialize: function(grRoleProfile) {
@@ -86,7 +88,7 @@ ProfileManagementUtils.prototype = {
 	updateProfileSkills : function(){
 		try {
 			if (!this.roleProfile){
-				throw 'Class instantiated without profile';
+				throw new Error('Class instantiated without profile');
 			}
 			var profileSkillGR = new GlideRecord(this.TABLES.ROLE_PROFILE_SKILL);
 			profileSkillGR.addQuery('role_profile', this.roleProfile.getValue('sys_id'));
@@ -180,19 +182,102 @@ ProfileManagementUtils.prototype = {
 			return '';
 		}
 	},
-	
-	createSnapshot : function (userId, profileId, higher, lower, matching, missing) {
+
+    //Function for creating a snapshot record for the user
+	//@snapshotData {object}: an ibject containing the data points to be captured
+	//@returns {object} : The Snapshot GlideRecord object
+	createSnapshot : function (snapshotData) {
 		try {
+			var result = {
+				outcome : 'success',
+				message : 'Snapshot successful'
+			};
 			var snapshotGR = new GlideRecord(this.TABLES.SKILL_SNAPSHOT);
 			snapshotGR.initialize();
-			snapshotGR.setValue('user', userId);
-			snapshotGR.setValue('role_profile', profileId);
-			snapshotGR.setValue('skills_higher', higher);
+			snapshotGR.setValue('user', snapshotData.userId);
+			snapshotGR.setValue('role_profile', snapshotData.profileId);
+			snapshotGR.setValue('skills_higher', snapshotData.skillsHigher || 0);
+			snapshotGR.setValue('skills_matching', snapshotData.skillsMatched || 0);
+			snapshotGR.setValue('skills_lower', snapshotData.skillsLower || 0);
+			snapshotGR.setValue('skills_missing', snapshotData.skillsMissing || 0);
+			snapshotGR.setValue('total_skills', snapshotData.totalSkills || 0);
 			snapshotGR.insert();
+			return result;
 		}
-				catch (err){
+		catch (err){
 			gs.error('Error detected in Script Include ProfileManagementUtils, function createSnapshot. Error message is ' + err.message);
-			return '';
+			result.outcome = 'error';
+			result.message = err.message;
+			return result;
+		}
+	},
+
+	//Function for the updating of or adding skills to a user 
+	//@snapshotData {object}: an ibject containing the data points to be captured
+	//@returns {object} : The Snapshot GlideRecord object
+	updateUserSkill : function(skillData){
+		try {
+			var result = {
+				outcome : 'success',
+				message : 'Skill level successfully updated'
+			};
+			var skill = skillData.skill;
+			var userId = skillData.userId;
+			var userSkillGR = new GlideRecord(this.TABLES.USER_SKILL);
+			if (skill.matched != 'missing' && !gs.nil(skill.user_skill_sys_id)){
+				if (userSkillGR.get(skill.user_skill_sys_id)){
+					userSkillGR.setValue('x_78492_profiling_skill_level', skill.temp_user_level_value);
+					userSkillGR.update();
+				}
+				else {
+					throw new Error('Could not find user skill record');
+				}
+			}
+			else {
+				userSkillGR.initialize();
+				userSkillGR.setValue('skill', skill.skill_id);
+				userSkillGR.setValue('user', userId);
+				userSkillGR.setValue('x_78492_profiling_skill_level', skill.temp_user_level_value);
+				userSkillGR.insert();
+				result.message = 'Skill for user successfully created';
+			}
+			return result;
+		}
+		catch(err){
+			gs.error('Error detected in Script Include ProfileManagementUtils, function updateUserSkill. Error message is ' + err.message);
+			result.outcome = 'error';
+			result.message = err.message;
+			return result;			
+		}
+	},
+
+	//Function for getting the skill level choices
+	//@returns {array} : An array of objects containing choices and values
+	getSkillLevelChoices : function(){
+		try {
+			var choices = [];
+			var choice = {};
+			choice.label = 'Missing';
+			choice.value = '-1';
+			choices.push(choice);
+			var choiceGR = new GlideRecord(this.TABLES.CHOICE);
+			choiceGR.addQuery('name', 'sys_user_has_skill');
+			choiceGR.addQuery('element', 'x_78492_profiling_skill_level');
+			choiceGR.addQuery('inactive', false);
+			choiceGR.addQuery('language', 'en');
+			choiceGR.query();
+			while (choiceGR.next()){
+				choice = {};
+				choice.label = choiceGR.getValue('label');
+				choice.value = choiceGR.getValue('value');
+				choices.push(choice);
+			}
+			return choices;
+
+		}
+		catch (err){
+			gs.error('Error detected in Script Include ProfileManagementUtils, function getSkillLevelChoices. Error message is ' + err.message);
+			return [];
 		}
 	},
 	
@@ -202,13 +287,13 @@ ProfileManagementUtils.prototype = {
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2017-02-04 12:24:30</sys_created_on>
         <sys_id>49f402a0dbb43200e24ff7fdbf961920</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>25</sys_mod_count>
         <sys_name>ProfileManagementUtils</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_script_include_49f402a0dbb43200e24ff7fdbf961920</sys_update_name>
         <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-        <sys_updated_on>2020-08-29 19:41:02</sys_updated_on>
+        <sys_updated_on>2020-10-29 22:59:13</sys_updated_on>
     </sys_script_include>
 </record_update>

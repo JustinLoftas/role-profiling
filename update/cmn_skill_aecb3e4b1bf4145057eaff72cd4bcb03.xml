@@ -2,6 +2,7 @@
     <cmn_skill action="INSERT_OR_UPDATE">
         <active>true</active>
         <description/>
+        <keywords/>
         <level_type/>
         <name>Data Lookups</name>
         <sys_class_name>cmn_skill</sys_class_name>

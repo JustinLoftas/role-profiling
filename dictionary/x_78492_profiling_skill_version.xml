@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element label="Skill Version" max_length="40" name="x_78492_profiling_skill_version" type="collection">
+    <element label="Skill Version" max_length="40" name="x_78492_profiling_skill_version" sizeclass="3" type="collection">
         <element default="true" label="Active" max_length="40" name="active" type="boolean"/>
         <element label="Applicable categories" max_length="4000" name="applicable_categories" reference="x_78492_profiling_skill_category" type="glide_list"/>
         <element label="Latest version" max_length="40" name="latest_version" type="boolean"/>
