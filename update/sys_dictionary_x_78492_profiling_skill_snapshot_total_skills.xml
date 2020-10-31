@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-    <sys_dictionary action="INSERT_OR_UPDATE" element="display_value" table="x_78492_profiling_skill_snapshot">
+    <sys_dictionary action="INSERT_OR_UPDATE" element="total_skills" table="x_78492_profiling_skill_snapshot">
         <active>true</active>
         <array>false</array>
         <array_denormalized>false</array_denormalized>
@@ -14,31 +14,31 @@
         <choice/>
         <choice_field/>
         <choice_table/>
-        <column_label>Display value</column_label>
+        <column_label>Total skills</column_label>
         <comments/>
         <create_roles/>
-        <default_value/>
+        <default_value>0</default_value>
         <defaultsort/>
         <delete_roles/>
         <dependent/>
         <dependent_on_field/>
-        <display>true</display>
+        <display>false</display>
         <dynamic_creation>false</dynamic_creation>
         <dynamic_creation_script/>
         <dynamic_default_value/>
         <dynamic_ref_qual/>
-        <element>display_value</element>
+        <element>total_skills</element>
         <element_reference>false</element_reference>
         <foreign_database/>
         <function_definition/>
         <function_field>false</function_field>
-        <internal_type display_value="String">string</internal_type>
+        <internal_type display_value="Integer">integer</internal_type>
         <mandatory>false</mandatory>
-        <max_length>120</max_length>
+        <max_length>40</max_length>
         <name>x_78492_profiling_skill_snapshot</name>
         <next_element/>
         <primary>false</primary>
-        <read_only>true</read_only>
+        <read_only>false</read_only>
         <read_roles/>
         <reference/>
         <reference_cascade_rule/>
@@ -52,16 +52,16 @@
         <staged>false</staged>
         <sys_class_name>sys_dictionary</sys_class_name>
         <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
-        <sys_created_on>2020-08-29 18:23:36</sys_created_on>
-        <sys_id>0bbdbe1f1b3a9054d5c1ece03d4bcbd5</sys_id>
-        <sys_mod_count>2</sys_mod_count>
-        <sys_name>Display value</sys_name>
+        <sys_created_on>2020-09-18 09:20:59</sys_created_on>
+        <sys_id>871825c2dbd794503c5f73e1ba9619d1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Total skills</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
-        <sys_update_name>sys_dictionary_x_78492_profiling_skill_snapshot_display_value</sys_update_name>
+        <sys_update_name>sys_dictionary_x_78492_profiling_skill_snapshot_total_skills</sys_update_name>
         <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-        <sys_updated_on>2020-09-18 09:30:47</sys_updated_on>
+        <sys_updated_on>2020-09-18 09:20:59</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>

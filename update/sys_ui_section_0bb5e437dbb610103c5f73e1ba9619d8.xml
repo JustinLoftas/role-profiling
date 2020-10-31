@@ -1,156 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
     <sys_ui_section caption="" section_id="0bb5e437dbb610103c5f73e1ba9619d8" sys_domain="global" table="x_78492_profiling_skill_snapshot" version="3" view="">
         <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>.begin_split</element>
+            <element>display_value</element>
             <position>0</position>
             <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
-            <sys_created_on>2020-08-29 18:25:41</sys_created_on>
-            <sys_id>aa06a837dbb610103c5f73e1ba96194c</sys_id>
+            <sys_created_on>2020-09-18 09:31:15</sys_created_on>
+            <sys_id>f08b614adbd794503c5f73e1ba961907</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_78492_profiling_skill_snapshot" sys_domain="global" view="Default view">0bb5e437dbb610103c5f73e1ba9619d8</sys_ui_section>
             <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-            <sys_updated_on>2020-08-29 18:25:41</sys_updated_on>
-            <sys_user/>
-            <type>.begin_split</type>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>display_value</element>
-            <position>1</position>
-            <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
-            <sys_created_on>2020-08-29 18:25:41</sys_created_on>
-            <sys_id>2e06a837dbb610103c5f73e1ba96194c</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_78492_profiling_skill_snapshot" sys_domain="global" view="Default view">0bb5e437dbb610103c5f73e1ba9619d8</sys_ui_section>
-            <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-            <sys_updated_on>2020-08-29 18:25:41</sys_updated_on>
+            <sys_updated_on>2020-09-18 09:31:15</sys_updated_on>
             <sys_user/>
             <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>1</position>
+            <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
+            <sys_created_on>2020-09-18 09:31:15</sys_created_on>
+            <sys_id>788b614adbd794503c5f73e1ba961907</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_78492_profiling_skill_snapshot" sys_domain="global" view="Default view">0bb5e437dbb610103c5f73e1ba9619d8</sys_ui_section>
+            <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+            <sys_updated_on>2020-09-18 09:31:15</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>user</element>
             <position>2</position>
             <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
-            <sys_created_on>2020-08-29 18:25:41</sys_created_on>
-            <sys_id>ae06a837dbb610103c5f73e1ba96194c</sys_id>
+            <sys_created_on>2020-09-18 09:31:15</sys_created_on>
+            <sys_id>fc8b614adbd794503c5f73e1ba961907</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_78492_profiling_skill_snapshot" sys_domain="global" view="Default view">0bb5e437dbb610103c5f73e1ba9619d8</sys_ui_section>
             <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-            <sys_updated_on>2020-08-29 18:25:41</sys_updated_on>
+            <sys_updated_on>2020-09-18 09:31:15</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>total_skills</element>
+            <position>3</position>
+            <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
+            <sys_created_on>2020-09-18 09:31:15</sys_created_on>
+            <sys_id>748b614adbd794503c5f73e1ba961908</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_78492_profiling_skill_snapshot" sys_domain="global" view="Default view">0bb5e437dbb610103c5f73e1ba9619d8</sys_ui_section>
+            <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+            <sys_updated_on>2020-09-18 09:31:15</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>skills_matching</element>
-            <position>3</position>
+            <position>4</position>
             <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
-            <sys_created_on>2020-08-29 18:25:41</sys_created_on>
-            <sys_id>2206a837dbb610103c5f73e1ba96194d</sys_id>
+            <sys_created_on>2020-09-18 09:31:15</sys_created_on>
+            <sys_id>f88b614adbd794503c5f73e1ba961908</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_78492_profiling_skill_snapshot" sys_domain="global" view="Default view">0bb5e437dbb610103c5f73e1ba9619d8</sys_ui_section>
             <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-            <sys_updated_on>2020-08-29 18:25:41</sys_updated_on>
+            <sys_updated_on>2020-09-18 09:31:15</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>skills_higher</element>
-            <position>4</position>
+            <position>5</position>
             <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
-            <sys_created_on>2020-08-29 18:25:41</sys_created_on>
-            <sys_id>a206a837dbb610103c5f73e1ba96194d</sys_id>
+            <sys_created_on>2020-09-18 09:31:15</sys_created_on>
+            <sys_id>708b614adbd794503c5f73e1ba961909</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_78492_profiling_skill_snapshot" sys_domain="global" view="Default view">0bb5e437dbb610103c5f73e1ba9619d8</sys_ui_section>
             <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-            <sys_updated_on>2020-08-29 18:25:41</sys_updated_on>
+            <sys_updated_on>2020-09-18 09:31:15</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.split</element>
-            <position>5</position>
-            <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
-            <sys_created_on>2020-08-29 18:25:41</sys_created_on>
-            <sys_id>2606a837dbb610103c5f73e1ba96194d</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_78492_profiling_skill_snapshot" sys_domain="global" view="Default view">0bb5e437dbb610103c5f73e1ba9619d8</sys_ui_section>
-            <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-            <sys_updated_on>2020-08-29 18:25:41</sys_updated_on>
-            <sys_user/>
-            <type>.split</type>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>date</element>
             <position>6</position>
             <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
-            <sys_created_on>2020-08-29 18:25:41</sys_created_on>
-            <sys_id>a606a837dbb610103c5f73e1ba96194d</sys_id>
+            <sys_created_on>2020-09-18 09:31:15</sys_created_on>
+            <sys_id>f48b614adbd794503c5f73e1ba961909</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_78492_profiling_skill_snapshot" sys_domain="global" view="Default view">0bb5e437dbb610103c5f73e1ba9619d8</sys_ui_section>
             <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-            <sys_updated_on>2020-08-29 18:25:41</sys_updated_on>
+            <sys_updated_on>2020-09-18 09:31:15</sys_updated_on>
             <sys_user/>
-            <type/>
+            <type>.split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>role_profile</element>
             <position>7</position>
             <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
-            <sys_created_on>2020-08-29 18:25:41</sys_created_on>
-            <sys_id>2a06a837dbb610103c5f73e1ba96194d</sys_id>
+            <sys_created_on>2020-09-18 09:31:15</sys_created_on>
+            <sys_id>7c8b614adbd794503c5f73e1ba961909</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_78492_profiling_skill_snapshot" sys_domain="global" view="Default view">0bb5e437dbb610103c5f73e1ba9619d8</sys_ui_section>
             <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-            <sys_updated_on>2020-08-29 18:25:41</sys_updated_on>
+            <sys_updated_on>2020-09-18 09:31:15</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>date</element>
+            <position>8</position>
+            <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
+            <sys_created_on>2020-09-18 09:31:15</sys_created_on>
+            <sys_id>f08b614adbd794503c5f73e1ba96190a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_78492_profiling_skill_snapshot" sys_domain="global" view="Default view">0bb5e437dbb610103c5f73e1ba9619d8</sys_ui_section>
+            <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+            <sys_updated_on>2020-09-18 09:31:15</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>skills_lower</element>
-            <position>8</position>
+            <position>9</position>
             <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
-            <sys_created_on>2020-08-29 18:25:41</sys_created_on>
-            <sys_id>aa06a837dbb610103c5f73e1ba96194d</sys_id>
+            <sys_created_on>2020-09-18 09:31:15</sys_created_on>
+            <sys_id>788b614adbd794503c5f73e1ba96190a</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_78492_profiling_skill_snapshot" sys_domain="global" view="Default view">0bb5e437dbb610103c5f73e1ba9619d8</sys_ui_section>
             <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-            <sys_updated_on>2020-08-29 18:25:41</sys_updated_on>
+            <sys_updated_on>2020-09-18 09:31:15</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>skills_missing</element>
-            <position>9</position>
+            <position>10</position>
             <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
-            <sys_created_on>2020-08-29 18:25:41</sys_created_on>
-            <sys_id>2e06a837dbb610103c5f73e1ba96194d</sys_id>
+            <sys_created_on>2020-09-18 09:31:15</sys_created_on>
+            <sys_id>fc8b614adbd794503c5f73e1ba96190a</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_78492_profiling_skill_snapshot" sys_domain="global" view="Default view">0bb5e437dbb610103c5f73e1ba9619d8</sys_ui_section>
             <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-            <sys_updated_on>2020-08-29 18:25:41</sys_updated_on>
+            <sys_updated_on>2020-09-18 09:31:15</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.end_split</element>
-            <position>10</position>
+            <position>11</position>
             <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
-            <sys_created_on>2020-08-29 18:25:41</sys_created_on>
-            <sys_id>ae06a837dbb610103c5f73e1ba96194d</sys_id>
+            <sys_created_on>2020-09-18 09:31:15</sys_created_on>
+            <sys_id>748b614adbd794503c5f73e1ba96190b</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_78492_profiling_skill_snapshot" sys_domain="global" view="Default view">0bb5e437dbb610103c5f73e1ba9619d8</sys_ui_section>
             <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-            <sys_updated_on>2020-08-29 18:25:41</sys_updated_on>
+            <sys_updated_on>2020-09-18 09:31:15</sys_updated_on>
             <sys_user/>
             <type>.end_split</type>
         </sys_ui_element>

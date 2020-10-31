@@ -5,60 +5,50 @@
         <consumes_customized>false</consumes_customized>
         <default_operation_uri/>
         <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
-        <http_method>GET</http_method>
-        <name>get_data</name>
+        <http_method>POST</http_method>
+        <name>take_snapshot</name>
         <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
-	
-	var profileId = getParameterString('profile_id');
-	var userId = getParameterString('user_id');
-	
-	if (!profileId || !userId){
-		return new sn_ws_err.BadRequestError('Mandatory user_id or profile_id is missing');
+
+	var data = request.body.data;
+	var result = {
+		outcome : 'error',
+		message : 'Missing snapshot data'
+	};
+	if (!gs.nil(data)){
+		result = new x_78492_profiling.ProfileManagementUtils().createSnapshot(data);
 	}
-	
-	var getData = new x_78492_profiling.ProfileManagementAJAX().getComparisonData(profileId, userId);
-	
-	if (!getData){
+    
+	if (result.outcome == 'error'){
 		var myError = new sn_ws_err.ServiceError();
 		myError.setStatus(410);
-		myError.setMessage('Data relating to the user_id and profile_id provided could not be returned');
+		myError.setMessage('The snap shot could not be saved. Error is: ' + result.message);
 		return myError;
 	}
 	
-	return getData;
-	
-	//Function to return the string value of a parameter
-	//@paramName {string}: The name of the parameter to get the value from
-		//@returns: the value of the parameter as a string
-		function getParameterString(paramName){
-			if (request.queryParams.hasOwnProperty(paramName)){
-				return request.queryParams[paramName] + '';
-			}
-			return null;
-		}
-		
-	})(request, response);]]></operation_script>
-        <operation_uri>/api/x_78492_profiling/role_profile_data/get_data</operation_uri>
+	response.setBody(result);
+
+})(request, response);]]></operation_script>
+        <operation_uri>/api/x_78492_profiling/role_profile_data/take_snapshot</operation_uri>
         <produces>application/json,application/xml,text/xml</produces>
         <produces_customized>false</produces_customized>
-        <relative_path>/get_data</relative_path>
+        <relative_path>/take_snapshot</relative_path>
         <request_example/>
         <requires_acl_authorization>true</requires_acl_authorization>
         <requires_authentication>true</requires_authentication>
         <requires_snc_internal_role>true</requires_snc_internal_role>
         <short_description/>
         <sys_class_name>sys_ws_operation</sys_class_name>
-        <sys_created_by>jloftas</sys_created_by>
-        <sys_created_on>2017-04-29 12:35:46</sys_created_on>
-        <sys_id>7d357663db123200e24ff7fdbf961956</sys_id>
-        <sys_mod_count>10</sys_mod_count>
-        <sys_name>get_data</sys_name>
+        <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
+        <sys_created_on>2020-09-18 08:38:57</sys_created_on>
+        <sys_id>e66f59c6db9794503c5f73e1ba961933</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>take_snapshot</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
-        <sys_update_name>sys_ws_operation_7d357663db123200e24ff7fdbf961956</sys_update_name>
+        <sys_update_name>sys_ws_operation_e66f59c6db9794503c5f73e1ba961933</sys_update_name>
         <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-        <sys_updated_on>2020-09-18 09:07:29</sys_updated_on>
+        <sys_updated_on>2020-09-18 09:44:45</sys_updated_on>
         <web_service_definition display_value="Role Profile Data">f534fea7db123200e24ff7fdbf9619e4</web_service_definition>
         <web_service_version/>
     </sys_ws_operation>
