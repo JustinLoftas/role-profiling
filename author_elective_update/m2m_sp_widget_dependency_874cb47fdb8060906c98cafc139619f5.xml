@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_widget_dependency">
+    <m2m_sp_widget_dependency action="DELETE">
+        <sp_dependency display_value="moment">25e32b060b113200b7d0c32c15673aa5</sp_dependency>
+        <sp_widget display_value="Skill Snapshot Trend">c47ff667db80a0103c5f73e1ba96193a</sp_widget>
+        <sys_class_name>m2m_sp_widget_dependency</sys_class_name>
+        <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
+        <sys_created_on>2020-10-30 23:21:25</sys_created_on>
+        <sys_id>874cb47fdb8060906c98cafc139619f5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>moment.Skill Snapshot Trend</sys_name>
+        <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+        <sys_update_name>m2m_sp_widget_dependency_874cb47fdb8060906c98cafc139619f5</sys_update_name>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-10-30 23:21:25</sys_updated_on>
+    </m2m_sp_widget_dependency>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</application>
+        <file_path/>
+        <instance_id>334eca68db795814566750b6f4961963</instance_id>
+        <instance_name>ap3supportdev</instance_name>
+        <name>m2m_sp_widget_dependency_874cb47fdb8060906c98cafc139619f5</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_widget_dependency"><m2m_sp_widget_dependency action="INSERT_OR_UPDATE"><sp_dependency display_value="moment">25e32b060b113200b7d0c32c15673aa5</sp_dependency><sp_widget display_value="Skill Snapshot Trend">c47ff667db80a0103c5f73e1ba96193a</sp_widget><sys_class_name>m2m_sp_widget_dependency</sys_class_name><sys_created_by>justin.loftas@up3.co.uk</sys_created_by><sys_created_on>2020-10-30 23:21:25</sys_created_on><sys_id>874cb47fdb8060906c98cafc139619f5</sys_id><sys_mod_count>0</sys_mod_count><sys_name>moment.Skill Snapshot Trend</sys_name><sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package><sys_policy/><sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope><sys_update_name>m2m_sp_widget_dependency_874cb47fdb8060906c98cafc139619f5</sys_update_name><sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by><sys_updated_on>2020-10-30 23:21:25</sys_updated_on></m2m_sp_widget_dependency></record_update>]]></payload>
+        <payload_hash>-1477252002</payload_hash>
+        <record_name>moment.Skill Snapshot Trend</record_name>
+        <reverted_from/>
+        <source>19885a9edbc068503c5f73e1ba96199a</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
+        <sys_created_on>2020-10-30 23:21:26</sys_created_on>
+        <sys_id>834cb47fdb8060906c98cafc139619f8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1757bd0d8f10000001</sys_recorded_at>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-10-30 23:21:26</sys_updated_on>
+        <type>Widget Dependency</type>
+        <update_guid>8b4cb47f078060907f699b6e7f711bf7</update_guid>
+        <update_guid_history>8b4cb47f078060907f699b6e7f711bf7:-1477252002</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="moment.Skill Snapshot Trend">821fbc73dbc060906c98cafc139619b1</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
+        <sys_created_on>2020-10-30 23:33:38</sys_created_on>
+        <sys_db_object display_value="" name="m2m_sp_widget_dependency">m2m_sp_widget_dependency</sys_db_object>
+        <sys_id>851ae28dbd89459b9d1630c3215ef0a1</sys_id>
+        <sys_metadata>874cb47fdb8060906c98cafc139619f5</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>moment.Skill Snapshot Trend</sys_name>
+        <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+        <sys_scope_delete display_value="">5dfecb0a1ba64ef8ac903775bd953240</sys_scope_delete>
+        <sys_update_name>m2m_sp_widget_dependency_874cb47fdb8060906c98cafc139619f5</sys_update_name>
+        <sys_update_version display_value="m2m_sp_widget_dependency_874cb47fdb8060906c98cafc139619f5">834cb47fdb8060906c98cafc139619f8</sys_update_version>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-10-30 23:33:38</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

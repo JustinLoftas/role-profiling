@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_widget_dependency">
+    <m2m_sp_widget_dependency action="INSERT_OR_UPDATE">
+        <sp_dependency display_value="ChartJS">1b5ff0b3dbc060906c98cafc1396190f</sp_dependency>
+        <sp_widget display_value="Skill Snapshot Trend">c47ff667db80a0103c5f73e1ba96193a</sp_widget>
+        <sys_class_name>m2m_sp_widget_dependency</sys_class_name>
+        <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
+        <sys_created_on>2020-10-30 23:34:58</sys_created_on>
+        <sys_id>a56fb0b3dbc060906c98cafc139619cd</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>ChartJS.Skill Snapshot Trend</sys_name>
+        <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+        <sys_update_name>m2m_sp_widget_dependency_a56fb0b3dbc060906c98cafc139619cd</sys_update_name>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-10-30 23:34:58</sys_updated_on>
+    </m2m_sp_widget_dependency>
+</record_update>

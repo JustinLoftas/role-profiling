@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element label="User Skill" max_length="40" name="sys_user_has_skill" sizeclass="795" type="collection">
+    <element label="User Skill" max_length="40" name="sys_user_has_skill" sizeclass="798" type="collection">
         <element attributes="edge_encryption_enabled=true" label="Certificate number" max_length="40" name="x_78492_profiling_certificate_number" type="string"/>
         <element attributes="edge_encryption_enabled=true" label="Expiry date" max_length="40" name="x_78492_profiling_expiry_date" type="glide_date"/>
         <element attributes="edge_encryption_enabled=true" choice="3" default="0" label="Skill level" max_length="40" name="x_78492_profiling_skill_level" type="string">

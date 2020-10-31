@@ -280,6 +280,98 @@ ProfileManagementUtils.prototype = {
 			return [];
 		}
 	},
+
+	getSnapshotData : function (userId, profileId){
+		try {
+			var higherColour = gs.getProperty('x_78492_profiling.skill_higher.color', '#24d6f2');
+			var matchingColour = gs.getProperty('x_78492_profiling.skill_match.color', 'lime');
+			var lowerColour = gs.getProperty('x_78492_profiling.skill_lower.color', 'orange');
+			var missingColour = gs.getProperty('x_78492_profiling.skill_missing.color', 'red');
+			var totalSkills = [];
+			var higherSkills = [];
+			var matchingSkills = [];
+			var lowerSkills = [];
+			var missingSkills = [];
+			var totalColour = '#000';
+			var borderWidth = 2;
+			var snapshotData = {
+				type: 'line',
+				data : {
+					labels : [],
+					datasets : []
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: true
+							}
+						}]
+					}
+				}
+			};
+            var dataSets = snapshotData.data.datasets;
+			var snapshotGR = new GlideRecord(this.TABLES.SKILL_SNAPSHOT);
+			snapshotGR.addQuery('user', userId);
+			snapshotGR.addQuery('role_profile', profileId);
+			snapshotGR.addQuery('date', '>', gs.monthsAgo(6));
+			snapshotGR.orderBy('date');
+			snapshotGR.query();
+			while (snapshotGR.next()){
+				snapshotData.data.labels.push(snapshotGR.getDisplayValue('date'));
+				totalSkills.push(snapshotGR.getValue('total_skills'));
+				higherSkills.push(snapshotGR.getValue('skills_higher'));
+				matchingSkills.push(snapshotGR.getValue('skills_matching'));
+				lowerSkills.push(snapshotGR.getValue('skills_lower'));
+				missingSkills.push(snapshotGR.getValue('skills_missing'));				
+			}
+			var totalDataSet = {
+				label : 'Total Skills',
+				data : totalSkills,
+				borderColor : [totalColour],
+				borderWidth : borderWidth,
+				fill : false
+			};
+			var higherDataSet = {
+				label : 'Higher Skills',
+				data : higherSkills,
+				borderColor : [higherColour],
+				borderWidth : borderWidth,
+				fill : false
+			};
+			var matchingDataSet = {
+				label : 'Matching Skills',
+				data : matchingSkills,
+				borderColor : [matchingColour],
+				borderWidth : borderWidth,
+				fill : false
+			};
+			var lowerDataSet = {
+				label : 'Lower Skills',
+				data : lowerSkills,
+				borderColor : [lowerColour],
+				borderWidth : borderWidth,
+				fill : false
+			};
+			var missingDataSet = {
+				label : 'Missing Skills',
+				data : missingSkills,
+				borderColor : [missingColour],
+				borderWidth : borderWidth,
+				fill : false
+			};
+			dataSets.push(totalDataSet);
+			dataSets.push(higherDataSet);
+			dataSets.push(matchingDataSet);
+			dataSets.push(lowerDataSet);
+			dataSets.push(missingDataSet);
+			return snapshotData;
+		}
+		catch (err){
+			gs.error('Error detected in Script Include ProfileManagementUtils, function getSnapshotData. Error message is ' + err.message);
+			return null;
+		}
+	},
 	
 	type: 'ProfileManagementUtils'
 };]]></script>
@@ -287,13 +379,13 @@ ProfileManagementUtils.prototype = {
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2017-02-04 12:24:30</sys_created_on>
         <sys_id>49f402a0dbb43200e24ff7fdbf961920</sys_id>
-        <sys_mod_count>25</sys_mod_count>
+        <sys_mod_count>33</sys_mod_count>
         <sys_name>ProfileManagementUtils</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_script_include_49f402a0dbb43200e24ff7fdbf961920</sys_update_name>
         <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-        <sys_updated_on>2020-10-29 22:59:13</sys_updated_on>
+        <sys_updated_on>2020-10-31 18:11:08</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_js_include">
+    <sp_js_include action="INSERT_OR_UPDATE">
+        <display_name>angular-chart.min</display_name>
+        <source>local</source>
+        <sys_class_name>sp_js_include</sys_class_name>
+        <sys_created_by>justin.loftas@up3.co.uk</sys_created_by>
+        <sys_created_on>2020-10-30 23:36:45</sys_created_on>
+        <sys_id>83afbc73dbc060906c98cafc139619bc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>angular-chart.min</sys_name>
+        <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
+        <sys_ui_script display_value="x_78492_profiling.angular-chart.min.js">a8be74bfdb8060906c98cafc13961976</sys_ui_script>
+        <sys_update_name>sp_js_include_83afbc73dbc060906c98cafc139619bc</sys_update_name>
+        <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
+        <sys_updated_on>2020-10-30 23:36:45</sys_updated_on>
+        <url/>
+    </sp_js_include>
+</record_update>

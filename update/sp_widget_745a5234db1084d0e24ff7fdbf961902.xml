@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[function roleProfilingComparison($scope,$http,spUtil) {
+        <client_script><![CDATA[function roleProfilingComparison($scope,$http,spUtil,spModal) {
 	/* widget controller */
 	var c = this;
 	var totalSkills = 0;
@@ -25,6 +25,21 @@
 	c.sortColumn = 'user_level_value';
 	c.sortAscending = true;
 	c.editingSkill = -1;
+	
+	c.showSkillTrend = function(){
+		var options = {
+			title : 'Skill snapshot trend for ' + c.userName + ' as ' + c.profileName,
+			widget : 'skill-snapshot-trend',
+			widgetInput : {
+				userId : c.userId,
+				profileId : c.profileId
+			},
+			size : 'lg'
+		}
+		spModal.open(options).then(function(){
+			
+		});
+	}
 
 	c.sortOrder = function(sortColumn){
 		c.sortAscending = (c.sortColumn === sortColumn) ? !c.sortAscending : true;
@@ -145,12 +160,12 @@
 		skill.temp_user_level_value = skill.user_level_value;
 		c.editingSkill = -1;
 	}
-	
+
 	c.startEdit = function(skill){
 		c.editingSkill = skill.user_skill_sys_id;
-		
+
 	}
-	
+
 	c.updateSkillLevel = function(skill){
 		var skillData = {
 			skill : skill,
@@ -158,7 +173,6 @@
 		};
 		$http.post('/api/x_78492_profiling/role_profile_data/update_user_skill', skillData)
 			.then(function(response){
-			console.log(response);
 			spUtil.addInfoMessage(response.data.result.message);
 			skill.user_level_value = skill.temp_user_level_value;
 			var profileData = {
@@ -407,8 +421,10 @@ div.skill-level-tooltip {
     position: relative;
 }
 
-.fa-camera {
-   padding-right: 10px; 
+button {
+  i.fa {
+    padding-right: 10px; 
+  }
 }
 
 .snapshot {
@@ -500,14 +516,14 @@ tbody.skill-level-edit {
         <sys_created_by>justin.loftas</sys_created_by>
         <sys_created_on>2019-10-02 16:23:51</sys_created_on>
         <sys_id>745a5234db1084d0e24ff7fdbf961902</sys_id>
-        <sys_mod_count>115</sys_mod_count>
+        <sys_mod_count>129</sys_mod_count>
         <sys_name>Role Profiling Comparison</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sp_widget_745a5234db1084d0e24ff7fdbf961902</sys_update_name>
         <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-        <sys_updated_on>2020-10-30 13:56:47</sys_updated_on>
+        <sys_updated_on>2020-10-31 18:14:24</sys_updated_on>
         <template><![CDATA[<div>
   <style>
     .missing-text {
@@ -535,8 +551,11 @@ tbody.skill-level-edit {
       <div ng-show="c.skills.length > 0">
         <div class="row">
           <div class="snapshot col-lg-12">
-            <button class="btn btn-primary" type="button" ng-click="c.takeSnapShot()">
+            <button class="btn btn-default" type="button" ng-click="c.takeSnapShot()">
               <i class="fa fa-camera"></i>Skill snapshot
+            </button>
+            <button class="btn btn-default" type="button" ng-click="c.showSkillTrend()">
+              <i class="fa fa-line-chart"></i>Show skills trend
             </button>
           </div>
 
