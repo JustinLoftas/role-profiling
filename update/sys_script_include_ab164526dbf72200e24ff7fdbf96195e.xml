@@ -27,6 +27,7 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 			this.totalHigher = 0;
 			this.totalLower = 0;
 			this.totalMissing = 0;
+			this.totalSkillsUser = 0;
 			this.userName = this._getUserName(userId);
 			this.profileName = '';
 			this.levelDescription = {};
@@ -58,6 +59,7 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 			userProfileSkills.totalMissing = this.totalMissing;
 			userProfileSkills.userName = this.userName;
 			userProfileSkills.profileName = this.profileName;
+			userProfileSkills.totalSkillsUser = this.totalSkillsUser;
 
 			if (ajaxUsed){
 				return json.encode(userProfileSkills);
@@ -158,6 +160,7 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 					upf.user_level_value = userLevelValue;
 					upf.user_level_description = skillLevelDescription;
 					upf.user_skill_sys_id = grUserSkill.getUniqueValue();
+					this.totalSkillsUser ++;
 					upf.temp_user_level_value = userLevelValue;
 					switch(true){
 						case upf.skill_level_value == userLevelValue:
@@ -182,6 +185,7 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
 			if (!matched){
 				this.totalHigher++;
 				this.totalSkills++;
+				this.totalSkillsUser++;
 				userSkill = {
 					skill_id : skillId,
 					category : grUserSkill.skill.x_78492_profiling_category.getDisplayValue(),
@@ -242,13 +246,13 @@ ProfileManagementAJAX.prototype = Object.extendsObject(global.AbstractAjaxProces
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2016-12-22 19:44:15</sys_created_on>
         <sys_id>ab164526dbf72200e24ff7fdbf96195e</sys_id>
-        <sys_mod_count>105</sys_mod_count>
+        <sys_mod_count>106</sys_mod_count>
         <sys_name>ProfileManagementAJAX</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_script_include_ab164526dbf72200e24ff7fdbf96195e</sys_update_name>
         <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-        <sys_updated_on>2020-10-29 22:39:06</sys_updated_on>
+        <sys_updated_on>2020-10-31 19:07:33</sys_updated_on>
     </sys_script_include>
 </record_update>

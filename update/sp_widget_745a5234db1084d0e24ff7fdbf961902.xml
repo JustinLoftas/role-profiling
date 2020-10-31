@@ -19,6 +19,7 @@
 	c.percentLower = 0;
 	c.percentHigher = 0;
 	c.percentMissing = 0;
+	c.totalSkillsUser = 0;
 	c.levelFilter = '';
 	c.profileSet = false;
 	c.userSet = false;
@@ -35,11 +36,11 @@
 				profileId : c.profileId
 			},
 			size : 'lg'
-		}
+		};
 		spModal.open(options).then(function(){
 			
 		});
-	}
+	};
 
 	c.sortOrder = function(sortColumn){
 		c.sortAscending = (c.sortColumn === sortColumn) ? !c.sortAscending : true;
@@ -88,6 +89,7 @@
 		c.percentLower = 0;
 		c.percentHigher = 0;
 		c.percentMissing = 0;
+		c.totalSkillsUser = 0;
 		c.levelFilter = '';
 		c.showMatchingDetails = false;
 		c.userName = '';
@@ -117,6 +119,7 @@
 			c.totalHigher = skillsInfo.totalHigher;
 			c.totalLower = skillsInfo.totalLower;
 			c.totalMissing = skillsInfo.totalMissing;
+			c.totalSkillsUser = skillsInfo.totalSkillsUser; 
 			totalSkills = c.totalSkills;
 			if (totalSkills > 0){
 				c.percentMatched = (c.totalMatched/totalSkills * 100).toFixed(1);
@@ -144,7 +147,7 @@
 		var snapshotData = {
 			userId : c.userId,
 			profileId : c.profileId,	  
-			totalSkills : c.totalSkills,
+			totalSkills : c.totalSkillsUser,
 			skillsHigher : c.percentHigher,
 			skillsLower : c.percentLower,
 			skillsMatched : c.percentMatched,
@@ -516,14 +519,14 @@ tbody.skill-level-edit {
         <sys_created_by>justin.loftas</sys_created_by>
         <sys_created_on>2019-10-02 16:23:51</sys_created_on>
         <sys_id>745a5234db1084d0e24ff7fdbf961902</sys_id>
-        <sys_mod_count>129</sys_mod_count>
+        <sys_mod_count>130</sys_mod_count>
         <sys_name>Role Profiling Comparison</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sp_widget_745a5234db1084d0e24ff7fdbf961902</sys_update_name>
         <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-        <sys_updated_on>2020-10-31 18:14:24</sys_updated_on>
+        <sys_updated_on>2020-10-31 21:15:26</sys_updated_on>
         <template><![CDATA[<div>
   <style>
     .missing-text {
