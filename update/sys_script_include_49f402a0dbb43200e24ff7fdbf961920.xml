@@ -213,7 +213,7 @@ ProfileManagementUtils.prototype = {
 	},
 
 	//Function for the updating of or adding skills to a user 
-	//@snapshotData {object}: an ibject containing the data points to be captured
+	//@skillData {object}: an object containing the data points to be captured
 	//@returns {object} : The Snapshot GlideRecord object
 	updateUserSkill : function(skillData){
 		try {
@@ -281,6 +281,10 @@ ProfileManagementUtils.prototype = {
 		}
 	},
 
+	//Function for getting the snap shot data for a user against a profile in a format that can be used by ChartJS
+	//@userId {string}: The sys_id of the user to query
+	//@profileId {string}: The sys_id of the profile to query
+	//@returns {array} : An array of objects containing choices and values
 	getSnapshotData : function (userId, profileId){
 		try {
 			var higherColour = gs.getProperty('x_78492_profiling.skill_higher.color', '#24d6f2');
@@ -301,11 +305,32 @@ ProfileManagementUtils.prototype = {
 					datasets : []
 				},
 				options: {
-					scales: {
+					scales: { 
 						yAxes: [{
 							ticks: {
-								beginAtZero: true
-							}
+								beginAtZero: true,
+								suggestedMax : 100
+							},
+							id: 'y-percentage',
+							type: 'linear',
+							scaleLabel : {
+								display : true,
+								labelString : '% Skill Matching'
+							},
+							position : 'left'
+						},
+						{
+							ticks: {
+								beginAtZero: true,
+								suggestedMax: 200
+							},
+							id: 'y-total',
+							type: 'linear',
+							scaleLabel : {
+								display : true,
+								labelString : '# Total Skills'
+							},
+							position : 'right'
 						}]
 					}
 				}
@@ -326,35 +351,40 @@ ProfileManagementUtils.prototype = {
 				missingSkills.push(snapshotGR.getValue('skills_missing'));				
 			}
 			var totalDataSet = {
-				label : 'Total Skills',
+				yAxisID: 'y-total',
+				label : '# Total Skills',
 				data : totalSkills,
 				borderColor : [totalColour],
 				borderWidth : borderWidth,
 				fill : false
 			};
 			var higherDataSet = {
-				label : 'Higher Skills',
+				yAxisID: 'y-percentage',
+				label : '% Higher Skills',
 				data : higherSkills,
 				borderColor : [higherColour],
 				borderWidth : borderWidth,
 				fill : false
 			};
 			var matchingDataSet = {
-				label : 'Matching Skills',
+				yAxisID: 'y-percentage',
+				label : '% Matching Skills',
 				data : matchingSkills,
 				borderColor : [matchingColour],
 				borderWidth : borderWidth,
 				fill : false
 			};
 			var lowerDataSet = {
-				label : 'Lower Skills',
+				yAxisID: 'y-percentage',
+				label : '% Lower Skills',
 				data : lowerSkills,
 				borderColor : [lowerColour],
 				borderWidth : borderWidth,
 				fill : false
 			};
 			var missingDataSet = {
-				label : 'Missing Skills',
+				yAxisID: 'y-percentage',
+				label : '% Missing Skills',
 				data : missingSkills,
 				borderColor : [missingColour],
 				borderWidth : borderWidth,
@@ -379,13 +409,13 @@ ProfileManagementUtils.prototype = {
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2017-02-04 12:24:30</sys_created_on>
         <sys_id>49f402a0dbb43200e24ff7fdbf961920</sys_id>
-        <sys_mod_count>33</sys_mod_count>
+        <sys_mod_count>40</sys_mod_count>
         <sys_name>ProfileManagementUtils</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_script_include_49f402a0dbb43200e24ff7fdbf961920</sys_update_name>
         <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-        <sys_updated_on>2020-10-31 18:11:08</sys_updated_on>
+        <sys_updated_on>2020-11-01 12:43:11</sys_updated_on>
     </sys_script_include>
 </record_update>

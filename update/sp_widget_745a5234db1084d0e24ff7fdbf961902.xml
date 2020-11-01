@@ -513,20 +513,21 @@ tbody.skill-level-edit {
 	};
 	
 	data.skillLevels = new x_78492_profiling.ProfileManagementUtils().getSkillLevelChoices();
+	data.isAdmin = gs.hasRole('x_78492_profiling.profile_admin');
 })();]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>justin.loftas</sys_created_by>
         <sys_created_on>2019-10-02 16:23:51</sys_created_on>
         <sys_id>745a5234db1084d0e24ff7fdbf961902</sys_id>
-        <sys_mod_count>130</sys_mod_count>
+        <sys_mod_count>131</sys_mod_count>
         <sys_name>Role Profiling Comparison</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sp_widget_745a5234db1084d0e24ff7fdbf961902</sys_update_name>
         <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-        <sys_updated_on>2020-10-31 21:15:26</sys_updated_on>
+        <sys_updated_on>2020-11-01 08:45:57</sys_updated_on>
         <template><![CDATA[<div>
   <style>
     .missing-text {
@@ -554,7 +555,7 @@ tbody.skill-level-edit {
       <div ng-show="c.skills.length > 0">
         <div class="row">
           <div class="snapshot col-lg-12">
-            <button class="btn btn-default" type="button" ng-click="c.takeSnapShot()">
+            <button ng-if="c.data.isAdmin == true" class="btn btn-default" type="button" ng-click="c.takeSnapShot()">
               <i class="fa fa-camera"></i>Skill snapshot
             </button>
             <button class="btn btn-default" type="button" ng-click="c.showSkillTrend()">
