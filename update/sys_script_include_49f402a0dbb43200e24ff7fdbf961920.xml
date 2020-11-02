@@ -403,19 +403,50 @@ ProfileManagementUtils.prototype = {
 		}
 	},
 	
+		//Function for the updating of or adding skills to a user 
+	//@skillData {object}: an object containing the data points to be captured
+	//@returns {object} : The Snapshot GlideRecord object
+	updateSME : function(skillData){
+		try {
+			var result = {
+				outcome : 'success',
+				message : 'SME for skill for user successfully updated'
+			};
+			var isSME = skillData.isSME;
+			gs.warn('SME: ' + isSME);
+			var userSkillGR = new GlideRecord(this.TABLES.USER_SKILL);
+			if (!gs.nil(skillData.sysId)){
+				if (userSkillGR.get(skillData.sysId)){
+					userSkillGR.setValue('x_78492_profiling_sme', isSME);
+					userSkillGR.update();
+				}
+				else {
+					throw new Error('Could not find user skill record');
+				}
+			}
+			return result;
+		}
+		catch(err){
+			gs.error('Error detected in Script Include ProfileManagementUtils, function updateSME. Error message is ' + err.message);
+			result.outcome = 'error';
+			result.message = err.message;
+			return result;			
+		}
+	},
+	
 	type: 'ProfileManagementUtils'
 };]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>jloftas</sys_created_by>
         <sys_created_on>2017-02-04 12:24:30</sys_created_on>
         <sys_id>49f402a0dbb43200e24ff7fdbf961920</sys_id>
-        <sys_mod_count>40</sys_mod_count>
+        <sys_mod_count>47</sys_mod_count>
         <sys_name>ProfileManagementUtils</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sys_script_include_49f402a0dbb43200e24ff7fdbf961920</sys_update_name>
         <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-        <sys_updated_on>2020-11-01 12:43:11</sys_updated_on>
+        <sys_updated_on>2020-11-02 08:32:27</sys_updated_on>
     </sys_script_include>
 </record_update>

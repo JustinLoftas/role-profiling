@@ -157,17 +157,17 @@
 			.then(function(response){
 				spUtil.addInfoMessage('Skill snapshot taken');
 			});
-	}
+	};
 	
 	c.cancelEdit = function(skill){
 		skill.temp_user_level_value = skill.user_level_value;
 		c.editingSkill = -1;
-	}
+	};
 
 	c.startEdit = function(skill){
 		c.editingSkill = skill.user_skill_sys_id;
 
-	}
+	};
 
 	c.updateSkillLevel = function(skill){
 		var skillData = {
@@ -183,295 +183,382 @@
 				userName :c.userName,
 				userId :c.userId,
 				profileId : c.profileId
-			}
+			};
 			$scope.$broadcast('GetComparisonData', profileData);
 			c.editingSkill = -1;
 		}, function(error){
 			spUtil.addInfoMessage(error.data.result.message);
 			c.cancelEdit();
 		});
-	}
+	};
+	
+	c.updateUserSME = function(skill){
+		var skillData = {
+			isSME : skill.is_sme,
+			sysId : skill.user_skill_sys_id
+		};
+		$http.post('/api/x_78492_profiling/role_profile_data/update_sme', skillData).
+		then(function(response){
+			spUtil.addInfoMessage(response.data.result.message);
+		}, function(error){
+			spUtil.addInfoMessage(error.data.result.message);
+		});
+	};
 }
 
 				]]></client_script>
         <controller_as>c</controller_as>
-        <css>.column-row-text::first-letter {
-   font-size: 12pt;
-   text-transform: uppercase;
-}
-
-.column-row-text {
-   font-size: 10pt;
-   text-transform: uppercase;
-   color: black;
-
-}
-
-.detailed-column-row-text {
-   padding-left: 5px;
-
-}
-
-.column-skill-row-text::first-letter {
-   font-size: 12pt;
-   text-transform: uppercase;
-}
-
-.column-skill-row-text {
-   font-size: 10pt;
-   text-transform: uppercase;
-}
-
-div.column-skill-row-header {
-   font-size: 12pt;
-   text-transform: uppercase;
-   text-align: center;
-   margin-top: -6px;
-  font-weight: normal;
-}
-
-div.column-row-header {
-   font-size: 12pt;
-   text-transform: uppercase; 
-   margin-top: -6px;
-   font-weight: normal;
-}
-
-th {
-  background-color: #343d47; 
-  color: white !important;
-  height: 30px;
-}
-
-th.column-header {
-   width: 20%;
-}
-
-th.skill-header {
-   width: 40%;
-}
-
-td.column-skill-row {
-  width: 20%;
-}
-
-td.skill-description {
-  width: 40%;
-}
-
-.header-description::first-letter {
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
-   font-size: 20pt;
-  text-transform: uppercase;
-}
-
-.header-description {
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
-   font-size: 16pt;
-  text-transform: uppercase;
- text-align: center;
- width: 100%;
-min-width:200px;
-}
-
-.select-description::first-letter {
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
-   font-size: 14pt;
-  text-transform: uppercase;
-}
-
-.select-description {
-   font-family: "Trebuchet MS", Helvetica, sans-serif;
-   font-size: 12pt;
-  text-transform: uppercase;
-  text-align: center;
-  width: 100%;
-  min-width:200px;
-  padding-top: 10px;
-}
-
-.header-result {
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
-   font-size: 22pt;
- text-align: right;
- width: 20%;
-}
-
-div.canvas-container {
-  text-align: center;
-}
-
-div.gauge-hover {
-   position: absolute;
-   top: -50px;
-}
-
-div.btn-holder {
-    padding: 10px 0px 10px 0px; 
-    text-align: center;
-}
-
-canvas {
-    cursor:pointer;
-}
-
-td.column-skill-level {
-    text-align: center;
-}
-
-div.gauge-tooltiptext {
-    visibility: hidden;
-    width: 100%;
-    background-color: white;
-    color: black;
-    text-align: center;
-    padding: 5px;
-    border: 1px solid black;
-    border-radius: 5px;
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
-   font-size: 9pt;
-    /* Position the tooltip text - see examples below! */
-    position: relative;
-    top: -30px;
-    z-index: -100;
-}
-
-div.gauge-tooltip:hover .gauge-tooltiptext {
-    visibility: visible;
-    z-index: 1;
-}
-
-div.gauge-tooltip {
-     position: relative;
-}
-
-div.detail-header {
-   min-width: 300px;
-}
-
-i.sort-extra {
-  vertical-align: text-bottom;
- padding-left: 7px;
- color: white;
-font-size: 12pt;
-}
-
-span.column-header-sort {
-   cursor: pointer;
-}
-
-table {
-       width: 100%;
- }
-
-.table-container {
-    top: -25px;
-}
-
-thead, tbody, tr, td, th { 
-   display: block; 
-}
-
-tr:after {
-    content: ' ';
-    display: block;
-    visibility: hidden;
-    clear: both;
-}
-
-tbody {
-    height: 400px;
-    overflow-y: auto;
-}
-
-tbody td, thead th  {
-    width: 20%;
-    float: left;
-}
-
-.panel-info &gt; .column-row-text {
-   background-color: #3A424E !important;
-  border-color: #3A424E !important;
-}
-
-.panel-info {
-   border-color: #3A424E !important;
-}
-
-div.skill-level-tooltiptext {
-    visibility: hidden;
-    width: 100%;
-    background-color: white;
-    color: black;
-    text-align: center;
-    padding: 5px;
-    border: 1px solid black;
-    border-radius: 5px;
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
-   font-size: 9pt;
-    /* Position the tooltip text - see examples below! */
-    position: absolute;
-    width: 100%;
-    z-index: -1;
-}
-
-div.skill-level-tooltip:hover div.skill-level-tooltiptext {
-    visibility: visible;
-    z-index: 1;
-}
-
-div.skill-level-tooltip {
-    position: relative;
-}
-
-button {
-  i.fa {
-    padding-right: 10px; 
-  }
-}
-
-.snapshot {
-   text-align: center; 
-}
-
-.skill-level-edit-dialog {
-    z-index: 50; 
-  position: absolute;
-  width: 100%;
-  background-color: #FFF;
-  border: solid 1px black;
-  border-radius: 5px;
-  padding: 5px;
-  margin-top: -8px;
-  text-align: left;
-}
-
-.color-green {
-   color: #48c891; 
-}
-
-.color-red {
-   color: red; 
-}
-
-.fa-check-circle-o, .fa-times-circle-o {
-  font-size: 15pt;
-  vertical-align: middle;
-}
-
-tbody.skill-level-edit {
-   height: auto; 
-}
-
-.skill-level-select {
-   width: 76%; 
-}
-
-.skill-edit-buttons {
-  width : 12%;
-}
-
-
+        <css>.column-row-text::first-letter {&#13;
+   font-size: 12pt;&#13;
+   text-transform: uppercase;&#13;
+}&#13;
+&#13;
+.column-row-text {&#13;
+   font-size: 10pt;&#13;
+   text-transform: uppercase;&#13;
+   color: black;&#13;
+&#13;
+}&#13;
+&#13;
+.detailed-column-row-text {&#13;
+   padding-left: 5px;&#13;
+&#13;
+}&#13;
+&#13;
+.column-skill-row-text::first-letter {&#13;
+   font-size: 12pt;&#13;
+   text-transform: uppercase;&#13;
+}&#13;
+&#13;
+.column-skill-row-text {&#13;
+   font-size: 10pt;&#13;
+   text-transform: uppercase;&#13;
+}&#13;
+&#13;
+div.column-skill-row-header {&#13;
+   font-size: 12pt;&#13;
+   text-transform: uppercase;&#13;
+   text-align: center;&#13;
+   margin-top: -6px;&#13;
+  font-weight: normal;&#13;
+}&#13;
+&#13;
+div.column-row-header {&#13;
+   font-size: 12pt;&#13;
+   text-transform: uppercase; &#13;
+   margin-top: -6px;&#13;
+   font-weight: normal;&#13;
+}&#13;
+&#13;
+th {&#13;
+  background-color: #343d47; &#13;
+  color: white !important;&#13;
+  height: 30px;&#13;
+}&#13;
+&#13;
+th.column-header-sm {&#13;
+   width: 8%;&#13;
+}&#13;
+&#13;
+th.column-header-md {&#13;
+   width: 20%;&#13;
+}&#13;
+&#13;
+th.column-header-lg {&#13;
+   width: 30%;&#13;
+}&#13;
+&#13;
+td.column-skill-row-sm {&#13;
+  width: 10%;&#13;
+}&#13;
+&#13;
+td.column-skill-row-md {&#13;
+  width: 20%;&#13;
+}&#13;
+&#13;
+td.column-skill-row-lg {&#13;
+  width: 30%;&#13;
+}&#13;
+&#13;
+div.column-sme-row {&#13;
+  padding-left: 2.5em; &#13;
+}&#13;
+&#13;
+.header-description::first-letter {&#13;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
+   font-size: 20pt;&#13;
+  text-transform: uppercase;&#13;
+}&#13;
+&#13;
+.header-description {&#13;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
+   font-size: 16pt;&#13;
+  text-transform: uppercase;&#13;
+ text-align: center;&#13;
+ width: 100%;&#13;
+min-width:200px;&#13;
+}&#13;
+&#13;
+.select-description::first-letter {&#13;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
+   font-size: 14pt;&#13;
+  text-transform: uppercase;&#13;
+}&#13;
+&#13;
+.select-description {&#13;
+   font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
+   font-size: 12pt;&#13;
+  text-transform: uppercase;&#13;
+  text-align: center;&#13;
+  width: 100%;&#13;
+  min-width:200px;&#13;
+  padding-top: 10px;&#13;
+}&#13;
+&#13;
+.header-result {&#13;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
+   font-size: 22pt;&#13;
+ text-align: right;&#13;
+ width: 20%;&#13;
+}&#13;
+&#13;
+div.canvas-container {&#13;
+  text-align: center;&#13;
+}&#13;
+&#13;
+div.gauge-hover {&#13;
+   position: absolute;&#13;
+   top: -50px;&#13;
+}&#13;
+&#13;
+div.btn-holder {&#13;
+    padding: 10px 0px 10px 0px; &#13;
+    text-align: center;&#13;
+}&#13;
+&#13;
+canvas {&#13;
+    cursor:pointer;&#13;
+}&#13;
+&#13;
+td.column-skill-level {&#13;
+    text-align: center;&#13;
+}&#13;
+&#13;
+div.gauge-tooltiptext {&#13;
+    visibility: hidden;&#13;
+    width: 100%;&#13;
+    background-color: white;&#13;
+    color: black;&#13;
+    text-align: center;&#13;
+    padding: 5px;&#13;
+    border: 1px solid black;&#13;
+    border-radius: 5px;&#13;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
+   font-size: 9pt;&#13;
+    /* Position the tooltip text - see examples below! */&#13;
+    position: relative;&#13;
+    top: -30px;&#13;
+    z-index: -100;&#13;
+}&#13;
+&#13;
+div.gauge-tooltip:hover .gauge-tooltiptext {&#13;
+    visibility: visible;&#13;
+    z-index: 1;&#13;
+}&#13;
+&#13;
+div.gauge-tooltip {&#13;
+     position: relative;&#13;
+}&#13;
+&#13;
+div.detail-header {&#13;
+   min-width: 300px;&#13;
+}&#13;
+&#13;
+i.sort-extra {&#13;
+  vertical-align: text-bottom;&#13;
+ padding-left: 7px;&#13;
+ color: white;&#13;
+font-size: 12pt;&#13;
+}&#13;
+&#13;
+span.column-header-sort {&#13;
+   cursor: pointer;&#13;
+}&#13;
+&#13;
+table {&#13;
+       width: 100%;&#13;
+ }&#13;
+&#13;
+.table-container {&#13;
+    top: -25px;&#13;
+}&#13;
+&#13;
+thead, tbody, tr, td, th { &#13;
+   display: block; &#13;
+}&#13;
+&#13;
+tr:after {&#13;
+    content: ' ';&#13;
+    display: block;&#13;
+    visibility: hidden;&#13;
+    clear: both;&#13;
+}&#13;
+&#13;
+tbody {&#13;
+    height: 600px;&#13;
+    overflow-y: auto;&#13;
+}&#13;
+&#13;
+tbody td, thead th  {&#13;
+    width: 20%;&#13;
+    float: left;&#13;
+}&#13;
+&#13;
+.panel-info &gt; .column-row-text {&#13;
+   background-color: #3A424E !important;&#13;
+  border-color: #3A424E !important;&#13;
+}&#13;
+&#13;
+.panel-info {&#13;
+   border-color: #3A424E !important;&#13;
+}&#13;
+&#13;
+div.skill-level-tooltiptext {&#13;
+    visibility: hidden;&#13;
+    width: 100%;&#13;
+    background-color: white;&#13;
+    color: black;&#13;
+    text-align: center;&#13;
+    padding: 5px;&#13;
+    border: 1px solid black;&#13;
+    border-radius: 5px;&#13;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;&#13;
+   font-size: 9pt;&#13;
+    /* Position the tooltip text - see examples below! */&#13;
+    position: absolute;&#13;
+    width: 100%;&#13;
+    z-index: -1;&#13;
+}&#13;
+&#13;
+div.skill-level-tooltip:hover div.skill-level-tooltiptext {&#13;
+    visibility: visible;&#13;
+    z-index: 1;&#13;
+}&#13;
+&#13;
+div.skill-level-tooltip {&#13;
+    position: relative;&#13;
+}&#13;
+&#13;
+button {&#13;
+  i.fa {&#13;
+    padding-right: 10px; &#13;
+  }&#13;
+}&#13;
+&#13;
+.snapshot {&#13;
+   text-align: center; &#13;
+}&#13;
+&#13;
+.skill-level-edit-dialog {&#13;
+    z-index: 50; &#13;
+  position: absolute;&#13;
+  width: 110%;&#13;
+  background-color: #FFF;&#13;
+  border: solid 1px black;&#13;
+  border-radius: 5px;&#13;
+  padding: 5px;&#13;
+  margin-top: -8px;&#13;
+  text-align: left;&#13;
+}&#13;
+&#13;
+.color-green {&#13;
+   color: #48c891; &#13;
+}&#13;
+&#13;
+.color-red {&#13;
+   color: red; &#13;
+}&#13;
+&#13;
+.fa-check-circle-o, .fa-times-circle-o {&#13;
+  font-size: 15pt;&#13;
+  vertical-align: middle;&#13;
+}&#13;
+&#13;
+tbody.skill-level-edit {&#13;
+   height: auto; &#13;
+}&#13;
+&#13;
+.skill-level-select {&#13;
+   width: 82%; &#13;
+}&#13;
+&#13;
+.skill-edit-buttons {&#13;
+  width : 9%;&#13;
+}&#13;
+&#13;
+.new-level-select {&#13;
+   width: 95%;&#13;
+   font-size: 16px;&#13;
+}&#13;
+&#13;
+$turquoise: #1abc9c;&#13;
+$greensea: #16a085;&#13;
+$night: #ce6767;&#13;
+$midnight: red;&#13;
+$transition: all .5s ease;&#13;
+&#13;
+/* Hide the input */&#13;
+input[type="checkbox"] {&#13;
+  position: absolute;&#13;
+  opacity: 0;&#13;
+  z-index: -1;&#13;
+}&#13;
+&#13;
+label.check-trail {&#13;
+  margin: 0px;&#13;
+}&#13;
+&#13;
+.check-trail {&#13;
+  display: flex;&#13;
+  align-items: center;&#13;
+  width: 3.4em;&#13;
+  height: 1.6em;&#13;
+  background: $midnight;&#13;
+  border-radius: 2.5em;&#13;
+  transition: $transition;&#13;
+  cursor: pointer;&#13;
+}&#13;
+.check-handler {&#13;
+  font-size: 10px;&#13;
+  display: flex;&#13;
+  margin-left: 0.1em;&#13;
+  justify-content: center;&#13;
+  align-items: center;&#13;
+  width: 2.1em;&#13;
+  height: 2em;&#13;
+  background: $night;&#13;
+  border-radius: 50%;&#13;
+  transition: $transition;&#13;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);&#13;
+  &amp;:before {&#13;
+    content: "\00D7";&#13;
+    color: white;&#13;
+    font-size: 2em;&#13;
+    font-weight: bold;&#13;
+  }&#13;
+}&#13;
+input[type="checkbox"]:checked + .check-trail {&#13;
+  background: $greensea;&#13;
+  .check-handler {&#13;
+    margin-left: 50%;&#13;
+    background: $turquoise;&#13;
+    &amp;::before {&#13;
+      content: "\2714"&#13;
+    }&#13;
+  }&#13;
+}&#13;
+&#13;
+&#13;
 </css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -520,14 +607,14 @@ tbody.skill-level-edit {
         <sys_created_by>justin.loftas</sys_created_by>
         <sys_created_on>2019-10-02 16:23:51</sys_created_on>
         <sys_id>745a5234db1084d0e24ff7fdbf961902</sys_id>
-        <sys_mod_count>131</sys_mod_count>
+        <sys_mod_count>170</sys_mod_count>
         <sys_name>Role Profiling Comparison</sys_name>
         <sys_package display_value="Role Profiling" source="x_78492_profiling">98075f7fdb672200e24ff7fdbf961997</sys_package>
         <sys_policy/>
         <sys_scope display_value="Role Profiling">98075f7fdb672200e24ff7fdbf961997</sys_scope>
         <sys_update_name>sp_widget_745a5234db1084d0e24ff7fdbf961902</sys_update_name>
         <sys_updated_by>justin.loftas@up3.co.uk</sys_updated_by>
-        <sys_updated_on>2020-11-01 08:45:57</sys_updated_on>
+        <sys_updated_on>2020-11-02 11:29:51</sys_updated_on>
         <template><![CDATA[<div>
   <style>
     .missing-text {
@@ -651,42 +738,47 @@ tbody.skill-level-edit {
               <table class="table table-striped table-hover">
                 <thead class="results-header">
                   <tr>
-                    <th class="column-header">
+                    <th class="column-header-md">
                       <div class="column-row-header">
                         <span class="column-header-sort" ng-click="c.sortOrder('category')">${Category}</span>
                         <i ng-if="c.sortColumn === 'category'" ng-class="c.getOrderIcon(c.sortAscending)"></i>
                       </div>
                     </th>
-                    <th class="skill-header">
+                    <th class="column-header-lg">
                       <div class="column-row-header">
                         <span class="column-header-sort" ng-click="c.sortOrder('skill')">${Skill}</span>
                         <i ng-if="c.sortColumn === 'skill'" ng-class="c.getOrderIcon(c.sortAscending)"></i>
                       </div>
                     </th>
-                    <th class="column-header">
+                    <th class="column-header-md">
                       <div class="column-skill-row-header">
                         <span class="column-header-sort" ng-click="c.sortOrder('skill_level_value')">${Profile level}</span>
                         <i ng-if="c.sortColumn === 'skill_level_value'" ng-class="c.getOrderIcon(c.sortAscending)"></i>
 
                       </div>
                     </th>
-                    <th class="column-header">
+                    <th class="column-header-md">
                       <div class="column-skill-row-header">
                         <span class="column-header-sort" ng-click="c.sortOrder('user_level_value')">${User skill level}</span>
                         <i ng-if="c.sortColumn === 'user_level_value'" ng-class="c.getOrderIcon(c.sortAscending)"></i>
+                      </div>
+                    </th>
+                    <th class="column-header-sm">
+                      <div class="column-skill-row-header">
+                        <span>${SME}</span>
                       </div>
                     </th>
                   </tr>
                 </thead>
                 <tbody class="results-body">
                   <tr ng-repeat="skill in c.skills | filter: {matched:c.levelFilter} | orderBy : c.sortColumn : c.sortAscending">		
-                    <td class="column-skill-row">
+                    <td class="column-skill-row-md">
                       <div class="column-row-text" ng-bind="skill.category"></div>
                     </td>
-                    <td class="skill-description">
+                    <td class="column-skill-row-lg">
                       <div class="column-row-text detailed-column-row-text" ng-bind="skill.skill"></div>
                     </td>
-                    <td class="column-skill-level column-skill-row">
+                    <td class="column-skill-level column-skill-row-md">
                       <div class="skill-level-tooltip">
                         <div class="detailed-column-row-text" ng-if="skill.skill_level == 'missing'"  ng-class="c.getGlyphClass(skill.skill_level)">
                         </div>
@@ -695,14 +787,14 @@ tbody.skill-level-edit {
                         <div class="skill-level-tooltiptext" ng-bind="skill.skill_level_description"></div>
                       </div>
                     </td>
-                    <td class="column-skill-level column-skill-row" ng-dblclick="c.startEdit(skill)">                     
+                    <td class="column-skill-level column-skill-row-md" ng-dblclick="c.startEdit(skill)">                     
                       <div class="skill-level-tooltip">
                         <div ng-if="c.editingSkill == skill.user_skill_sys_id && c.data.skillLevels.length > 0" class="skill-level-edit-dialog">                    
                           <table class="skill-level-edit">
                             <tbody class="skill-level-edit">
                             <tr>
                               <td class="skill-level-select">     
-                                <select ng-model="skill.temp_user_level_value">
+                                <select class="new-level-select" ng-model="skill.temp_user_level_value">
                                   <option ng-selected="skill.user_level_value == skillLevel.value" ng-repeat="skillLevel in c.data.skillLevels" value="{{skillLevel.value}}">{{skillLevel.label}}</option>
                                 </select>
                               </td>
@@ -721,6 +813,14 @@ tbody.skill-level-edit {
                         <div class="detailed-column-row-text" ng-if="skill.matched != 'missing'" ng-bind="skill.user_level" ng-class="c.getGlyphClass(skill.matched)">		
                         </div>
                         <div ng-if="c.editingSkill == -1" class="skill-level-tooltiptext" ng-bind="skill.user_level_description"><i class="icon-arrow-down-rounded"></i></div>
+                      </div>
+                    </td>
+                    <td class="column-skill-level column-skill-row-sm">
+                      <div ng-if="skill.user_level_value >= 3 || skill.is_sme == 'true'" class="detailed-column-row-text column-sme-row">
+                        <input id="chck_{{$index}}" ng-click="c.updateUserSME(skill)" ng-model="skill.is_sme" type="checkbox" ng-checked="skill.is_sme == 'true'">
+                        <label for="chck_{{$index}}" class="check-trail">
+                          <span class="check-handler"></span>
+                        </label>
                       </div>
                     </td>
                   </tr>
