@@ -20,5 +20,6 @@
         <sys_updated_on>2020-06-24 10:11:21</sys_updated_on>
         <x_78492_profiling_category display_value="Competencies">7f01290edb33fb40e24ff7fdbf9619b4</x_78492_profiling_category>
         <x_78492_profiling_default_skill_level>0</x_78492_profiling_default_skill_level>
+        <x_78492_profiling_documentation/>
     </cmn_skill>
 </record_update>

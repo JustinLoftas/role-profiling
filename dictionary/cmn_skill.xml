@@ -4,6 +4,7 @@
         <element attributes="edge_encryption_enabled=true" choice="3" choice_field="level" choice_table="x_78492_profiling_role_profile_skill" default="0" label="Default skill level" max_length="40" name="x_78492_profiling_default_skill_level" type="string">
             <choice/>
         </element>
+        <element label="Documentation" max_length="1024" name="x_78492_profiling_documentation" type="url"/>
         <index name="index">
             <element name="x_78492_profiling_category"/>
         </index>
